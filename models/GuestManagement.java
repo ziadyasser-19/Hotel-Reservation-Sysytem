@@ -10,9 +10,15 @@ public class GuestManagement {
 
     // Methods
     public static int addGuest(String name , int NationalId , String email){
-        GuestArray.add(new Guest(name, NationalId, email));
-        return 1;
+        for(int i = 0 ; i<GuestArray.size();i++){
+            if (GuestArray.get(i).getNationalID()==NationalId){
+                return -1; // guest already found
+        }
     }
+        GuestArray.add(new Guest(name, NationalId, email));
+        return 1; //added succefully 
+    
+}
 
 
     public static int updateGuest(int id, String email) {
