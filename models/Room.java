@@ -6,6 +6,7 @@ public class Room {
     private int roomID;
     private String roomType;
     private boolean isAvailable;
+    private static int roomCount = 0;
 
 
     // Constructor
@@ -13,6 +14,7 @@ public class Room {
         this.roomID=roomID;
         this.roomType = roomType;
         this.isAvailable=isAvailable;
+        ++roomCount;
     }
 
     // Setters
@@ -39,5 +41,9 @@ public class Room {
 
     public boolean getIsAvaialble(){
         return this.isAvailable;
+    }
+
+    public int getRoomCount(){
+        return Room.roomCount;
     }
 }
