@@ -7,6 +7,8 @@ public class Room {
     private String roomType;
     private boolean isAvailable;
     private static int roomCount = 0;
+    private double price;
+    private int reservedDays;
 
 
     // Constructor
@@ -30,6 +32,14 @@ public class Room {
         this.isAvailable=isAvailable;
     }
 
+    public void setPrice(double price){
+        this.price=price;
+    }
+
+    public void setReservedDays(int days){
+        this.reservedDays=days;
+    }
+
     // Getters
     public int getRoomID(){
         return this.roomID;
@@ -45,5 +55,13 @@ public class Room {
 
     public int getRoomCount(){
         return Room.roomCount;
+    }
+
+    public double getPrice(){
+        return this.price;
+    }
+
+    public int getReservedDays(){
+        return this.reservedDays;
     }
 }
