@@ -71,7 +71,7 @@ public abstract class Person {
     // Methods 
     
     public boolean login(String name, int pass){
-        if(this.name==name && this.password==pass){
+        if(this.name.equalsIgnoreCase(name) && this.password==pass){
             return true; //login successfully
         }
         return false; //login failed

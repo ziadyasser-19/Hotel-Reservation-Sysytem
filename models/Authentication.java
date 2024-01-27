@@ -14,7 +14,7 @@ public class Authentication {
 
     public static boolean ReceptionistLogin(String name, int pass){
         for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
-            if(receptionist.login(name, pass)){
+            if(receptionist.login(name.trim(), pass)){
                 return true; // Receptionist logged in successfully
             }
         }

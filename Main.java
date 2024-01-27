@@ -60,19 +60,20 @@ public class Main {
 
         System.out.println("***********************************************");
 
-        Admin admin = new Admin("farah", 123);
-        Admin admin2 = new Admin("ziad", 456);
+        Admin.addAdmin("farah", 123);
+        Admin.addAdmin("ziad", 456);
 
         for(Admin admins : Admin.getAdmins()){
             System.out.println(admins.getName() + " " + admins.getPass());
         }
 
-        // Scanner input = new Scanner(System.in);
-        // System.out.println("Enter admin name: ");
-        // String name = input.nextLine();
-        // System.out.println("Enter Admin Password: ");
-        // String pass = input.nextLine().trim();
-        if(Authentication.AdminLogin("farah", 123)){
+        System.out.println("************************");
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter admin name: ");
+        String name = input.nextLine();
+        System.out.println("Enter Admin Password: ");
+        int pass = input.nextInt();
+        if(Authentication.AdminLogin(name,pass)){
             System.out.println("Logged in successfully");
         }
         else{
@@ -80,20 +81,26 @@ public class Main {
         }
 
         System.out.println("**********************************");
-        ReceptionistManagement.addEmployee("Ava", 222);
-        ReceptionistManagement.addEmployee("Ryle", 414);
+        
+        // ReceptionistManagement.addEmployee("Ava", 222);
+        // ReceptionistManagement.addEmployee("Ryle", 414);
 
-        for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
-            System.out.println(receptionist.getID() + " " +receptionist.getName() + " " + receptionist.getPass());
-        }
+        // for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
+        //     System.out.println(receptionist.getID() + " " +receptionist.getName() + " " + receptionist.getPass());
+        // }
 
-        if(Authentication.ReceptionistLogin("Allen", 123)){
-            System.out.println("logged in successfully");
-        }
-        else{
-            System.out.println("login failed");
-        }
+        // System.out.println("Enter Receptionist name: ");
+        // String name2 = input.nextLine().trim();
+        // System.out.println("Enter Receptionist Password: ");
+        // int pass2 = input.nextInt();
 
-        System.out.println(ReceptionistManagement.getAllReceptionists().size());
+        // if(Authentication.ReceptionistLogin(name2, pass2)){
+        //     System.out.println("logged in successfully");
+        // }
+        // else{
+        //     System.out.println("login failed");
+        // }
+
+        // System.out.println(ReceptionistManagement.getAllReceptionists().size());
     }
 }

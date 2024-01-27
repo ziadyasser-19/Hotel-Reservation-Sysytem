@@ -13,7 +13,6 @@ public class Admin extends Person {
     public Admin(String name, int password){
         super(name, "Admin", password);
         this.id = ++adminCount;
-        admins.add(this);      // n test l hwar dah 
     }
     
     // Setters
@@ -36,4 +35,13 @@ public class Admin extends Person {
         
     }
 
+    public static int addAdmin(String name, int pass){
+        for(Admin admin : admins){
+            if(admin.getName().equalsIgnoreCase(name)){
+                return -1; // admin name already exists
+            }
+    }
+    admins.add(new Admin(name, pass));
+    return 1; // added admin successfully
+    }
 }
