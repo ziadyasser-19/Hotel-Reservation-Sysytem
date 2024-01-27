@@ -58,19 +58,19 @@ public static int assignRoom(int roomid , int NationalId,int reservedDays){
 
     Guest guest = GuestManagement.SearchGuest(NationalId);
     Room room = SearchRoom(roomid);
-        if(room.getIsAvaialble()){
-            if(guest != null && room != null){
-                guest.addRoom(room);
-                room.setIsAvailable(false); // make the room reserved
-                room.setReservedDays(reservedDays);  // set the number of days to reserve
-                return 1 ; // assigned succefully 
-            }
-            else 
-                return -1 ; // the guest or room not found 
-        }
-        else
-            return 0 ; // the room is reserved
         
+        if(guest != null && room != null){
+                if(room.getIsAvaialble()){
+                            guest.addRoom(room);
+                            room.setIsAvailable(false); // make the room reserved
+                            room.setReservedDays(reservedDays);  // set the number of days to reserve
+                            return 1 ; // assigned succefully 
+                        }
+                        else 
+                            return -1 ; // the room is reversed 
+                    }
+        else
+                    return 0; // the guest or room not found
     }
 
 public static int unassignRoom(int roomid,int NationalId){
