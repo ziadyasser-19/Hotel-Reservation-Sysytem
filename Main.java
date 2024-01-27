@@ -48,8 +48,16 @@ public class Main {
 
         System.out.println(GuestManagement.SearchGuest(0000).getRegRoom());
         
+        
         RoomManagement.assignRoom(1, 1111, 3);
 
         System.out.println(GuestManagement.SearchGuest(1111).getRegRoom());
+
+        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
+
+
+
+        RoomManagement.unassignRoom(1, 0000);
+        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
     }
 }
