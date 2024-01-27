@@ -38,5 +38,18 @@ public class Main {
         System.out.println(GuestManagement.SearchGuest(1111).getId());
         System.out.println(GuestManagement.SearchGuest(0000).getId());
         System.out.println(GuestManagement.SearchGuest(2222).getId());
+
+        RoomManagement.addRoom(1, "double", true);
+        RoomManagement.addRoom(2, "double", true);
+        RoomManagement.addRoom(3, "double", false);
+
+
+        RoomManagement.assignRoom(1, 0000, 3);
+
+        System.out.println(GuestManagement.SearchGuest(0000).getRegRoom());
+        
+        RoomManagement.assignRoom(1, 1111, 3);
+
+        System.out.println(GuestManagement.SearchGuest(1111).getRegRoom());
     }
 }
