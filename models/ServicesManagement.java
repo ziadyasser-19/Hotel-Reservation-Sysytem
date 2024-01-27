@@ -7,7 +7,7 @@ public class ServicesManagement {
 
     // Methods 
     
-    public int addService(int id, String name, String description, double price) {
+    public static int addService(int id, String name, String description, double price) {
         for (int i = 0; i < services.size(); i++) {
             if (name.equalsIgnoreCase(services.get(i).getServiceName())) {
                 return -1; // service already exist
@@ -19,7 +19,7 @@ public class ServicesManagement {
     
 
 
-    public int deleteService(int serviceID){
+    public static int deleteService(int serviceID){
         for(int i = 0 ; i<services.size();i++){
             if(services.get(i).getServiceID()==serviceID){
                 services.remove(i);
@@ -31,7 +31,7 @@ public class ServicesManagement {
 
 
 
-    public int updateService(int serviceID,String newdescription){
+    public static int updateService(int serviceID,String newdescription){
         for(int i = 0 ; i<services.size();i++){
             if (services.get(i).getServiceID()==serviceID){
                 services.get(i).setDescription(newdescription);
@@ -41,12 +41,40 @@ public class ServicesManagement {
             return -1;
     }
 
-    public Services searchService(int serviceID){
+    public static Services searchService(int serviceID){
         return services.get(serviceID);
     }
 
-    
 
+//=============================== Assign Service ==================================
+
+    public static int assignService(int serviceid , int NationalId){
+
+        Guest guest =  GuestManagement.SearchGuest(NationalId);
+        Services services = searchService(serviceid);
+            
+        if(guest != null && services != null){
+            guest.addService(services);
+            return 1 ; // assigned succefully 
+        }
+        else 
+            return -1 ; // the guest or service  not found 
+        
+    }
+    
+    public static int unassignService(int NationalId){
+        Guest guest = GuestManagement.SearchGuest(NationalId);
+            if (guest.getRegServices()==null)
+                return -1 ; // the guest dont have a regservice
+                
+            else if (guest.getRegServices()!=null){
+                guest.deleteService();
+                return 1;  //service unassigned succefully
+            }
+            else
+                return 0; // service or guest not found 
+    }
+//===================================================================
     public void generateReport(int serviceID){
 
     }
