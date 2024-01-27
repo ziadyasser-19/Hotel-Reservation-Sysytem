@@ -69,8 +69,12 @@ public abstract class Person {
         return NationalId;
     }
     // Methods 
-    public void login(int id, int pass){
-        // Implementation
+    
+    public boolean login(String name, int pass){
+        if(this.name==name && this.password==pass){
+            return true; //login successfully
+        }
+        return false; //login failed
     }
 
 }
