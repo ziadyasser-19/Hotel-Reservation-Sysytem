@@ -34,7 +34,9 @@ public class Main {
         GuestManagement.addGuest("ziad", 0000, "ziadamin");
         GuestManagement.addGuest("mohsen", 1111, "ziadamin");
         GuestManagement.addGuest("fawzy", 2222, "ziadamin");
-        
-        
+
+        System.out.println(GuestManagement.SearchGuest(1111).getId());
+        System.out.println(GuestManagement.SearchGuest(0000).getId());
+        System.out.println(GuestManagement.SearchGuest(2222).getId());
     }
 }
