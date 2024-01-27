@@ -71,7 +71,7 @@ public class Main {
         // System.out.println("Enter admin name: ");
         // String name = input.nextLine();
         // System.out.println("Enter Admin Password: ");
-        // int pass = input.nextInt();
+        // String pass = input.nextLine().trim();
         if(Authentication.AdminLogin("farah", 123)){
             System.out.println("Logged in successfully");
         }
@@ -80,8 +80,6 @@ public class Main {
         }
 
         System.out.println("**********************************");
-        Receptionist recep1 = new Receptionist("Allen", 123);
-        Receptionist recep2 = new Receptionist("Atlas", 896);
         ReceptionistManagement.addEmployee("Ava", 222);
         ReceptionistManagement.addEmployee("Ryle", 414);
 

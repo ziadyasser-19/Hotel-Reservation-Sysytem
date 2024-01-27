@@ -13,7 +13,6 @@ public class Receptionist extends Person {
     public Receptionist(String name, int password) {
         super(name, "Receptionist", password);
         this.id = ++receptionistCounter;
-        ReceptionistManagement.getAllReceptionists().add(this);
     }
     
     // Setters

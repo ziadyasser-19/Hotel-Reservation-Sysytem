@@ -12,8 +12,7 @@ public class ReceptionistManagement {
                 return -1; // password used already
             }
         }
-        // receptionistArray.add(new Receptionist(name, pass));
-        new Receptionist(name, pass);
+        receptionistArray.add(new Receptionist(name, pass));
         return 1; // New Receptionist added successfully
     }
 
