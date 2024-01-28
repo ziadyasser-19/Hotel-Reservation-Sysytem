@@ -66,28 +66,34 @@ public class Main {
         for(Admin admins : Admin.getAdmins()){
             System.out.println(admins.getName() + " " + admins.getPass());
         }
+        
 
-        System.out.println("************************");
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter admin name: ");
-        String name = input.nextLine();
-        System.out.println("Enter Admin Password: ");
-        int pass = input.nextInt();
-        if(Authentication.AdminLogin(name,pass)){
-            System.out.println("Logged in successfully");
-        }
-        else{
-            System.out.println("Login Failed");
-        }
+        // System.out.println("************************");
+        // Scanner input = new Scanner(System.in);
+        // System.out.println("Enter admin name: ");
+        // String name = input.nextLine();
+        // System.out.println("Enter Admin Password: ");
+        // int pass = input.nextInt();
+        // if(Authentication.AdminLogin(name,pass)){
+        //     System.out.println("Logged in successfully");
+        // }
+        // else{
+        //     System.out.println("Login Failed");
+        // }
 
         System.out.println("**********************************");
         
-        // ReceptionistManagement.addEmployee("Ava", 222);
-        // ReceptionistManagement.addEmployee("Ryle", 414);
+        ReceptionistManagement.addEmployee("Ava", 222);
+        ReceptionistManagement.addEmployee("Ryle", 414);
+        ReceptionistManagement.addEmployee("A", 88);
+        
+        ReceptionistManagement.deleteEmployee(2);
 
-        // for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
-        //     System.out.println(receptionist.getID() + " " +receptionist.getName() + " " + receptionist.getPass());
-        // }
+        ReceptionistManagement.addEmployee("b", 2);
+
+        for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
+            System.out.println(receptionist.getID() + " " +receptionist.getName() + " " + receptionist.getPass());
+        }
 
         // System.out.println("Enter Receptionist name: ");
         // String name2 = input.nextLine().trim();

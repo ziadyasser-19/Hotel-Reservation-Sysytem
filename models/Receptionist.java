@@ -14,6 +14,12 @@ public class Receptionist extends Person {
         super(name, "Receptionist", password);
         this.id = ++receptionistCounter;
     }
+
+    
+    public Receptionist(int id, String name, int password){
+        super(name, "Receptionist", password);
+        this.id=id;
+    }
     
     // Setters
 
