@@ -10,9 +10,10 @@ public class GuestManagement {
     // Methods
     
     public static int addGuest(String name , int NationalId , String email){
+        
         for(int i = 0 ; i<GuestArray.size();i++){
             if (GuestArray.get(i).getNationalID()==NationalId){
-                return -1; // guest already found
+                return -1; // guest already exist
         }
     }
         GuestArray.add(new Guest(name, NationalId, email));
@@ -32,12 +33,18 @@ public class GuestManagement {
     public static int deleteGuest(int NationalId) {
         for (int i = 0; i < GuestArray.size(); i++) {
             if (GuestArray.get(i).getNationalID() == NationalId) {
-                GuestArray.remove(i);
-                return 1; // Successfully deleted
+                if(GuestArray.get(i).getRegRoom()!=null){
+                    RoomManagement.unassignRoom(GuestArray.get(i).getRegRoom().getRoomID(), NationalId);
+                    GuestArray.remove(i);
+                    return 1; // Successfully deleted and un assigned the room from him
+                    }else{
+                        GuestArray.remove(i);
+                        return 0; // successfully deleted
             }
         }
-        return -1; // Guest not found
     }
+    return -1; // Guest not found
+}
     
         
     

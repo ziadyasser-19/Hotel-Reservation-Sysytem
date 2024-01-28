@@ -31,8 +31,13 @@ public class RoomManagement {
     public static int deleteRoom(int roomID){
         for(int i = 0; i < rooms.size(); i++){
             if(rooms.get(i).getRoomID() == roomID){
+                if(rooms.get(i).getIsAvaialble()==false){
+                    return -2; // the room is reserved it can't be deleted
+                }
+                else{
                 rooms.remove(i);
                 return 1; // deleted successfully
+                }
             }
         }
         return -1; // failed to delete 

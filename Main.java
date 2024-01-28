@@ -46,19 +46,28 @@ public class Main {
 
         System.out.println(GuestManagement.SearchGuest(0000).getRegRoom());
         
+        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
+
+        GuestManagement.deleteGuest(0000);
+
+        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
+
+        if(RoomManagement.deleteRoom(3)==-2){
+            System.out.println("the room reserved");
+        }
+
+        //RoomManagement.assignRoom(1, 1111, 3);
+
+        //System.out.println(GuestManagement.SearchGuest(1111).getRegRoom());
+
         
-        RoomManagement.assignRoom(1, 1111, 3);
-
-        System.out.println(GuestManagement.SearchGuest(1111).getRegRoom());
-
-        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
 
 
 
-        RoomManagement.unassignRoom(1, 0000);
-        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
+        //RoomManagement.unassignRoom(1, 0000);
+        //System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
 
-        System.out.println("***********************************************");
+/*         System.out.println("***********************************************");
 
         Admin admin = new Admin("farah", 123);
         Admin admin2 = new Admin("ziad", 456);
@@ -94,6 +103,6 @@ public class Main {
             System.out.println("login failed");
         }
 
-        System.out.println(ReceptionistManagement.getAllReceptionists().size());
+        System.out.println(ReceptionistManagement.getAllReceptionists().size()); */
     }
 }
