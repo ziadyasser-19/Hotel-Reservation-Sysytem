@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.*;
+import helpers.*;
 
 
 public class Main {
@@ -110,5 +111,9 @@ public class Main {
         // int pass2 = input.nextInt();
 
         System.out.println(ReceptionistManagement.getAllReceptionists().size()); */
+    System.out.println("Enter a number: ");
+    // Functions.readPositiveOrZero(); 
+    Functions.readPositive();  
+
     }
 }
