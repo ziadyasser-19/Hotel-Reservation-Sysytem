@@ -61,7 +61,7 @@ public static List<Room> filterRooms() {
 
     public static double billDetails(int NationalId){
         Guest guest = GuestManagement.SearchGuest(NationalId); // get the guest you want
-
+        
         if (guest == null )
         return -1 ; // guest not found
         else

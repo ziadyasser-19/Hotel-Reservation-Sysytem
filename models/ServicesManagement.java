@@ -52,7 +52,9 @@ public class ServicesManagement {
 
         Guest guest =  GuestManagement.SearchGuest(NationalId);
         Services services = searchService(serviceid);
-            
+        
+        if(guest.getRegServices()!=null)
+            return -2; //this user has already registered in service before
         if(guest != null && services != null){
             guest.addService(services);
             return 1 ; // assigned succefully 
@@ -62,7 +64,7 @@ public class ServicesManagement {
         
     }
     
-    public static int unassignService(int NationalId){
+    public static int unassignService(int NationalId,Services serviceid){
         Guest guest = GuestManagement.SearchGuest(NationalId);
             if (guest.getRegServices()==null)
                 return -1 ; // the guest dont have a regservice
