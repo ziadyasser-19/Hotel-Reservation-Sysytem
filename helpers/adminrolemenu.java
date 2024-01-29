@@ -1,5 +1,7 @@
 package helpers;
 
+
+
 public class adminrolemenu {
     
     public static int Adminmenu() {
@@ -9,7 +11,7 @@ public class adminrolemenu {
         System.out.println("( 3 ) Services services");
         System.out.println("( 4 ) logout ");
         System.out.println("\nEnter your choice : ");
-        int x = Functions.readPositive();
+        int x = Functions.readPositive(4);
         return x;
     }
 
@@ -22,7 +24,7 @@ public class adminrolemenu {
         System.out.println("( 5 ) Show all Guests ");
         System.out.println("( 6 ) <== back to the admin main page ");
         System.out.println("\n Enter your choice : ");
-        int x = Functions.readPositive();
+        int x = Functions.readPositive(6);
         return x;
     }
 
@@ -34,7 +36,7 @@ public class adminrolemenu {
         System.out.println("( 4 ) Show all Rooms ");
         System.out.println("( 5 ) <== back to the admin main page ");
         System.out.println("\n Enter your choice : ");
-        int x = Functions.readPositive();
+        int x = Functions.readPositive(5);
         return x;
     }
 
@@ -46,19 +48,21 @@ public class adminrolemenu {
         System.out.println("( 4 ) Show all services ");
         System.out.println("( 5 ) <== back to the admin main page ");
         System.out.println("\n Enter your choice : ");
-        int x = Functions.readPositive();
+        int x = Functions.readPositive(5);
         return x;
     }
 
     public static int anotherservicemenu(){
         System.out.println("( 0 ) exit ");
         System.out.println("( 1 ) do another operation ? ");
-        int x = Functions.readPositiveOrZero();
+        int x = Functions.readPositiveOrZero(1);
         return x;
     }
 
-    public static void main(String[] args) {
-        EmployeeservicesMenu();
+
+
+        
     }
-}
+    
+
 
