@@ -8,8 +8,10 @@ import models.GuestManagement;
 import models.Receptionist;
 import models.ReceptionistManagement;
 import models.RoomManagement;
+import models.ServicesManagement;
 import models.Guest;
 import models.Room;
+import models.Services;
 
 
 public class AdminRole {
@@ -39,13 +41,14 @@ public static void main(String[] args) {
                         if (ReceptionistManagement.addEmployee(name, password) != -1) {
                             z = false;
                             ReceptionistManagement.addEmployee(name, password);
-                            System.out.println("Receptionist added succefully");
+                            System.out.println("\nReceptionist added succefully :) ");
                         }
                     }
                 }else{
-                    System.out.println("added succefully");
+                    ReceptionistManagement.addEmployee(name, password);
+                    System.out.println("\nReceptionist added succefully : ) ");
                 }
-
+                System.out.println("\n==============================");
                 int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
@@ -194,29 +197,24 @@ public static void main(String[] args) {
                     break outerLoop;
                 }
     }else if (m==2){
-        System.out.println("enter the number of the room to delete : ");
-        int x = Functions.readPositive();
-        if(RoomManagement.deleteRoom(x)==-2){
-            System.out.println("Sorry the room is assigned to guest can't be deleted now!");
-        }else if(RoomManagement.deleteRoom(x)==1){
-            RoomManagement.deleteRoom(x);
-            System.out.println("Room deleted Successfuly :) ");
-        }else if(RoomManagement.deleteRoom(x)==-1){
-            boolean z = true;
+        
+        System.out.println("enter the room number to delete :");
+        int roomnum = Functions.readPositive();
+
+        if(RoomManagement.SearchRoom(roomnum)==null){
+            boolean z =true;
             while(z){
-                System.out.println("wrong room number enter a valid one : ");
-                x = Functions.readPositive();
-                if(RoomManagement.deleteRoom(x)==-1){
-                    z=true;
-                }else if(RoomManagement.deleteRoom(x)==-2){
-                    z= false;
-                    System.out.println("room assigned to guest cant delete right now! ");
-                }else{
-                    z =false;
-                    RoomManagement.deleteRoom(x);
+                System.out.println("Wrong room number enter a Valid one : ");
+                roomnum=Functions.readPositive();
+                if(RoomManagement.SearchRoom(roomnum)!=null){
+                    z=false;
+                    RoomManagement.deleteRoom(roomnum);
                     System.out.println("room deleted succefully :) ");
                 }
             }
+        }else{
+                    RoomManagement.deleteRoom(roomnum);
+                    System.out.println("room deleted succefully :) ");
         }
         int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
@@ -271,6 +269,120 @@ public static void main(String[] args) {
         continue outerLoop;
     }
 
+}else if (t==3){
+    int x = adminrolemenu.ServicesservicesMenu();
+    if(x==1){   // option bta3 ADD service
+
+        System.out.println("enter Service name : ");
+        String servicename = Functions.readString();
+        System.out.println("enter service description : ");
+        String description =  Functions.readString();
+        System.out.println("enter service Price : ");
+        double price = Functions.readPositive();
+        
+        int z= ServicesManagement.addService(servicename, description, price);
+        
+        if(z==-1){ // lw el esm mogod
+            boolean f = true;
+            while(f){
+                System.out.println("the name already exist choose another one : ");
+                servicename = Functions.readString();
+                if(ServicesManagement.addService(servicename, description, price)!=-1){ // lw zbt el esm 
+                    f=false;
+                    ServicesManagement.addService(servicename, description, price);
+                    System.out.println("Service added succefully :) ");
+                }
+            }
+        }else{ // lw d5l esm tmam 
+            ServicesManagement.addService(servicename, description, price);
+            System.out.println("Service added succefully :) ");
+        }
+            int y = adminrolemenu.anotherservicemenu();
+                if (y == 1) {
+                    continue outerLoop;
+                }else{
+                    System.out.println("logged out");
+                    break outerLoop;
+                }
+}else if(x==2){ // option bta3 el delete 
+
+    System.out.println("enter the Service name you want to delete : ");
+    String servicename = Functions.readString();
+    if(ServicesManagement.searchServices(servicename)==null){ // bst5dm fn el search lw ml2tsh el elsm dh 
+        boolean z = true;
+        while(z){
+            System.out.println("the service doesnt exist enter another service name : ");
+            servicename = Functions.readString();
+            if (ServicesManagement.searchServices(servicename)!=null) {
+                ServicesManagement.deleteService(servicename);
+                System.out.println("Service deleted succefully :) ");
+            }
+        }
+    }else{ // lw el2sm tmam 
+                ServicesManagement.deleteService(servicename);
+                System.out.println("Service deleted succefully :) ");
+    }
+    int y = adminrolemenu.anotherservicemenu();
+    if (y == 1) {
+        continue outerLoop;
+    }else{
+        System.out.println("logged out");
+        break outerLoop;
+    }
+
+}else if (x==3){   // Update option
+    
+    System.out.println("enter the service name to search for ");
+    String name = Functions.readString();
+    
+    if(ServicesManagement.searchServices(name)==null){ // lw el esm msh mogod 
+        boolean z = true; 
+        while(z){
+            System.out.println("Service not found  , please try again : ");
+            name = Functions.readString();
+            if(ServicesManagement.searchServices(name)!=null){ // lw d5l el esm s7 a5yra 
+                z=false;
+                System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
+                int serviceprice = Functions.readPositive();
+                ServicesManagement.updateService(name, serviceprice);
+            }
+        }
+    }else{ // lw d5l el 2sm s7 mn awl mra
+        System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
+                int serviceprice = Functions.readPositive();
+                ServicesManagement.updateService(name, serviceprice);
+    }
+    int y = adminrolemenu.anotherservicemenu();
+    if (y == 1) {
+        continue outerLoop;
+    }else{
+        System.out.println("logged out");
+        break outerLoop;
+    }
+
+
+}   else if (x==4){ // show all services 
+    
+    System.out.println("All Services in the system : \n"); 
+    ArrayList<Services> services = ServicesManagement.getServicesList(); // b3ml loop gdeda feha el lista bt3ty w blf 3leha 
+    
+    for(Services service :services){
+        System.out.println("\n"+ "ID : "+service.getServiceID()+"    Name: " + service.getServiceName() + "    Description : " + service.getServiceDesc() + "    Price : " + service.getServicePrice() + "$");
+    }
+    System.out.println("\n =========================================");
+    int y = adminrolemenu.anotherservicemenu();
+    if (y == 1) {
+        continue outerLoop;
+    }else{
+        System.out.println("logged out");
+        break outerLoop;
+    }
+} else if (x==5){ // option el back 
+    continue outerLoop;
+}
+}else if(t==4){ // Logout option 
+    System.out.println("logged out succefully !");
+    break outerLoop;
 }
 }
 }

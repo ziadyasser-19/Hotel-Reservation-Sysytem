@@ -29,31 +29,10 @@ public class RoomManagement {
         return -1; // failed to update 
     }
 
-    public static int index (int  roomID) {
-        for(int i = 0 ; i <rooms.size();i++){
-            if (rooms.get(i).getRoomID()==roomID){
-                return i;
-        }
-    }
-        return -1;
-    }
-    public static int deleteRoom(int roomID) {
-        int index = index(roomID);
     
-        if (index != -1) {
-            if (rooms.get(index).getIsAvaialble()==false) {
-                return -2; // The room is reserved; it can't be deleted
-            } else {
-                rooms.remove(index);
-                return 1; // Deleted successfully
-            }
-        }
-        return -1; // Room does not exist
-    }
     
- /*    public static int deleteRoom(int roomID){
-        int index=index(roomID);
-        if(index!=-1){
+    public static int deleteRoom(int roomID){
+        
         for(int i = 0; i < rooms.size(); i++){
             if(rooms.get(i).getRoomID() == roomID){
                 if(rooms.get(i).getIsAvaialble()==false){
@@ -67,7 +46,7 @@ public class RoomManagement {
         }
         return -1; // room not exist
     }
-} */
+
 
 
 

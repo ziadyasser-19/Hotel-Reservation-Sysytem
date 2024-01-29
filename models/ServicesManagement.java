@@ -1,40 +1,42 @@
 package models;
 import java.util.ArrayList;
-import java.util.List;
+
 public class ServicesManagement {
     
     private static ArrayList<Services> services = new ArrayList<>();
 
     // Methods 
     
-    public static int addService(int id, String name, String description, double price) {
+    public static int addService( String name, String description, double price) {
         for (int i = 0; i < services.size(); i++) {
             if (name.equalsIgnoreCase(services.get(i).getServiceName())) {
                 return -1; // service already exist
             }
         }
-        services.add(new Services(id, name, price, description));
+        services.add(new Services( name, price, description));
         return 1; // added successfully
     }
     
 
 
-    public static int deleteService(int serviceID){
-        for(int i = 0 ; i<services.size();i++){
-            if(services.get(i).getServiceID()==serviceID){
+    public static int deleteService(String serviceName) {
+        for (int i = 0; i < services.size(); i++) {
+            if (services.get(i).getServiceName().equalsIgnoreCase(serviceName)) {
                 services.remove(i);
-                return 1; //service deleted succefully
+                return 1; // Service deleted successfully
             }
         }
-        return -1;// Service not found
+        return -1; // Service not found
     }
+    
+    
 
 
 
-    public static int updateService(int serviceID,String newdescription){
+    public static int updateService(String name ,double newprice){
         for(int i = 0 ; i<services.size();i++){
-            if (services.get(i).getServiceID()==serviceID){
-                services.get(i).setDescription(newdescription);
+            if (name.equalsIgnoreCase(services.get(i).getServiceName())){
+                services.get(i).setPrice(newprice);;
                 return 1; //succefully updated
             }
         }
@@ -45,6 +47,15 @@ public class ServicesManagement {
         return services.get(serviceID);
     }
 
+    //overloaded method 
+    public static Services searchServices(String name ){
+        for(int i=0; i<services.size() ; i ++ ){
+            if(name.equalsIgnoreCase(services.get(i).getServiceName())){
+                return services.get(i);
+            }
+        }
+        return null;
+    }
 
 //=============================== Assign Service ==================================
 
@@ -61,7 +72,6 @@ public class ServicesManagement {
         }
         else 
             return -1 ; // the guest or service  not found 
-        
     }
     
     public static int unassignService(int NationalId,Services serviceid){
@@ -77,11 +87,8 @@ public class ServicesManagement {
                 return 0; // service or guest not found 
     }
 //===================================================================
-    public void generateReport(int serviceID){
 
-    }
-
-    public List<Services> getServicesList() {
+    public static ArrayList<Services> getServicesList() {
     return services;
 }
 

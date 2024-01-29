@@ -3,13 +3,14 @@ package models;
 public class Services {
     
     private int serviceID;
+    private static int servicecounter=0;
     private String serviceName;
     private double price;
     private String description;
 
     // Constructors
-    public Services(int serviceID, String serviceName, double price, String description) {
-        this.serviceID = serviceID;
+    public Services( String serviceName, double price, String description) {
+        this.serviceID = ++servicecounter;
         this.serviceName = serviceName;
         this.price = price;
         this.description = description;
