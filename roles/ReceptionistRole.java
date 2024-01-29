@@ -99,6 +99,18 @@ public class ReceptionistRole {
                     
                     back=true;
                     break;
+
+                    // [3] - Unassign Room from guest
+                    case 3:
+                    System.out.println("\n**** Unassign Room From Guest ****\n");
+
+                    System.out.println("Enter guest national ID: ");
+                    int guestid = Functions.readPositive();
+
+                    System.out.println("Enter room number: ");
+                    int roomno = Functions.readPositive();
+
+                    
                     
                 
             }
@@ -110,7 +122,7 @@ public class ReceptionistRole {
     }
 
     public static void main (String args[]){
-        RoomManagement.addRoom(4, "single", true, 44);
+        RoomManagement.addRoom(4, "single", false, 44);
         RoomManagement.addRoom(5, "single", true, 44);
 
 
