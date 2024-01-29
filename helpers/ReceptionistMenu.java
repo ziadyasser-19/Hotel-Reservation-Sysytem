@@ -12,13 +12,12 @@ public class ReceptionistMenu {
         System.out.println("[4]- Filter Rooms");
         System.out.println("[5]- View Nearest Checkout");
         System.out.println("[6]- Assign Service to Guest");
-        System.out.println("[7]- Unassign Service from Guest");
-        System.out.println("[8]- View all guests");
-        System.out.println("[9]- Print detailed bill for the guest");
-        System.out.println("[10]- Generate report about service ");
+        System.out.println("[7]- View all guests");
+        System.out.println("[8]- Print detailed bill for the guest");
+        System.out.println("[9]- Generate report about service ");
         System.out.println("[0]- Log out");
         System.out.println("\nChoose one option to continue: ");
-        int choice = Functions.readPositiveOrZero(10);
+        int choice = Functions.readPositiveOrZero(9);
         return choice;
     }
 

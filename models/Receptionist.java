@@ -1,7 +1,7 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Receptionist extends Person {
     
@@ -31,7 +31,7 @@ public class Receptionist extends Person {
 
 // Methods  ** To be implemented later 
 
-public static List<Room> filterRooms() {
+public static ArrayList<Room> filterRooms() {
     ArrayList<Room> availablerooms = new ArrayList<>(); // new list to show available rooms only 
     ArrayList<Room> allrooms = RoomManagement.getRoomList(); // the official list
     

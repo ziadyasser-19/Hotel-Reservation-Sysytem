@@ -9,7 +9,7 @@ public class Report {
     private double starrate;
     private Guest reportedguest;
     private Services reportedservice;
-    private ArrayList<Report> reports = new  ArrayList<Report>();  
+    private static ArrayList<Report> reports = new  ArrayList<Report>();  
 
     public Report(Date date, Guest guest, Services service,double starrate) {
         this.id = ++ReportCounter;
@@ -21,8 +21,8 @@ public class Report {
 
  //setter and getter
 
-    public ArrayList<Report> getreportlist(){
-        return this.reports;
+    public static ArrayList<Report> getreportlist(){
+        return reports;
     }
 
     public double getstarrate(){
@@ -53,14 +53,14 @@ public class Report {
         return this.reportedservice;
     }
 
-    public ArrayList<Report> getReportlist(){
-        return this.reports;
+    public static ArrayList<Report> getReportlist(){
+        return reports;
     }
 
-    public String generatereport(Guest guest,Services service,double starrate){
+    public static String generatereport(Guest guest,Services service,double starrate){
         Date currentdate = new Date(); // to set up the current date of the generated report then added it to constructor
         reports.add(new Report(currentdate,guest,service,starrate));
-        return "The report of "+guest.getName()+ "been added successfully" + "with rate "+starrate ;
+        return "The report of "+guest.getName()+ " has been added successfully " + "with rate "+starrate ;
     }
 
     public double servicerate(){

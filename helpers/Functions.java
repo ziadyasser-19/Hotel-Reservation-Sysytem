@@ -117,4 +117,28 @@ public class Functions {
             }
         }
     }
+
+    // read double rating 
+    public static double readDouble(int max){
+        double n = 0;
+        while (true){
+            try {
+                n = input.nextDouble();
+                if(n>0){
+                    if(n<=max){
+                        return n;
+                    } else {
+                        System.out.println("Enter a number between 0 and " + max);
+                    }
+                }
+                else {
+                    System.out.println("Please enter a positive double number: ");
+                    input.nextLine();
+                }
+            } catch (Exception e){
+                System.out.println("Enter a valid positive double number: ");
+                input.nextLine();
+            }
+        }
+    }
 }

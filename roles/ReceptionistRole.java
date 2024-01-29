@@ -1,22 +1,16 @@
 package roles;
 import models.*;
-
-import java.util.Scanner;
-
-
 import helpers.*;
+
+import java.util.ArrayList;
 
 public class ReceptionistRole {
     
     public static void receptionistRole(int id){
 
-        Scanner input = new Scanner(System.in);
         boolean loggedIn = true;
-        Receptionist receptionist = ReceptionistManagement.search(id);
         
-        
-        
-        while (loggedIn) {
+        outerloop:while (loggedIn) {
             int choice = ReceptionistMenu.ReceptionistMainMenu();
             boolean back = false;
 
@@ -52,7 +46,7 @@ public class ReceptionistRole {
                         back=true;
                         break;
                     }
-
+                
                     
                 // [2] Assign room to guest 
                 case 2:
@@ -98,52 +92,213 @@ public class ReceptionistRole {
                     }
                     
                     back=true;
-                    break;
+                break;
+
 
                     // [3] - Unassign Room from guest
                     case 3:
-                    System.out.println("\n**** Unassign Room From Guest ****\n");
+                        System.out.println("\n**** Unassign Room From Guest ****\n");
 
-                    System.out.println("Enter guest national ID: ");
-                    int guestid = Functions.readPositive();
+                        System.out.println("Enter guest national ID: ");
+                        int guestid = Functions.readPositive();
 
-                    System.out.println("Enter room number: ");
-                    int roomno = Functions.readPositive();
+                        System.out.println("Enter room number: ");
+                        int roomno = Functions.readPositive();
 
-                    int unassign = RoomManagement.unassignRoom(roomno, guestid);
+                        int unassign = RoomManagement.unassignRoom(roomno, guestid);
 
-                    if(unassign == 1){
-                        System.out.println("The Room unassigned successfully");
-                    }
-                    else if(unassign == -1){
-                        System.out.println("This guest does not have a room assigned");
-                    }
-                    else {
-                        System.out.println("Something went wrong! Please try again.");
-
-                        int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
-
-                        if(n == 1){ //try to assign room again
-                            continue;
+                        if(unassign == 1){
+                            System.out.println("The Room unassigned successfully");
                         }
-                        else { // back to menu 
-                            back=true;
+                        else if(unassign == -1){
+                            System.out.println("This guest does not have a room assigned");
                         }
-                    }
-                    back=true;
+                        else {
+                            System.out.println("Something went wrong! Please try again.");
+
+                            int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
+
+                            if(n == 1){ //try to assign room again
+                                continue;
+                            }
+                            else { // back to menu 
+                                back=true;
+                            }
+                        }
+                        back=true;
                     break;
 
-            }
+
+                    // [4] - Filter Rooms 
+                    case 4:
+                        System.out.println("\n**** Available Rooms ****\n");
+
+                        ArrayList<Room> availablerooms = Receptionist.filterRooms();
+
+                        if (!availablerooms.isEmpty()){
+                            for(Room room : availablerooms){
+                                System.out.println(room.getRoomID() + "    " + room.getRoomType() + "    " + room.getPrice() + "$");
+                            }
+                        }
+                        else{
+                            System.out.println("There are no available rooms at this time.");
+                        }
+
+                        back=true;
+                    break;
+
+
+                    // [5] - View Nearest Checkout
+                    case 5:
+                        try{
+                            Room nearestRoom = Receptionist.viewNearestCheckout();
+
+                            System.out.println("\nNearest room will checked out is room number " + nearestRoom.getRoomID());
+                            back=true;
+                        }
+                        catch(Exception e){
+                            System.out.println("There is no rooms in the system");
+                            back=true;
+                        }
+                    break;
+
+
+                    // [6] Assign guest to service  
+                    case 6:
+                        System.out.println("\n**** Assign Service To Guest ****\n");
+
+                        System.out.println("Enter guest national ID: ");
+                        int guest = Functions.readPositive();
+
+                        System.out.println("Enter service ID: ");
+                        int service = Functions.readPositive();
+
+                        try{
+                            int assignService = ServicesManagement.assignService(service, guest);
+
+                            if(assignService==-2){
+                                System.out.println("This guest already assigned a service!");
+                                back=true;
+                            }
+                            else if(assignService == 1){
+                                System.out.println("Service assigned to guest successfully");
+                                back=true;
+                            }
+                        }
+                        catch(Exception e){
+                        
+                            System.out.println("Error! Failed to assign service.");
+                            int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                            if(n == 1){      //try to assign room again
+                                continue;
+                            }
+                            else {        // back to menu 
+                                back=true;
+                            }
+
+                        }
+                        break;
+
+                        // [7]- View all guests
+                        case 7:
+                            System.out.println("\n**** All Registered Guests ***\n");
+
+                            ArrayList<Guest> allGuests = GuestManagement.getGuestArray();
+
+                            if(!allGuests.isEmpty()){
+                                for(Guest guests : allGuests){
+                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID());
+                                }
+                                back=true;
+                            }
+                            else{
+                                System.out.println("There are no guests registered yet.\nPlease add some guests first.");
+                                back=true;
+                            }
+                        break;
+
+
+                        // [8]- Print detailed bill for the guest
+                        case 8:
+                            System.out.println("Enter guest national ID: ");
+                            int idguest = Functions.readPositive();
+
+                            Guest guestt = GuestManagement.SearchGuest(idguest);
+
+                            if(guestt==null){
+                                System.out.println("Guest not found!");
+                                int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                                if(n == 1){      //try to assign room again
+                                    continue;
+                                }
+                                else {        // back to menu 
+                                    back=true;
+                                }
+                            }
+                            else{
+                                try{
+                                    double bill = Receptionist.billDetails(idguest);
+                                    System.out.println("\nTotal Bill Cost for the guest= " + bill);
+                                    back=true;
+                                }
+                                catch(Exception e){
+                                    System.out.println("Guest has not assigned to room or service yet!");
+                                    back=true;
+                                }
+                            }
+                        break;
+
+                        // [9]- Generate report about service
+                        case 9:
+                            System.out.println("Enter guest national ID: ");
+                            int idofguest = Functions.readPositive();
+                            
+                            System.out.println("Enter Service id: ");
+                            int serviceid = Functions.readPositive();
+                            
+                            System.out.println("Enter rating from 1 to 5: ");
+                            double rate = Functions.readDouble(5);
+                            
+                            try{
+                                Guest guest2 = GuestManagement.SearchGuest(idofguest);
+                                Services service2 = ServicesManagement.searchService(serviceid);
+
+                                String report = Report.generatereport(guest2, service2, rate);
+                                System.out.println(report);
+                                back=true;
+                            } 
+                            catch (Exception ex) {
+                                System.out.println("\nEither guest or service is not available");
+                                int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                                if(n == 1){      //try to assign room again
+                                    continue;
+                                }
+                                else {        // back to menu 
+                                    back=true;
+                                }
+                                back=true;
+                            }
+                        break;
+
+                        // [0]- Log out
+                        case 0:
+                            break outerloop;
+                }
         
+            }   
         }
     }
 
 
-    }
 
     public static void main (String args[]){
-        RoomManagement.addRoom(4, "single", false, 44);
+        // RoomManagement.addRoom(4, "single", false, 44);
         RoomManagement.addRoom(5, "single", true, 44);
+        GuestManagement.addGuest("farah", 2004, "farahhh");
+        ServicesManagement.addService("gym", "", 250);
+        ServicesManagement.addService("spa", "", 300);
+
+        
 
 
         receptionistRole(2);
