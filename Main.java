@@ -30,7 +30,7 @@ public class Main {
         services.add(service2); */
 
 
-        GuestManagement.addGuest("ziad", 0000, "ziadamin");
+        GuestManagement.addGuest("ziadd", 0000, "ziadamin");
         GuestManagement.addGuest("mohsen", 1111, "ziadamin");
         GuestManagement.addGuest("fawzy", 2222, "ziadamin");
 
