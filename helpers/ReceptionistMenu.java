@@ -5,6 +5,7 @@ public class ReceptionistMenu {
 
 
     public static int ReceptionistMainMenu (){
+        System.out.println("\n **** Welcome to Receptionist Menu ****\n");
         System.out.println("[1]- Add Guest Data");
         System.out.println("[2]- Assign Room to Guest");
         System.out.println("[3]- Unassign Room from Guest");
@@ -16,7 +17,7 @@ public class ReceptionistMenu {
         System.out.println("[9]- Print detailed bill for the guest");
         System.out.println("[10]- Generate report about service ");
         System.out.println("[0]- Log out");
-        System.out.println("Choose one option to continue: ");
+        System.out.println("\nChoose one option to continue: ");
         int choice = Functions.readPositiveOrZero(10);
         return choice;
     }
@@ -24,6 +25,16 @@ public class ReceptionistMenu {
     public static int ReceptionistAddGuest(){
         System.out.println("[1]- Add another guest");
         System.out.println("[0]- Back to menu");
+        System.out.println("\nChoose one option to continue: ");
+
+        int choice = Functions.readPositiveOrZero(1);
+        return choice;
+    }
+
+    public static int ReceptionistTryAgain(){
+        System.out.println("[1]- Try again");
+        System.out.println("[0]- Back to menu");
+        System.out.println("\nChoose one option to continue: ");
 
         int choice = Functions.readPositiveOrZero(1);
         return choice;

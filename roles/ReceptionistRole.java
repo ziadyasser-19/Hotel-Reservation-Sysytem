@@ -15,11 +15,15 @@ public class ReceptionistRole {
         Receptionist receptionist = ReceptionistManagement.search(id);
         
         
+        
         while (loggedIn) {
             int choice = ReceptionistMenu.ReceptionistMainMenu();
-            
+            boolean back = false;
+
+            while(back==false){
             switch (choice){
 
+                // [1] Add guest data 
                 case 1: 
                     System.out.println("\n**** You are now adding a new guest ****");
 
@@ -27,71 +31,100 @@ public class ReceptionistRole {
                     int guestID = Functions.readPositive();
 
                     System.out.print("Enter guest name: ");
-                    String name = input.next();
+                    String name = Functions.readString();
 
                     System.out.print("Enter guest email: ");
-                    String email = input.next();
+                    String email = Functions.readString();
 
                     int add = GuestManagement.addGuest(name, guestID, email);
                     if(add == -1){
-                        System.out.println("\nThis national ID is already taken.\n");
+                        System.out.println("\nThis national ID is already taken.\n"); // id used before 
                     }
                     else{
-                        System.out.println("\nThe guest has been added successfully!\n");
+                        System.out.println("\nThe guest has been added successfully!\n"); // added successfully
+                    }
+                    
+                    int nestedChoice = ReceptionistMenu.ReceptionistAddGuest();
+                    if(nestedChoice == 1){ // add another guest
+                        continue;
+                        
+                    }else{ // back to main menu
+                        back=true;
+                        break;
                     }
 
                     
-                    break;
-
+                // [2] Assign room to guest 
                 case 2:
-                System.out.println("assign room to guest");
-                choice=0;
+                    System.out.println("\n**** Assign room to guest ****\n");
 
-                case 3:
-                System.out.println("3");
-                choice=0;
+                    System.out.println("Enter Guest National ID: ");
+                    int guestId = Functions.readPositive();
 
-                case 4:
-                System.out.println("4");
-                choice=0;
+                    System.out.println("Enter Room Number: ");
+                    int roomNo = Functions.readPositive();
 
-                case 5:
-                System.out.println("5");
-                choice=0;
+                    System.out.println("Enter Number of reservation days: ");
+                    int reservationDays = Functions.readPositive();
 
-                case 6:
-                System.out.println("6");
-                choice=0;
+                    int assign = RoomManagement.assignRoom(roomNo, guestId, reservationDays);
 
-                case 7:
-                System.out.println("7");
-                choice=0;
+                    if(assign == 1){
+                        System.out.println("\nThe room has been successfully assigned.");
+                    } 
+                    else if (assign == 2) {
+                        System.out.println("The guest has already assigned a room before.");
+                    }
+                    else if (assign == -1){
+                            System.out.println("The room is already reserved by another guest.");
+                            int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                            if(n == 1){      //try to assign room again
+                                continue;
+                            }
+                            else {        // back to menu 
+                                back=true;
+                            }
 
-                case 8:
-                System.out.println("8");
-                choice=0;
-
-                case 9:
-                System.out.println("9");
-                choice=0;
-
-
-                case 10:
-                System.out.println("10");
-                choice=0;
-
-                default:
-                System.out.println("Enter valid number from the menu: ");
-                choice= Functions.readPositiveOrZero();
+                    }
+                    else {
+                            System.out.println(" Something went wrong, try again.");
+                            int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                            if(n == 1){ //try to assign room again
+                                continue;
+                            }
+                            else { // back to menu 
+                                back=true;
+                            }
+                    }
+                    
+                    back=true;
+                    break;
+                    
+                
             }
         
         }
+    }
 
 
     }
 
     public static void main (String args[]){
+        RoomManagement.addRoom(4, "single", true, 44);
+        RoomManagement.addRoom(5, "single", true, 44);
+
+
         receptionistRole(2);
+
+        // RoomManagement.assignRoom(5, 2, 5);
+
+        // ReceptionistManagement.addEmployee("farah", 2004);
+        // ReceptionistManagement.addEmployee("farah", 203);
+        // ReceptionistManagement.addEmployee("ziad", 22);
+
+        // for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
+        //     System.out.println(receptionist.getID() + " " + receptionist.getName() + " " + receptionist.getPass());
+        // }
 
     }
 
