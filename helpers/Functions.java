@@ -62,7 +62,7 @@ public class Functions {
         String s = "";
         while (true) {
             try{
-                s = input.nextLine();
+                s = input.next();
                 return s;
             } catch(Exception e){
                 System.out.println("Invalid entry, please enter a string :");
