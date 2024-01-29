@@ -110,9 +110,29 @@ public class ReceptionistRole {
                     System.out.println("Enter room number: ");
                     int roomno = Functions.readPositive();
 
-                    
-                    
-                
+                    int unassign = RoomManagement.unassignRoom(roomno, guestid);
+
+                    if(unassign == 1){
+                        System.out.println("The Room unassigned successfully");
+                    }
+                    else if(unassign == -1){
+                        System.out.println("This guest does not have a room assigned");
+                    }
+                    else {
+                        System.out.println("Something went wrong! Please try again.");
+
+                        int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
+
+                        if(n == 1){ //try to assign room again
+                            continue;
+                        }
+                        else { // back to menu 
+                            back=true;
+                        }
+                    }
+                    back=true;
+                    break;
+
             }
         
         }

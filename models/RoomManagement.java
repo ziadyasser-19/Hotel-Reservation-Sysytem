@@ -113,6 +113,8 @@ public static int assignRoom(int roomid , int NationalId,int reservedDays){
     }}
 
 public static int unassignRoom(int roomid,int NationalId){
+
+    try {
     Guest guest =  GuestManagement.SearchGuest(NationalId);
     Room room = SearchRoom(roomid);
         if (guest.getRegRoom()==null)
@@ -125,6 +127,10 @@ public static int unassignRoom(int roomid,int NationalId){
         }
         else
             return 0; // room or guest not found 
-}
+        }
+        catch (NullPointerException e){
+            return 0; // room or guest not found 
+        }
+    }
 
 }
