@@ -76,6 +76,7 @@ public class ReceptionistRole {
                         System.out.println("The guest has already assigned a room before.");
                     }
                     else if (assign == -1){
+                            
                             System.out.println("The room is already reserved by another guest.");
                             int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                             if(n == 1){      //try to assign room again
@@ -84,7 +85,6 @@ public class ReceptionistRole {
                             else {        // back to menu 
                                 back=true;
                             }
-
                     }
                     else {
                             System.out.println(" Something went wrong, try again.");

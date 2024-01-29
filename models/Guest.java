@@ -67,5 +67,14 @@ public int deleteService(){    // f function tanya b nfs elesm f servicemanag ta
         return 1; // deleted success
 }
 
+public int deleteService(int serviceid){    // f function tanya b nfs elesm f servicemanag take care   
+    
+    if (this.regServices == null )
+        return -1; //service already deleted 
+    else 
+        this.regServices=null;
+        return 1; // deleted success
+}
+
 
 }
