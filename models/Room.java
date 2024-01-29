@@ -5,7 +5,7 @@ public class Room {
     // Attributes 
     private int roomID;
     private String roomType;
-    private boolean isAvailable=false;
+    private boolean isAvailable=true;
     private static int roomCount = 0;
     private double price;
     private int reservedDays;

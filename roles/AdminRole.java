@@ -168,19 +168,19 @@ public static void main(String[] args) {
         String type = Functions.readString();
         System.out.println("enter the price of the room : ");
         double price = Functions.readPositive();
-        if(RoomManagement.addRoom(Roomnum, type, false,price)==-1){
+        if(RoomManagement.addRoom(Roomnum, type, true,price)==-1){
             boolean z = true;
             while(z){
                 System.out.println("Room already exist enter another room number : ");
                 Roomnum = Functions.readPositive();
-                if(RoomManagement.addRoom(Roomnum, type, false,price)!=-1){
+                if(RoomManagement.addRoom(Roomnum, type,true ,price)!=-1){
                     z = false;
-                    RoomManagement.addRoom(Roomnum, type, false,price);
+                    RoomManagement.addRoom(Roomnum, type, true,price);
                     System.out.println("Room added Succefully :) ");
                 }
             }
-        }else if(RoomManagement.addRoom(Roomnum, type, false,price)!=-1){
-            RoomManagement.addRoom(Roomnum, type, false,price);
+        }else if(RoomManagement.addRoom(Roomnum, type, true,price)!=-1){
+            RoomManagement.addRoom(Roomnum, type, true,price);
             System.out.println("Room added Succefully :) ");
         }
             int y = adminrolemenu.anotherservicemenu();
