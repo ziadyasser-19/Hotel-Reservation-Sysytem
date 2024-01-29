@@ -9,20 +9,20 @@ public class RoomManagement {
 
     
     // Methods
-    public static int addRoom(int roomID, String roomType, boolean isAvailable){
+    public static int addRoom(int roomID, String roomType, boolean isAvailable,double price){
         for(int i = 0; i < rooms.size(); i++){
             if (rooms.get(i).getRoomID() == roomID){
                 return -1 ; // room already exists
             }
         } 
-        rooms.add(new Room(roomID, roomType, isAvailable));
+        rooms.add(new Room(roomID, roomType, isAvailable,price));
         return 1; // new room added 
     }
 
-    public static int updateRoom(int roomID, boolean isAvailable){
+    public static int updateRoom(int roomID, double price){
         for(int i = 0; i < rooms.size(); i++){
             if(rooms.get(i).getRoomID() == roomID){
-                rooms.get(i).setIsAvailable(isAvailable);
+                rooms.get(i).setPrice(price);;
                 return 1; // availability updated
             }
         }
@@ -41,7 +41,7 @@ public class RoomManagement {
                 }
             }
         }
-        return -1; // failed to delete 
+        return -1; // room not exist
     }
 
     public static Room SearchRoom(int RoomId) {

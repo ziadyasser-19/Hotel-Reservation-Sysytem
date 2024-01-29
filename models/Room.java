@@ -12,10 +12,11 @@ public class Room {
 
 
     // Constructor
-    public Room(int roomID, String roomType, boolean isAvailable) {
+    public Room(int roomID, String roomType, boolean isAvailable,double price) {
         this.roomID=roomID;
         this.roomType = roomType;
         this.isAvailable=isAvailable;
+        this.price=price;
         ++roomCount;
     }
 
