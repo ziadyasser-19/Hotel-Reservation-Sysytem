@@ -58,7 +58,7 @@ public class GuestManagement {
     }
 
     
-    public ArrayList<Guest> getGuestArray() {
+    public static ArrayList<Guest> getGuestArray() {
         return GuestArray;
     }
     

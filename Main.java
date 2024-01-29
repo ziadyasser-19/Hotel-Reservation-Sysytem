@@ -34,7 +34,7 @@ public class Main {
         GuestManagement.addGuest("mohsen", 1111, "ziadamin");
         GuestManagement.addGuest("fawzy", 2222, "ziadamin");
 
-        System.out.println(GuestManagement.SearchGuest(1111).getId());
+        // System.out.println(GuestManagement.SearchGuest(1111).getId());
         System.out.println(GuestManagement.SearchGuest(0000).getId());
         System.out.println(GuestManagement.SearchGuest(2222).getId());
 
@@ -113,7 +113,31 @@ public class Main {
         System.out.println(ReceptionistManagement.getAllReceptionists().size()); */
     System.out.println("Enter a number: ");
     // Functions.readPositiveOrZero(); 
-    Functions.readPositive();  
+    Functions.readPositive();
+    GuestManagement.addGuest("farah", 2004, "farah@gmail.com");
 
+    Scanner input = new Scanner(System.in);
+    
+        int choice = ReceptionistMenu.ReceptionistMainMenu();
+
+        System.out.println("\n**** You are now adding a new guest ****");
+        System.out.print("\nEnter guest national id: ");
+        int guestID = Functions.readPositive();
+        System.out.print("Enter guest name: ");
+        String name = input.next();
+        System.out.print("Enter guest email: ");
+        String email = input.next();
+
+        int add = GuestManagement.addGuest(name, guestID, email);
+        if(add == -1){
+            System.out.println("\nThis national ID is already taken.");
+        }
+        else{
+            System.out.println("\nThe guest has been added successfully!");
+        }
+
+        for (Guest guest : GuestManagement.getGuestArray()){
+            System.out.println(guest.getNationalID() + " " + guest.getName() + " " + guest.getemail());
+        }
     }
 }

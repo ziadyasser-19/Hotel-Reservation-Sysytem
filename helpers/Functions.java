@@ -70,4 +70,51 @@ public class Functions {
             }
         }
     }
+
+    // Read positive integer or zero from a menu
+    public static int readPositiveOrZeroMax(int max){
+        int n = 0;
+        while (true) {
+            try {
+                n = input.nextInt();
+                if(n>=0){
+                    if(n<=max){
+                        return n;
+                    } else {
+                        System.out.println("Enter a number from the menu: ");
+                    }
+                } else {
+                    System.out.println("Please enter a positive integer or zero: ");
+                    input.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Enter a positive integer or zero: ");
+                input.nextLine();
+            }
+        }
+    }
+
+    // Read Positive Integer > 0 from the menu
+    public static int readPositiveMax(int max){
+        int n = 0;
+        while (true) {
+            try {
+                n = input.nextInt();
+                if(n>0){
+                    if(n<=max){
+                        return n;
+                    } else{
+                        System.out.println("Enter a number from the menu: ");
+                    }
+                } 
+                else {
+                    System.out.println("Please enter a positive integer: ");
+                    input.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Enter a positive integer: ");
+                input.nextLine();
+            }
+        }
+    }
 }
