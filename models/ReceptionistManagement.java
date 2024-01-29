@@ -27,31 +27,7 @@ public class ReceptionistManagement {
         }
         return -2;
     } */
-    /* public static int addEmployee(String name, int pass) {
-        // Check if the name already exists
-        for (Receptionist receptionist : receptionistArray) {
-            if (receptionist.getName().equals(name)) {
-                return -1; // Name already used
-            }
-        }
     
-        if (deletedID.isEmpty()) {
-            receptionistArray.add(new Receptionist(name, pass));
-            return 1; // New Receptionist added successfully with a new id
-        } else {
-            int id = deletedID.remove(0);
-    
-            // Check if the name is already used with the recovered ID
-            for (Receptionist receptionist : receptionistArray) {
-                if (receptionist.getName().equals(name)) {
-                    return -1; // Name already used
-                }
-            }
-    
-            receptionistArray.add(new Receptionist(id, name, pass));
-            return 2; // Added with previously used id
-        }
-    } */
     public static int addEmployee(String name, int pass) {
         // Check if the name already exists
         for (int i = 0; i < receptionistArray.size(); i++) {
