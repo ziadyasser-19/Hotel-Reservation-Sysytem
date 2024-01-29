@@ -17,7 +17,7 @@ public class ReceptionistMenu {
         System.out.println("[10]- Generate report about service ");
         System.out.println("[0]- Log out");
         System.out.println("Choose one option to continue: ");
-        int choice = Functions.readPositiveOrZeroMax(10);
+        int choice = Functions.readPositiveOrZero(10);
         return choice;
     }
 
@@ -25,7 +25,7 @@ public class ReceptionistMenu {
         System.out.println("[1]- Add another guest");
         System.out.println("[0]- Back to menu");
 
-        int choice = Functions.readPositiveOrZeroMax(1);
+        int choice = Functions.readPositiveOrZero(1);
         return choice;
     }
 

@@ -71,8 +71,8 @@ public class Functions {
         }
     }
 
-    // Read positive integer or zero from a menu
-    public static int readPositiveOrZeroMax(int max){
+    // overload function Read positive integer or zero from a menu
+    public static int readPositiveOrZero(int max){
         int n = 0;
         while (true) {
             try {
@@ -94,8 +94,8 @@ public class Functions {
         }
     }
 
-    // Read Positive Integer > 0 from the menu
-    public static int readPositiveMax(int max){
+    // overload function Read Positive Integer > 0 from the menu
+    public static int readPositive(int max){
         int n = 0;
         while (true) {
             try {
