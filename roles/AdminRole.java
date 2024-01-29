@@ -176,11 +176,14 @@ public static void main(String[] args) {
                 if(RoomManagement.addRoom(Roomnum, type,true ,price)!=-1){
                     z = false;
                     RoomManagement.addRoom(Roomnum, type, true,price);
+                    
                     System.out.println("Room added Succefully :) ");
                 }
             }
         }else if(RoomManagement.addRoom(Roomnum, type, true,price)!=-1){
+            
             RoomManagement.addRoom(Roomnum, type, true,price);
+            
             System.out.println("Room added Succefully :) ");
         }
             int y = adminrolemenu.anotherservicemenu();
@@ -254,7 +257,7 @@ public static void main(String[] args) {
     }else if(m==4){
         ArrayList<Room>rooms=RoomManagement.getRoomList();
         for(Room room : rooms){
-            System.out.println("\n" + "room number : " + room.getRoomID() + "    roomtype : " + room.getRoomType() + " room price : "+room.getPrice() +"$");
+            System.out.println("\n" + "room number : " + room.getRoomID() + "    roomtype : " + room.getRoomType() + "   room price : "+room.getPrice() +"$"+ "   room availability : " +room.getIsAvaialble());
         }
         System.out.println("\n============================================");
         int y = adminrolemenu.anotherservicemenu();

@@ -29,7 +29,31 @@ public class RoomManagement {
         return -1; // failed to update 
     }
 
-    public static int deleteRoom(int roomID){
+    public static int index (int  roomID) {
+        for(int i = 0 ; i <rooms.size();i++){
+            if (rooms.get(i).getRoomID()==roomID){
+                return i;
+        }
+    }
+        return -1;
+    }
+    public static int deleteRoom(int roomID) {
+        int index = index(roomID);
+    
+        if (index != -1) {
+            if (rooms.get(index).getIsAvaialble()==false) {
+                return -2; // The room is reserved; it can't be deleted
+            } else {
+                rooms.remove(index);
+                return 1; // Deleted successfully
+            }
+        }
+        return -1; // Room does not exist
+    }
+    
+ /*    public static int deleteRoom(int roomID){
+        int index=index(roomID);
+        if(index!=-1){
         for(int i = 0; i < rooms.size(); i++){
             if(rooms.get(i).getRoomID() == roomID){
                 if(rooms.get(i).getIsAvaialble()==false){
@@ -43,6 +67,9 @@ public class RoomManagement {
         }
         return -1; // room not exist
     }
+} */
+
+
 
     public static Room SearchRoom(int RoomId) {
         for (int i = 0; i < rooms.size(); i++) {
@@ -65,7 +92,9 @@ public static int assignRoom(int roomid , int NationalId,int reservedDays){
     Guest guest = GuestManagement.SearchGuest(NationalId);
     Room room = SearchRoom(roomid);
         
-        if(guest != null && room != null){
+        if(guest.getRegRoom()!=null)
+        return 2 ; // the guest has a room regestierd already 
+        else if(guest != null && room != null){
                 if(room.getIsAvaialble()){
                             guest.addRoom(room);
                             room.setIsAvailable(false); // make the room reserved
