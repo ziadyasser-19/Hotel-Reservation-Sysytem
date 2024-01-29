@@ -7,6 +7,7 @@ import helpers.adminrolemenu;
 import models.GuestManagement;
 import models.Receptionist;
 import models.ReceptionistManagement;
+import models.RoomManagement;
 import models.Guest;
 
 
@@ -102,6 +103,21 @@ public static void main(String[] args) {
                             }
                     }
                     }
+                }else if (ReceptionistManagement.search(x)!= null){ // lw l2a el id tmam
+                    System.out.println("enter the new password :  ");
+                    int y= Functions.readPositive();
+                            if(ReceptionistManagement.updateEmployeePass(x, y)==-2){ // lw d5l nfs el password 
+                                boolean f = true;
+                            while(f){
+                                System.out.println("this is the current password enter another one : ");
+                                y = Functions.readPositive();
+                                if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
+                                    f =false ;
+                                    ReceptionistManagement.updateEmployeePass(x, y);
+                                    System.out.println("the password updated succefully :)");
+                                }
+                            }
+                        }
                 }
                 int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
@@ -142,6 +158,21 @@ public static void main(String[] args) {
         }else if(m==6){
             continue outerLoop;
         }
+}else if (t==2){
+    int m = adminrolemenu.RoomsservicesMenu();
+    if(m==1){
+        System.out.println("enter the room number : ");
+        int Roomnum = Functions.readPositive();
+        System.out.println("enter the type of the room ");
+        String type = Functions.readString();
+        if(RoomManagement.addRoom(Roomnum, type, false)==-1){
+            boolean z = true;
+            while(z){
+                
+            }
+        }
+    }
+
 }
 }
 }

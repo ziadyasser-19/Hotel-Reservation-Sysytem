@@ -7,6 +7,7 @@ public class RoomManagement {
     
     private static ArrayList<Room> rooms = new ArrayList<>();
 
+    
     // Methods
     public static int addRoom(int roomID, String roomType, boolean isAvailable){
         for(int i = 0; i < rooms.size(); i++){
