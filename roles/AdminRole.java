@@ -176,7 +176,7 @@ public static void main(String[] args) {
             while(z){
                 System.out.println("Room already exist enter another room number : ");
                 Roomnum = Functions.readPositive();
-                if(RoomManagement.addRoom(Roomnum, type,true ,price)!=-1){
+                if(RoomManagement.addRoom(Roomnum, type,true,price)!=-1){
                     z = false;
                     RoomManagement.addRoom(Roomnum, type, true,price);
                     
@@ -208,13 +208,21 @@ public static void main(String[] args) {
                 roomnum=Functions.readPositive();
                 if(RoomManagement.SearchRoom(roomnum)!=null){
                     z=false;
+                    if(RoomManagement.deleteRoom(roomnum)==-2){
+                    System.out.println("the room assigned to guest cant be deleted right now ! ");
+                }else{
                     RoomManagement.deleteRoom(roomnum);
-                    System.out.println("room deleted succefully :) ");
+                    System.out.println("the room deleted succefully :) ");
                 }
             }
+            }
         }else{
-                    RoomManagement.deleteRoom(roomnum);
-                    System.out.println("room deleted succefully :) ");
+            if(RoomManagement.deleteRoom(roomnum)==-2){
+                System.out.println("the room assigned to guest cant be deleted right now ! ");
+            }else{
+                RoomManagement.deleteRoom(roomnum);
+                System.out.println("the room deleted succefully :) ");
+            }
         }
         int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
