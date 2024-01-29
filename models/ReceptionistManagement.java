@@ -9,8 +9,8 @@ public class ReceptionistManagement {
     // Methods
     public static int addEmployee(String name, int pass){
         for(int i = 0; i<receptionistArray.size(); i++){
-            if(receptionistArray.get(i).getPass()==pass){
-                return -1; // password used already
+            if(receptionistArray.get(i).getName()==name){
+                return -1; // name used already
             }
         }
         if(deletedID.isEmpty()){
