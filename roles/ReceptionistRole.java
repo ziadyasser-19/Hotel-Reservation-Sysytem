@@ -99,8 +99,40 @@ public class ReceptionistRole {
                     
                     back=true;
                     break;
-                    
-                
+
+                    // [3] - Unassign Room from guest
+                    case 3:
+                    System.out.println("\n**** Unassign Room From Guest ****\n");
+
+                    System.out.println("Enter guest national ID: ");
+                    int guestid = Functions.readPositive();
+
+                    System.out.println("Enter room number: ");
+                    int roomno = Functions.readPositive();
+
+                    int unassign = RoomManagement.unassignRoom(roomno, guestid);
+
+                    if(unassign == 1){
+                        System.out.println("The Room unassigned successfully");
+                    }
+                    else if(unassign == -1){
+                        System.out.println("This guest does not have a room assigned");
+                    }
+                    else {
+                        System.out.println("Something went wrong! Please try again.");
+
+                        int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
+
+                        if(n == 1){ //try to assign room again
+                            continue;
+                        }
+                        else { // back to menu 
+                            back=true;
+                        }
+                    }
+                    back=true;
+                    break;
+
             }
         
         }
@@ -110,7 +142,7 @@ public class ReceptionistRole {
     }
 
     public static void main (String args[]){
-        RoomManagement.addRoom(4, "single", true, 44);
+        RoomManagement.addRoom(4, "single", false, 44);
         RoomManagement.addRoom(5, "single", true, 44);
 
 

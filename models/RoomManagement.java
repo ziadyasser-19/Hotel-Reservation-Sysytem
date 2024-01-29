@@ -68,11 +68,12 @@ public class RoomManagement {
 
 public static int assignRoom(int roomid , int NationalId,int reservedDays){
 
+    try {
     Guest guest = GuestManagement.SearchGuest(NationalId);
     Room room = SearchRoom(roomid);
         
         if(guest.getRegRoom()!=null)
-        return 2 ; // the guest has a room regestierd already 
+            return 2 ; // the guest has a room regestierd already 
         else if(guest != null && room != null){
                 if(room.getIsAvaialble()){
                             guest.addRoom(room);
@@ -86,8 +87,13 @@ public static int assignRoom(int roomid , int NationalId,int reservedDays){
         else
                     return 0; // the guest or room not found
     }
+    catch (NullPointerException e) {
+        return 0;
+    }}
 
 public static int unassignRoom(int roomid,int NationalId){
+
+    try {
     Guest guest =  GuestManagement.SearchGuest(NationalId);
     Room room = SearchRoom(roomid);
         if (guest.getRegRoom()==null)
@@ -100,6 +106,10 @@ public static int unassignRoom(int roomid,int NationalId){
         }
         else
             return 0; // room or guest not found 
-}
+        }
+        catch (NullPointerException e){
+            return 0; // room or guest not found 
+        }
+    }
 
 }
