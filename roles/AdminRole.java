@@ -92,12 +92,12 @@ public static void main(String[] args) {
                     if(ReceptionistManagement.search(x)!= null){ // lw l2a el id tmam
                         z = false;
                         System.out.println("enter the new password :  ");
-                        int y= Functions.readPositive();
+                        int y= Functions.readInt();
                                 if(ReceptionistManagement.updateEmployeePass(x, y)==-2){ // lw d5l nfs el password 
                                     boolean f = true;
                                 while(f){
                                     System.out.println("this is the current password enter another one : ");
-                                    y = Functions.readPositive();
+                                    y = Functions.readInt();
                                     if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                         f =false ;
                                         ReceptionistManagement.updateEmployeePass(x, y);
@@ -109,12 +109,12 @@ public static void main(String[] args) {
                     }
                 }else if (ReceptionistManagement.search(x)!= null){ // lw l2a el id tmam
                     System.out.println("enter the new password :  ");
-                    int y= Functions.readPositive();
+                    int y= Functions.readInt();
                             if(ReceptionistManagement.updateEmployeePass(x, y)==-2){ // lw d5l nfs el password 
                                 boolean f = true;
                             while(f){
                                 System.out.println("this is the current password enter another one : ");
-                                y = Functions.readPositive();
+                                y = Functions.readInt();
                                 if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                     f =false ;
                                     ReceptionistManagement.updateEmployeePass(x, y);
