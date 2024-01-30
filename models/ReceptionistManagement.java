@@ -59,8 +59,10 @@ public class ReceptionistManagement {
 
     public static int updateEmployeePass(int id, int pass){
         for(int i = 0; i<receptionistArray.size(); i++){
-            if(receptionistArray.get(i).getPass()==pass){
-                return -2; // password already used
+            if(receptionistArray.get(i).getID()==id){
+                if(receptionistArray.get(i).getPass()==pass){
+                        return -2; // this is the current password
+                }
             }
         }
         for(int i = 0; i<receptionistArray.size(); i++){
@@ -71,6 +73,25 @@ public class ReceptionistManagement {
         }
         return -1; // Receptionist not found
     }
+
+    //method overload to update by name 
+    public static int updateEmployeePass(String name , int pass){
+        for(int i = 0; i<receptionistArray.size(); i++){
+            if(receptionistArray.get(i).getName().equals(name)){
+                if(receptionistArray.get(i).getPass()==pass){
+                        return -2; // this is the current password
+                }
+            }
+        }
+        for(int i = 0; i<receptionistArray.size(); i++){
+            if(receptionistArray.get(i).getName().equals(name)){
+                receptionistArray.get(i).setPass(pass);
+                return 1; // Receptionist's Pass updated successfully
+            }
+        }
+        return -1; // Receptionist not found
+    }
+    
 
 
     public static int deleteEmployee(int id){

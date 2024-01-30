@@ -34,21 +34,31 @@ public static void main(String[] args) {
                 if (ReceptionistManagement.addEmployee(name, password) == -1) { //lw l2a nfs elname 
                     
                     boolean z = true; // 3shan lw d5l nfs elname zy mho tany
-    
-                    while (z) {
+                    innerloop : while (z) {
                         System.out.println("\n This username is already exist. Enter another one: ");
                         name = Functions.readString();
                         if (ReceptionistManagement.addEmployee(name, password) != -1) {
                             z = false;
                             ReceptionistManagement.addEmployee(name, password);
                             System.out.println("\nReceptionist added succefully :) ");
-                        }
+                        }else{
+                        System.out.println("\nthis user name already exist choose option : ");
+                        System.out.println("=======================================\n");
+                        int y = adminrolemenu.Wrongmenu();
+                        if(y==0)
+                            continue innerloop;
+                        else if(y==1)
+                            continue outerLoop;
+                        else
+                            System.out.println("Logged out !");
+                            break outerLoop;
                     }
+                }
                 }else{
                     ReceptionistManagement.addEmployee(name, password);
                     System.out.println("\nReceptionist added succefully : ) ");
                 }
-                System.out.println("\n==============================");
+                System.out.println("==============================\n");
                 int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
@@ -65,15 +75,27 @@ public static void main(String[] args) {
                 System.out.println("Deleted Successfully!");
             }else{ // lw d5l id 5lt
                 boolean z = true;
-                while (z) {
+                innerloop : while (z) {
                     System.out.println("enter a valid employee id :");
                     id=Functions.readInt();
                     if (ReceptionistManagement.deleteEmployee(id)!=-1) {
                         z = false;
-                        System.out.println("employee deleted succefully ");
-                    }
+                        System.out.println("\nemployee deleted succefully :) ");
+                    }else{
+                        System.out.println("\nthis id doesnt exist choose another option =>");
+                        System.out.println("=======================================\n");
+                        int y = adminrolemenu.Wrongmenu();
+                        if(y==0)
+                            continue innerloop;
+                        else if(y==1)
+                            continue outerLoop;
+                        else
+                            System.out.println("\nLogged Out !");
+                            break outerLoop;
                     }
                 }
+                }
+                System.out.println("=============================\n");
                 int y = adminrolemenu.anotherservicemenu(); // 3shan lw 3awz y3ml operation tanya 
                 if (y == 1) {
                     continue outerLoop;
@@ -86,7 +108,7 @@ public static void main(String[] args) {
                 int x = Functions.readInt();
                 if (ReceptionistManagement.search(x)== null){ // lw d5l id 8lt 
                     boolean z =true;
-                    while(z){
+                    innerloop: while(z){
                     System.out.println("Receptionist does not exist enter a valid id : ");
                     x = Functions.readInt();
                     if(ReceptionistManagement.search(x)!= null){ // lw l2a el id tmam
@@ -95,39 +117,73 @@ public static void main(String[] args) {
                         int y= Functions.readInt();
                                 if(ReceptionistManagement.updateEmployeePass(x, y)==-2){ // lw d5l nfs el password 
                                     boolean f = true;
-                                while(f){
+                                secondinnerloop: while(f){
                                     System.out.println("this is the current password enter another one : ");
                                     y = Functions.readInt();
                                     if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                         f =false ;
                                         ReceptionistManagement.updateEmployeePass(x, y);
-                                        System.out.println("the password updated succefully :)");
-                                    }
+                                        System.out.println("\nthe password updated succefully :)");
+                                    }else{
+                                    System.out.println("\nthis is the current password choose option 0 to change it or return to the main menu =>");
+                                    System.out.println("=======================================\n");
+                                    int h = adminrolemenu.Wrongmenu();
+                                    if(h==0)
+                                        continue secondinnerloop;
+                                    else if(h==1)
+                                        continue outerLoop;
+                                    else
+                                        System.out.println("Logged out");
+                                        break outerLoop;
                                 }
                             }
+                            }
+                    }else{
+                        System.out.println("\nValid id to search choose option =>");
+                        System.out.println("=======================================\n");
+                        int h = adminrolemenu.Wrongmenu();
+                        if(h==0)
+                            continue innerloop;
+                        else if(h==1)
+                            continue outerLoop;
+                        else
+                            System.out.println("\nLogged out !");
+                            break outerLoop;
                     }
-                    }
+                }
                 }else if (ReceptionistManagement.search(x)!= null){ // lw l2a el id tmam
                     System.out.println("enter the new password :  ");
                     int y= Functions.readInt();
                             if(ReceptionistManagement.updateEmployeePass(x, y)==-2){ // lw d5l nfs el password 
                                 boolean f = true;
-                            while(f){
+                            thirdinnerloop : while(f){
                                 System.out.println("this is the current password enter another one : ");
                                 y = Functions.readInt();
                                 if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                     f =false ;
                                     ReceptionistManagement.updateEmployeePass(x, y);
-                                    System.out.println("the password updated succefully :)");
-                                }
+                                    System.out.println("\nthe password updated succefully :)");
+                                }else{
+                                System.out.println("\nthis is the current password choose option try again to change it or return to the main menu  =>");
+                                System.out.println("=======================================\n");
+                                int h = adminrolemenu.Wrongmenu();
+                                if(h==0)
+                                    continue thirdinnerloop;
+                                else if(h==1)
+                                    continue outerLoop;
+                                else
+                                    System.out.println("Logged out ! \n");
+                                    break outerLoop;
                             }
                         }
+                        }
                 }
+                System.out.println("=========================\n");
                 int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
                 }else{
-                    System.out.println("logged out");
+                    System.out.println("logged out ! \n");
                     break outerLoop;
                 }
             }else if(m==4){
@@ -141,7 +197,7 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
-                    System.out.println("logged out");
+                    System.out.println("logged out ! \n");
                     break outerLoop;
                 }
             }
@@ -156,7 +212,7 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
-                    System.out.println("logged out");
+                    System.out.println("logged out ! \n");
                     break outerLoop;
                 }
         }else if(m==6){
@@ -173,22 +229,34 @@ public static void main(String[] args) {
         double price = Functions.readPositive();
         if(RoomManagement.addRoom(Roomnum, type, true,price)==-1){
             boolean z = true;
-            while(z){
-                System.out.println("Room already exist enter another room number : ");
+            innerloop : while(z){
+                System.out.println("Room Number already exist enter another room number : ");
                 Roomnum = Functions.readPositive();
                 if(RoomManagement.addRoom(Roomnum, type,true,price)!=-1){
                     z = false;
                     RoomManagement.addRoom(Roomnum, type, true,price);
                     
-                    System.out.println("Room added Succefully :) ");
+                    System.out.println("\nRoom added Succefully :) ");
+                }else{
+                    System.out.println("\nRoom number already Exist choose option =>");
+                    System.out.println("=======================================\n");
+                    int h = adminrolemenu.Wrongmenu();
+                    if(h==0)
+                        continue innerloop;
+                    else if(h==1)
+                        continue outerLoop;
+                    else
+                        System.out.println("Logged out !");
+                        break outerLoop;
                 }
             }
         }else if(RoomManagement.addRoom(Roomnum, type, true,price)!=-1){
             
             RoomManagement.addRoom(Roomnum, type, true,price);
             
-            System.out.println("Room added Succefully :) ");
+            System.out.println("\nRoom added Succefully :) ");
         }
+        System.out.println("================================\n");
             int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
@@ -203,27 +271,39 @@ public static void main(String[] args) {
 
         if(RoomManagement.SearchRoom(roomnum)==null){
             boolean z =true;
-            while(z){
+            innerloop : while(z){
                 System.out.println("Wrong room number enter a Valid one : ");
                 roomnum=Functions.readPositive();
                 if(RoomManagement.SearchRoom(roomnum)!=null){
                     z=false;
                     if(RoomManagement.deleteRoom(roomnum)==-2){
                     System.out.println("the room assigned to guest cant be deleted right now ! ");
-                }else{
+                    }else{
                     RoomManagement.deleteRoom(roomnum);
-                    System.out.println("the room deleted succefully :) ");
+                    System.out.println("\nthe room deleted succefully :) ");
                 }
+            }else{
+                System.out.println("\ninValid Room-number to search choose option =>");
+                System.out.println("=======================================\n");
+                int h = adminrolemenu.Wrongmenu();
+                if(h==0)
+                    continue innerloop;
+                else if(h==1)
+                    continue outerLoop;
+                else
+                    System.out.println("Logged out !");
+                    break outerLoop;
             }
             }
         }else{
             if(RoomManagement.deleteRoom(roomnum)==-2){
-                System.out.println("the room assigned to guest cant be deleted right now ! ");
+                System.out.println("\nthe room assigned to guest cant be deleted right now ! ");
             }else{
                 RoomManagement.deleteRoom(roomnum);
-                System.out.println("the room deleted succefully :) ");
+                System.out.println("\nthe room deleted succefully :) ");
             }
         }
+        System.out.println("===================================\n");
         int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
@@ -236,7 +316,7 @@ public static void main(String[] args) {
         int x = Functions.readPositive();
         if(RoomManagement.SearchRoom(x)==null){
             boolean z = true ; 
-            while(z){
+            innerloop : while(z){
                 System.out.println("enter a valid room number to update : ");
                 x = Functions.readPositive() ;
                 if(RoomManagement.SearchRoom(x)!=null){
@@ -244,15 +324,27 @@ public static void main(String[] args) {
                     System.out.println("enter the new price of the room : ");
                     double y = Functions.readPositive();
                     RoomManagement.updateRoom(x, y);
-                    System.out.println("price updated successfully :) ");
+                    System.out.println("\nprice updated successfully :) ");
+                }else{
+                    System.out.println("\ninValid Room-number to search choose option =>");
+                    System.out.println("=======================================\n");
+                    int h = adminrolemenu.Wrongmenu();
+                    if(h==0)
+                        continue innerloop;
+                    else if(h==1)
+                        continue outerLoop;
+                    else
+                        System.out.println("\nLogged out !");
+                        break outerLoop;
                 }
             }
         }else{
                 System.out.println("enter the new price of the room : ");
                     double y = Functions.readPositive();
                     RoomManagement.updateRoom(x, y);
-                    System.out.println("price updated successfully :) ");
+                    System.out.println("\nprice updated successfully :) ");
         }
+        System.out.println("=================================\n");
         int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
@@ -292,19 +384,31 @@ public static void main(String[] args) {
         
         if(z==-1){ // lw el esm mogod
             boolean f = true;
-            while(f){
+            innerloop : while(f){
                 System.out.println("the name already exist choose another one : ");
                 servicename = Functions.readString();
                 if(ServicesManagement.addService(servicename, description, price)!=-1){ // lw zbt el esm 
                     f=false;
                     ServicesManagement.addService(servicename, description, price);
-                    System.out.println("Service added succefully :) ");
+                    System.out.println("\nService added succefully :) ");
+                }else{
+                    System.out.println("\nName already exist choose option =>");
+                    System.out.println("=======================================\n");
+                    int h = adminrolemenu.Wrongmenu();
+                    if(h==0)
+                        continue innerloop;
+                    else if(h==1)
+                        continue outerLoop;
+                    else
+                        System.out.println("\nLogged out !");
+                        break outerLoop;
                 }
             }
         }else{ // lw d5l esm tmam 
             ServicesManagement.addService(servicename, description, price);
-            System.out.println("Service added succefully :) ");
+            System.out.println("\nService added succefully :) ");
         }
+        System.out.println("=============================\n");
             int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
                     continue outerLoop;
@@ -318,18 +422,31 @@ public static void main(String[] args) {
     String servicename = Functions.readString();
     if(ServicesManagement.searchServices(servicename)==null){ // bst5dm fn el search lw ml2tsh el elsm dh 
         boolean z = true;
-        while(z){
+        innerloop : while(z){
             System.out.println("the service doesnt exist enter another service name : ");
             servicename = Functions.readString();
             if (ServicesManagement.searchServices(servicename)!=null) {
+                z=false;
                 ServicesManagement.deleteService(servicename);
-                System.out.println("Service deleted succefully :) ");
+                System.out.println("\nService deleted succefully :) ");
+            }else{
+                System.out.println("\nInvalid name to search choose option =>");
+                System.out.println("=======================================\n");
+                int h = adminrolemenu.Wrongmenu();
+                if(h==0)
+                    continue innerloop;
+                else if(h==1)
+                    continue outerLoop;
+                else
+                    System.out.println("Logged out !");
+                    break outerLoop;
             }
         }
     }else{ // lw el2sm tmam 
                 ServicesManagement.deleteService(servicename);
-                System.out.println("Service deleted succefully :) ");
+                System.out.println("\nService deleted succefully :) ");
     }
+    System.out.println("==================================\n");
     int y = adminrolemenu.anotherservicemenu();
     if (y == 1) {
         continue outerLoop;
@@ -345,7 +462,7 @@ public static void main(String[] args) {
     
     if(ServicesManagement.searchServices(name)==null){ // lw el esm msh mogod 
         boolean z = true; 
-        while(z){
+        innerloop : while(z){
             System.out.println("Service not found  , please try again : ");
             name = Functions.readString();
             if(ServicesManagement.searchServices(name)!=null){ // lw d5l el esm s7 a5yra 
@@ -353,13 +470,27 @@ public static void main(String[] args) {
                 System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
                 int serviceprice = Functions.readPositive();
                 ServicesManagement.updateService(name, serviceprice);
+                System.out.println("\nService Updated Succefully ! ");
+            }else{
+                System.out.println("\ninvalid name choose option =>");
+                System.out.println("=======================================\n");
+                int h = adminrolemenu.Wrongmenu();
+                if(h==0)
+                    continue innerloop;
+                else if(h==1)
+                    continue outerLoop;
+                else
+                    System.out.println("\nLogged out !");
+                    break outerLoop;
             }
         }
     }else{ // lw d5l el 2sm s7 mn awl mra
         System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
                 int serviceprice = Functions.readPositive();
                 ServicesManagement.updateService(name, serviceprice);
+                System.out.println("\nService updated succefully !");
     }
+    System.out.println("===================================\n");
     int y = adminrolemenu.anotherservicemenu();
     if (y == 1) {
         continue outerLoop;

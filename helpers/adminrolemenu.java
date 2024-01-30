@@ -60,7 +60,13 @@ public class adminrolemenu {
     }
 
 
-
+    public static int Wrongmenu(){
+        System.out.println("(0) Try again ?");
+        System.out.println("(1) Return to the main menu ");
+        System.out.println("(2) Logout ");
+        int x = Functions.readPositiveOrZero(2);
+        return x;
+    }
         
     }
     
