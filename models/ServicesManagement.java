@@ -44,7 +44,12 @@ public class ServicesManagement {
     }
 
     public static Services searchService(int serviceID){
-        return services.get(serviceID);
+        for(int i = 0 ;i<services.size();i++){
+            if(services.get(i).getServiceID()==serviceID){
+                return services.get(i); // return this service
+            }
+        }
+            return null; //if service not found
     }
 
     //overloaded method 
