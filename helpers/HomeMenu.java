@@ -25,10 +25,9 @@ public class HomeMenu {
         return choice;
     }
 
-    public static int tryAgainOrSignUp(){
+    public static int tryAgainOrBack(){
 
         System.out.println("[1]- Try Again");
-        System.out.println("[2]- Sign Up");
         System.out.println("[0]- Back");
         System.out.println("\nEnter your choice: ");
 
@@ -42,6 +41,16 @@ public class HomeMenu {
         System.out.println("\nEnter your choice: ");
 
         int choice = Functions.readPositiveOrZero(1);
+        return choice;
+    }
+
+    public static int loginOrSignUp(){
+        System.out.println("\n[1]- Log in ");
+        System.out.println("[2]- Sign up");
+        System.out.println("[0]- Back");
+        System.out.println("\nEnter your choice: ");
+
+        int choice = Functions.readPositiveOrZero(2);
         return choice;
     }
 }

@@ -48,69 +48,84 @@ public class Main {
             // Log in as receptionist
             else if(choice == 2){
 
-                boolean logged= false;
+                boolean receptionistmenu = false;
 
-                while(!logged){
-                    System.out.println("\nEnter your name: ");
-                    String name = Functions.readString();
+                receptionistMenu:while (!receptionistmenu){
+                    // choose to login or sign up
+                    int choiceNo = HomeMenu.loginOrSignUp();
 
-                    System.out.println("\nEnter your password: ");
-                    int pass = Functions.readInt();
+                    // log in choice 
+                    if(choiceNo==1){
+                        boolean logged= false;
 
-                    if( Authentication.ReceptionistLogin(name, pass) ){
-                        System.out.print("\nLogged in as Receptionist!\n");
-                        ReceptionistRole.receptionistRole();
-                        logged=true;
-                    }
-                    else{
-                        System.out.println("\nLog in failed! Try again Or Sign up!\n");
-                        int option = HomeMenu.tryAgainOrSignUp();
+                        while(!logged){
+                            System.out.println("\nEnter your name: ");
+                            String name = Functions.readString();
 
-                        if(option==1){
-                            continue;
-                        }
-                        else if(option==2){
+                            System.out.println("\nEnter your password: ");
+                            int pass = Functions.readInt();
 
-                            boolean signedUp = false;
+                            if( Authentication.ReceptionistLogin(name, pass) ){
+                                System.out.print("\nLogged in as Receptionist!\n");
+                                ReceptionistRole.receptionistRole();
+                                logged=true;
+                            }
+                            else{
+                                System.out.println("\nLog in failed! Try again Or Sign up!\n");
+                                int option = HomeMenu.tryAgainOrBack();
 
-                            while(!signedUp){
-                                System.out.println("\nEnter your name: ");
-                                String username = Functions.readString();
-
-                                System.out.println("\nEnter your password: ");
-                                int password = Functions.readInt();
-
-                                int returnInt = ReceptionistManagement.addEmployee(username, password);
-
-                                if(returnInt==-1){ // name already used 
-                                    System.out.println("\nUsername already exists. Try again to sign up\n");
-                                    int returnTry = HomeMenu.tryAgain();
-                                    if(returnTry==1){
-                                        continue;
-                                    }
-                                    else{
-                                        break outerLoop;
-                                    }
+                                if(option==1){
+                                    continue;
                                 }
-                                else { // added successfully
-                                    System.out.println("\nSigned up successfully!\n");
-                                    int returnTry = HomeMenu.backOrExit();
-
-                                    if(returnTry==1){
-                                        continue outerLoop;
-                                    }
-                                    else{
-                                        break outerLoop;
-                                    }
+                                else{
+                                    continue receptionistMenu;
                                 }
                             }
                         }
-                        else if(option==0) {
-                            break;
+                    }
+                    // sign up choice
+                    else if(choiceNo==2){
+                        boolean signedUp = false;
+
+                        while(!signedUp){
+                            System.out.println("\nEnter your name: ");
+                            String username = Functions.readString();
+
+                            System.out.println("\nEnter your password: ");
+                            int password = Functions.readInt();
+
+                            int returnInt = ReceptionistManagement.addEmployee(username, password);
+
+                            if(returnInt==-1){ // name already used 
+                                System.out.println("\nUsername already exists. Try again to sign up\n");
+                                int returnTry = HomeMenu.tryAgainOrBack();
+                                if(returnTry==1){
+                                    continue;
+                                }
+                                else{
+                                    continue receptionistMenu;
+                                }
+                            }
+                            else { // added successfully
+                                System.out.println("\nSigned up successfully!\n");
+                                int returnTry = HomeMenu.backOrExit();
+
+                                if(returnTry==1){
+                                    continue outerLoop;
+                                }
+                                else{
+                                    break outerLoop;
+                                }
+                            }
                         }
+                    }
+                    // back to home menu
+                    else{
+                        break receptionistMenu;
                     }
                 }
             }
+            // Exit the program
             else{
                 running = false;
             }
