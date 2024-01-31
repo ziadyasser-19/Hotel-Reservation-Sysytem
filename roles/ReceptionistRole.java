@@ -207,7 +207,7 @@ public class ReceptionistRole {
 
                             if(!allGuests.isEmpty()){
                                 for(Guest guests : allGuests){
-                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID());
+                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID() + "    "+guests.getRegServices().getServiceName());
                                 }
                                 back=true;
                             }
@@ -295,9 +295,18 @@ public class ReceptionistRole {
         // RoomManagement.addRoom(4, "single", false, 44);
         RoomManagement.addRoom(5, "single", true, 44);
         GuestManagement.addGuest("farah", 2004, "farahhh");
+
+
         ServicesManagement.addService("gym", "", 250);
         ServicesManagement.addService("spa", "", 300);
 
+
+        Admin.addAdmin("faroha", 22);
+
+
+        ServicesManagement.assignService(2,2004);
+        
+        // AdminRole.main(args);
         
 
 
