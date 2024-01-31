@@ -183,6 +183,9 @@ public class ReceptionistRole {
                             else if(assignService == 1){
                                 System.out.println("Service assigned to guest successfully");
                                 back=true;
+                            }else{
+                                System.out.println("the service id or the guest national id wasnt found");
+                                back=true;
                             }
                         }
                         catch(Exception e){
@@ -238,7 +241,8 @@ public class ReceptionistRole {
                             else{
                                 try{
                                     double bill = Receptionist.billDetails(idguest);
-                                    System.out.println("\nTotal Bill Cost for the guest= " + bill);
+                                    
+                                    System.out.println("\nTotal Bill Cost for the guest= " + bill + "    Room cost : " +guestt.getRegRoom().getPrice() +" $   " + "  Service cost : " +guestt.getRegServices().getServicePrice() +" $" );
                                     back=true;
                                 }
                                 catch(Exception e){
