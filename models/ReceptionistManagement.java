@@ -31,7 +31,7 @@ public class ReceptionistManagement {
     public static int addEmployee(String name, int pass) {
         // Check if the name already exists
         for (int i = 0; i < receptionistArray.size(); i++) {
-            if (receptionistArray.get(i).getName().equals(name)) {
+            if (receptionistArray.get(i).getName().equalsIgnoreCase(name)) {
                 return -1; // Name already used
             }
         }
@@ -44,7 +44,7 @@ public class ReceptionistManagement {
     
             // Check if the name is already used with the recovered ID
             for (int i = 0; i < receptionistArray.size(); i++) {
-                if (receptionistArray.get(i).getName().equals(name)) {
+                if (receptionistArray.get(i).getName().equalsIgnoreCase(name)) {
                     return -1; // Name already used
                 }
             }
