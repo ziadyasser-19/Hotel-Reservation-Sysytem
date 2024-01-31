@@ -1,143 +1,119 @@
-import java.security.Provider.Service;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import models.*;
 import helpers.*;
+import roles.*;
 
 
 public class Main {
-    
     public static void main(String[] args){
 
-        /* ArrayList<Guest> guest = new ArrayList<>();
-        ArrayList<Room> rooms = new ArrayList<>();
-        ArrayList<Services> services  = new ArrayList<>();
-
-
-        Room room1 = new Room(1, "double", false);
-        Room room2 = new Room(2, "double", false);
-        Room room3 = new Room(3, "double", true);
-
-        Services service1 = new Services(1, "5-stars", 500, "bf+din+fin");
-        Services service2 = new Services(2, "5-stars", 500, "bf+din+fin");
-
-        rooms.add(room1);
-        rooms.add(room2);
-        rooms.add(room3);
-
-        services.add(service1);
-        services.add(service2); */
-
-
-        GuestManagement.addGuest("ziadd", 0000, "ziadamin");
-        GuestManagement.addGuest("mohsen", 1111, "ziadamin");
-        GuestManagement.addGuest("fawzy", 2222, "ziadamin");
-
-        // System.out.println(GuestManagement.SearchGuest(1111).getId());
-        System.out.println(GuestManagement.SearchGuest(0000).getId());
-        System.out.println(GuestManagement.SearchGuest(2222).getId());
-
-       /*  RoomManagement.addRoom(1, "double", true);
-        RoomManagement.addRoom(2, "double", true);
-        RoomManagement.addRoom(3, "double", false); */
-
-
-        RoomManagement.assignRoom(1, 0000, 3);
-
-        System.out.println(GuestManagement.SearchGuest(0000).getRegRoom());
+        Admin.addAdmin("farah", 2004);
+        boolean running = true;
         
-        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
+        outerLoop:while(running){
 
-        GuestManagement.deleteGuest(0000);
+            System.out.println("\n------ Welcome to the Hotel Management System! ------");
+            int choice = HomeMenu.mainMenu();
 
-        System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
+            // log in as admin 
+            if(choice==1){
+                boolean logged = false;
 
-        if(RoomManagement.deleteRoom(3)==-2){
-            System.out.println("the room reserved");
-        }
+                while(!logged){
 
-        //RoomManagement.assignRoom(1, 1111, 3);
-
-        //System.out.println(GuestManagement.SearchGuest(1111).getRegRoom());
-
-        
-
-
-
-        //RoomManagement.unassignRoom(1, 0000);
-        //System.out.println(RoomManagement.SearchRoom(1).getIsAvaialble());
-
-/*         System.out.println("***********************************************");
-
-        Admin.addAdmin("farah", 123);
-        Admin.addAdmin("ziad", 456);
-
-        for(Admin admins : Admin.getAdmins()){
-            System.out.println(admins.getName() + " " + admins.getPass());
-        }
-        
-
-        // System.out.println("************************");
-        // Scanner input = new Scanner(System.in);
-        // System.out.println("Enter admin name: ");
-        // String name = input.nextLine();
-        // System.out.println("Enter Admin Password: ");
-        // int pass = input.nextInt();
-        // if(Authentication.AdminLogin(name,pass)){
-        //     System.out.println("Logged in successfully");
-        // }
-        // else{
-        //     System.out.println("Login Failed");
-        // }
-
-        System.out.println("**********************************");
-        
-        ReceptionistManagement.addEmployee("Ava", 222);
-        ReceptionistManagement.addEmployee("Ryle", 414);
-        ReceptionistManagement.addEmployee("A", 88);
-        
-        ReceptionistManagement.deleteEmployee(2);
-
-        ReceptionistManagement.addEmployee("b", 2);
-
-        for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
-            System.out.println(receptionist.getID() + " " +receptionist.getName() + " " + receptionist.getPass());
-        }
-
-        // System.out.println("Enter Receptionist name: ");
-        // String name2 = input.nextLine().trim();
-        // System.out.println("Enter Receptionist Password: ");
-        // int pass2 = input.nextInt();
-
-        System.out.println(ReceptionistManagement.getAllReceptionists().size()); */
-    System.out.println("Enter a number: ");
-    // Functions.readPositiveOrZero(); 
-    Functions.readPositive();
-    GuestManagement.addGuest("farah", 2004, "farah@gmail.com");
-
-    Scanner input = new Scanner(System.in);
+                    System.out.println("\nEnter your name: ");
+                    String name = Functions.readString();
     
-        int choice = ReceptionistMenu.ReceptionistMainMenu();
+                    System.out.println("\nEnter your password: ");
+                    int pass = Functions.readInt();
+    
+                    if ( Authentication.AdminLogin(name, pass) ){
+                        System.out.println("\nLogged in as admin successfully!\n");
+                        AdminRole.main(args);
+                        logged=true;
+                    }
+                    else {
+                        System.out.println("\nLog in failed! Try again.\n");
+                        int option = HomeMenu.tryAgain();
+    
+                        if (option==1){
+                            continue;
+                        } 
+                        else{
+                            break outerLoop;
+                        }
+                    }
+                }
+            }
 
-        System.out.println("\n**** You are now adding a new guest ****");
-        System.out.print("\nEnter guest national id: ");
-        int guestID = Functions.readPositive();
-        System.out.print("Enter guest name: ");
-        String name = input.next();
-        System.out.print("Enter guest email: ");
-        String email = input.next();
+            // Log in as receptionist
+            else if(choice == 2){
 
-        int add = GuestManagement.addGuest(name, guestID, email);
-        if(add == -1){
-            System.out.println("\nThis national ID is already taken.");
-        }
-        else{
-            System.out.println("\nThe guest has been added successfully!");
-        }
+                boolean logged= false;
 
-        for (Guest guest : GuestManagement.getGuestArray()){
-            System.out.println(guest.getNationalID() + " " + guest.getName() + " " + guest.getemail());
+                while(!logged){
+                    System.out.println("\nEnter your name: ");
+                    String name = Functions.readString();
+
+                    System.out.println("\nEnter your password: ");
+                    int pass = Functions.readInt();
+
+                    if( Authentication.ReceptionistLogin(name, pass) ){
+                        System.out.print("\nLogged in as Receptionist!\n");
+                        ReceptionistRole.receptionistRole();
+                        logged=true;
+                    }
+                    else{
+                        System.out.println("\nLog in failed! Try again Or Sign up!\n");
+                        int option = HomeMenu.tryAgainOrSignUp();
+
+                        if(option==1){
+                            continue;
+                        }
+                        else if(option==2){
+
+                            boolean signedUp = false;
+
+                            while(!signedUp){
+                                System.out.println("\nEnter your name: ");
+                                String username = Functions.readString();
+
+                                System.out.println("\nEnter your password: ");
+                                int password = Functions.readInt();
+
+                                int returnInt = ReceptionistManagement.addEmployee(username, password);
+
+                                if(returnInt==-1){ // name already used 
+                                    System.out.println("\nUsername already exists. Try again to sign up\n");
+                                    int returnTry = HomeMenu.tryAgain();
+                                    if(returnTry==1){
+                                        continue;
+                                    }
+                                    else{
+                                        break outerLoop;
+                                    }
+                                }
+                                else { // added successfully
+                                    System.out.println("\nSigned up successfully!\n");
+                                    int returnTry = HomeMenu.backOrExit();
+
+                                    if(returnTry==1){
+                                        continue outerLoop;
+                                    }
+                                    else{
+                                        break outerLoop;
+                                    }
+                                }
+                            }
+                        }
+                        else if(option==0) {
+                            break;
+                        }
+                    }
+                }
+            }
+            else{
+                running = false;
+            }
         }
     }
 }

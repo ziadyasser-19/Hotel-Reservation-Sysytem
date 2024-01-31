@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ReceptionistRole {
     
-    public static void receptionistRole(int id){
+    public static void receptionistRole(){
 
         boolean loggedIn = true;
         
@@ -301,7 +301,7 @@ public class ReceptionistRole {
         
 
 
-        receptionistRole(2);
+        receptionistRole();
 
         // RoomManagement.assignRoom(5, 2, 5);
 
