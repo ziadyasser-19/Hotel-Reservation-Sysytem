@@ -204,8 +204,19 @@ public static void main(String[] args) {
             else if(m==5){
                 System.out.println("all Guest are : ");
                 ArrayList<Guest>Guest= GuestManagement.getGuestArray();
+                
                 for(Guest  guest:Guest){
+                    if(guest.getRegRoom()==null && guest.getRegServices()==null){
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : Not regesterd Yet ! "+ "  and service : not regeisterd in any service");
+                        
+                    }
+                    else if(guest.getRegRoom()==null){
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : Not regesterd Yet ! "+ "  and service " + guest.getRegServices().getServiceName());
+                    }else if(guest.getRegServices()==null){
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number :  "+guest.getRegRoom().getRoomID() +"  and service : not regiesterd in any services ");
+                    }else{
                     System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : " + guest.getRegRoom().getRoomID() + "  and service " + guest.getRegServices().getServiceName());
+                }
             }
             System.out.println("\n =====================================");
                 int y = adminrolemenu.anotherservicemenu();
