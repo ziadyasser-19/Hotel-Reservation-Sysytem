@@ -9,8 +9,11 @@ public class GuestManagement {
 
     // Methods
     
-    public static int addGuest(String name , int NationalId , String email){
+    public static int addGuest(String name , long NationalId , String email){
         
+        if(NationalId!=14){
+            return 2; //invalid national id
+        }
         for(int i = 0 ; i<GuestArray.size();i++){
             if (GuestArray.get(i).getNationalID()==NationalId){
                 return -1; // guest already exist
@@ -30,7 +33,7 @@ public class GuestManagement {
     }
     
     
-    public static int deleteGuest(int NationalId) {
+    public static int deleteGuest(long NationalId) {
         for (int i = 0; i < GuestArray.size(); i++) {
             if (GuestArray.get(i).getNationalID() == NationalId) {
                 if(GuestArray.get(i).getRegRoom()!=null){
@@ -48,7 +51,7 @@ public class GuestManagement {
     
         
     
-    public static Guest SearchGuest(int NationalId) {
+    public static Guest SearchGuest(long NationalId) {
         for (int i = 0; i < GuestArray.size(); i++) {
             if (GuestArray.get(i).getNationalID() == NationalId) {
                 return GuestArray.get(i);

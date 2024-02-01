@@ -44,6 +44,48 @@ public class Functions {
         }
     }
 
+
+    //Read Double 
+    public static double ReadDouble(){
+        double x = 0 ;
+        while(true){
+            try{
+            x=input.nextDouble();
+            if(x>0){
+                return x;
+            }else{
+                System.out.println("Enter a positive Double : ");
+                input.nextLine();
+            }
+            }catch(Exception e){
+                System.out.println("please enter a positive Double : ");
+                input.nextLine();
+            }
+        }
+    }
+
+    //Read Long 
+    
+    public static long ReadLong(){
+        long x = 0 ;
+        while(true){
+            try{
+            x=input.nextLong();
+            if(x>0){
+                return x;
+            }else{
+                System.out.println("Enter a positive Long number ex :(30210120213230) : ");
+                input.nextLine();
+            }
+            }catch(Exception e){
+                System.out.println("Enter a positive Long number ex :(30210120213230) : ");
+                input.nextLine();
+            }
+        }
+    }
+
+
+
     // Read Integer
     public static int readInt(){
         int n = 0;

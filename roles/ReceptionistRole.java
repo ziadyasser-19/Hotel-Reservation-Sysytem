@@ -22,7 +22,7 @@ public class ReceptionistRole {
                     System.out.println("\n**** You are now adding a new guest ****");
 
                     System.out.print("\nEnter guest national id: ");
-                    int guestID = Functions.readPositive();
+                    long guestID = Functions.ReadLong();
 
                     System.out.print("Enter guest name: ");
                     String name = Functions.readString();
@@ -33,6 +33,8 @@ public class ReceptionistRole {
                     int add = GuestManagement.addGuest(name, guestID, email);
                     if(add == -1){
                         System.out.println("\nThis national ID is already taken.\n"); // id used before 
+                    }else if(add == 2){
+                        System.out.println(" \n Wrong national ID ! \n ");
                     }
                     else{
                         System.out.println("\nThe guest has been added successfully!\n"); // added successfully
@@ -53,7 +55,7 @@ public class ReceptionistRole {
                     System.out.println("\n**** Assign room to guest ****\n");
 
                     System.out.println("Enter Guest National ID: ");
-                    int guestId = Functions.readPositive();
+                    long guestId = Functions.ReadLong();
 
                     System.out.println("Enter Room Number: ");
                     int roomNo = Functions.readPositive();
@@ -100,7 +102,7 @@ public class ReceptionistRole {
                         System.out.println("\n**** Unassign Room From Guest ****\n");
 
                         System.out.println("Enter guest national ID: ");
-                        int guestid = Functions.readPositive();
+                        long guestid = Functions.ReadLong();
 
                         System.out.println("Enter room number: ");
                         int roomno = Functions.readPositive();
@@ -168,7 +170,7 @@ public class ReceptionistRole {
                         System.out.println("\n**** Assign Service To Guest ****\n");
 
                         System.out.println("Enter guest national ID: ");
-                        int guest = Functions.readPositive();
+                        long guest = Functions.ReadLong();
 
                         System.out.println("Enter service ID: ");
                         int service = Functions.readPositive();
@@ -224,7 +226,7 @@ public class ReceptionistRole {
                         // [8]- Print detailed bill for the guest
                         case 8:
                             System.out.println("Enter guest national ID: ");
-                            int idguest = Functions.readPositive();
+                            long idguest = Functions.ReadLong();
 
                             Guest guestt = GuestManagement.SearchGuest(idguest);
 
@@ -255,7 +257,7 @@ public class ReceptionistRole {
                         // [9]- Generate report about service
                         case 9:
                             System.out.println("Enter guest national ID: ");
-                            int idofguest = Functions.readPositive();
+                            long idofguest = Functions.ReadLong();
                             
                             System.out.println("Enter Service id: ");
                             int serviceid = Functions.readPositive();

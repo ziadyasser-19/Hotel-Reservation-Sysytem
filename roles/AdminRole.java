@@ -237,7 +237,7 @@ public static void main(String[] args) {
         System.out.println("enter the type of the room ");
         String type = Functions.readString();
         System.out.println("enter the price of the room : ");
-        double price = Functions.readPositive();
+        double price = Functions.ReadDouble();
         if(RoomManagement.addRoom(Roomnum, type, true,price)==-1){
             boolean z = true;
             innerloop : while(z){
@@ -333,7 +333,7 @@ public static void main(String[] args) {
                 if(RoomManagement.SearchRoom(x)!=null){
                     z=false;
                     System.out.println("enter the new price of the room : ");
-                    double y = Functions.readPositive();
+                    double y = Functions.ReadDouble();
                     RoomManagement.updateRoom(x, y);
                     System.out.println("\nprice updated successfully :) ");
                 }else{
@@ -351,7 +351,7 @@ public static void main(String[] args) {
             }
         }else{
                 System.out.println("enter the new price of the room : ");
-                    double y = Functions.readPositive();
+                    double y = Functions.ReadDouble();
                     RoomManagement.updateRoom(x, y);
                     System.out.println("\nprice updated successfully :) ");
         }
@@ -389,7 +389,7 @@ public static void main(String[] args) {
         System.out.println("enter service description : ");
         String description =  Functions.readString();
         System.out.println("enter service Price : ");
-        double price = Functions.readPositive();
+        double price = Functions.ReadDouble();
         
         int z= ServicesManagement.addService(servicename, description, price);
         
@@ -438,8 +438,12 @@ public static void main(String[] args) {
             servicename = Functions.readString();
             if (ServicesManagement.searchServices(servicename)!=null) {
                 z=false;
+                if(ServicesManagement.deleteService(servicename)==2){
+                    System.out.println("Service assigned to guests cant be deleted !");
+                }else{
                 ServicesManagement.deleteService(servicename);
                 System.out.println("\nService deleted succefully :) ");
+                }
             }else{
                 System.out.println("\nInvalid name to search choose option =>");
                 System.out.println("=======================================\n");
@@ -454,8 +458,12 @@ public static void main(String[] args) {
             }
         }
     }else{ // lw el2sm tmam 
+                if(ServicesManagement.deleteService(servicename)==2){
+                    System.out.println("Service assigned to guests cant be deleted ! ");
+                }else{
                 ServicesManagement.deleteService(servicename);
                 System.out.println("\nService deleted succefully :) ");
+                }
     }
     System.out.println("==================================\n");
     int y = adminrolemenu.anotherservicemenu();
@@ -479,7 +487,7 @@ public static void main(String[] args) {
             if(ServicesManagement.searchServices(name)!=null){ // lw d5l el esm s7 a5yra 
                 z=false;
                 System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
-                int serviceprice = Functions.readPositive();
+                double serviceprice = Functions.ReadDouble();
                 ServicesManagement.updateService(name, serviceprice);
                 System.out.println("\nService Updated Succefully ! ");
             }else{
@@ -497,7 +505,7 @@ public static void main(String[] args) {
         }
     }else{ // lw d5l el 2sm s7 mn awl mra
         System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
-                int serviceprice = Functions.readPositive();
+                double serviceprice = Functions.ReadDouble();
                 ServicesManagement.updateService(name, serviceprice);
                 System.out.println("\nService updated succefully !");
     }

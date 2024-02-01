@@ -3,13 +3,13 @@ package models;
 public class Guest extends Person {
     
     // Attributes
-    private final int id;
+    private final long id;
     private static int GuestNumber = 0;
     private Room regRoom;
     private Services regServices;
     
 
-public Guest(String name ,int NationalId , String email ){
+public Guest(String name ,long NationalId , String email ){
     super(name, "Guest", NationalId, email);
     this.id=++GuestNumber;
 }
@@ -23,7 +23,7 @@ public Services getRegServices(){
 }
 
 
-public int getId(){
+public long getId(){
     return this.id;
 }
 

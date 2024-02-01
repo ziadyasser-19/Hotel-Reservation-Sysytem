@@ -59,7 +59,7 @@ public static ArrayList<Room> filterRooms() {
     }
 
 
-    public static double billDetails(int NationalId){
+    public static double billDetails(long NationalId){
         Guest guest = GuestManagement.SearchGuest(NationalId); // get the guest you want
         
         if (guest == null )
