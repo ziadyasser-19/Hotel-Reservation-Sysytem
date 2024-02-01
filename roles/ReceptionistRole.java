@@ -153,7 +153,7 @@ public class ReceptionistRole {
                         try{
                             Room nearestRoom = Receptionist.viewNearestCheckout();
 
-                            System.out.println("\nNearest room will checked out is room number " + nearestRoom.getRoomID());
+                            System.out.println("\nNearest room will checked out is room number  :    " + nearestRoom.getRoomID() + "    with in  " +nearestRoom.getReservedDays() + "  Days !");
                             back=true;
                         }
                         catch(Exception e){
