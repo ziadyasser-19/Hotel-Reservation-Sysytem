@@ -66,7 +66,7 @@ public class RoomManagement {
 
 //===================================Assign Room ================================
 
-public static int assignRoom(int roomid , int NationalId,int reservedDays){
+public static int assignRoom(int roomid , long NationalId,int reservedDays){
 
     try {
     Guest guest = GuestManagement.SearchGuest(NationalId);
@@ -91,7 +91,7 @@ public static int assignRoom(int roomid , int NationalId,int reservedDays){
         return 0;
     }}
 
-public static int unassignRoom(int roomid,int NationalId){
+public static int unassignRoom(int roomid,long NationalId){
 
     try {
     Guest guest =  GuestManagement.SearchGuest(NationalId);

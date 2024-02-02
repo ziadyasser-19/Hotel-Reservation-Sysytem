@@ -8,7 +8,7 @@ public abstract class Person {
     private int password;
     private static int count = 0;
     private String email;
-    private int NationalId;
+    private long NationalId;
 
     // Constructor
     public Person(String name, String role, int password){
@@ -19,7 +19,7 @@ public abstract class Person {
     }
 
     // constructor overrload for guest
-    public Person(String name , String role , int NationalId,String email){
+    public Person(String name , String role , long NationalId,String email){
         this.name = name;
         this.role = role;
         this.NationalId = NationalId;
@@ -65,7 +65,7 @@ public abstract class Person {
         this.NationalId = NationalId;
     }
 
-    public int getNationalID(){
+    public long getNationalID(){
         return NationalId;
     }
     // Methods 

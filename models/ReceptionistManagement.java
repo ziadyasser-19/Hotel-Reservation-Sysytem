@@ -104,8 +104,7 @@ public class ReceptionistManagement {
         }
         return -1; // Receptionist not found
     }
-
-
+    
     public static Receptionist search(int id){
         for(int i =0; i<receptionistArray.size(); i++){
             if(receptionistArray.get(i).getID()==id){
@@ -119,4 +118,5 @@ public class ReceptionistManagement {
     public static ArrayList<Receptionist> getAllReceptionists(){
         return receptionistArray;
     }
+
 }

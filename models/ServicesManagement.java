@@ -20,6 +20,11 @@ public class ServicesManagement {
 
 
     public static int deleteService(String serviceName) {
+        for(int j=0;j<GuestManagement.getGuestArray().size();j++){
+            if(serviceName.equalsIgnoreCase(GuestManagement.getGuestArray().get(j).getRegServices().getServiceName())){
+                return 2; //the service assigned to guest cant be deleted 
+            }
+        }
         for (int i = 0; i < services.size(); i++) {
             if (services.get(i).getServiceName().equalsIgnoreCase(serviceName)) {
                 services.remove(i);
@@ -28,10 +33,6 @@ public class ServicesManagement {
         }
         return -1; // Service not found
     }
-    
-    
-
-
 
     public static int updateService(String name ,double newprice){
         for(int i = 0 ; i<services.size();i++){
@@ -64,7 +65,7 @@ public class ServicesManagement {
 
 //=============================== Assign Service ==================================
 
-    public static int assignService(int serviceid , int NationalId){
+    public static int assignService(int serviceid , long NationalId){
 
         Guest guest =  GuestManagement.SearchGuest(NationalId);
         Services services = searchService(serviceid);
@@ -79,7 +80,7 @@ public class ServicesManagement {
             return -1 ; // the guest or service  not found 
     }
     
-    public static int unassignService(int NationalId,Services serviceid){
+    public static int unassignService(long NationalId,Services serviceid){
         Guest guest = GuestManagement.SearchGuest(NationalId);
             if (guest.getRegServices()==null)
                 return -1 ; // the guest dont have a regservice
