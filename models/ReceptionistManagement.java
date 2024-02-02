@@ -40,6 +40,7 @@ public class ReceptionistManagement {
             receptionistArray.add(new Receptionist(name, pass));
             return 1; // New Receptionist added successfully with a new id
         } else {
+            deletedID.sort((a, b) -> a.compareTo(b)); // sorting array list
             int id = deletedID.remove(0);
     
             // Check if the name is already used with the recovered ID
