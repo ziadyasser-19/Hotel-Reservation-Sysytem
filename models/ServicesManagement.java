@@ -35,10 +35,18 @@ public class ServicesManagement {
         
     }
 
-    // overload method
-    public static void addService(int id, String name, double price, String description){
+    public static int addService(int id, String name, double price, String description) {
+        // Check for existing service name with the same id
+        for (Services service : services) {
+            if (service.getServiceID() == id) {
+                return -1; // service name already used
+            }
+        }
+
         services.add(new Services(id, name, price, description));
+        return 2; // added with previously used id
     }
+
     
 
 

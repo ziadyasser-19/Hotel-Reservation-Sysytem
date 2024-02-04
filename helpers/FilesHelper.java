@@ -26,10 +26,6 @@ public class FilesHelper {
             }
     }
 
-
-
-
-
     public String ReadFile(){
             
         try{

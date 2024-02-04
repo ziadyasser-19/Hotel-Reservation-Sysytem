@@ -10,5 +10,5 @@ public class Pathes {
     public static String  GuestsPath= base+ "/guests.txt";
     public static String  ServicesPath= base+ "/Services.txt";
     public static String deletedReceptionistsIDpath = base + "/Receptionists_DeletedID.txt";
-    
+    public static String  Reportspathes= base+ "/Reports.txt";
 }
