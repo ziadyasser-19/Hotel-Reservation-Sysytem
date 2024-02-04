@@ -7,6 +7,7 @@ import roles.*;
 public class Main {
     public static void main(String[] args){
 
+        FilesF.readServicesFile();
         Admin.addAdmin("farah", 2004);
         boolean running = true;
         

@@ -1,7 +1,5 @@
 package helpers;
 
-import java.util.ArrayList;
-
 import models.*;
 
 public class FilesF {
@@ -19,9 +17,12 @@ public class FilesF {
 
             for(String oneLine : service){
                 // System.out.println(oneLine);
-                if(oneLine.matches("\\d+-\\w+-\\w+-\\d+")){
+                if(oneLine.matches("\\d+-\\w+-\\w+-\\d+\\s?")){
 
                     String[] oneService = oneLine.split("-");
+                    // for (String servicee : oneService){
+                    //     System.out.println(servicee);
+                    // }
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
                 }
             }
