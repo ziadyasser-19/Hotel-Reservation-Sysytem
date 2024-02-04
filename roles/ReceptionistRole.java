@@ -212,7 +212,7 @@ public class ReceptionistRole {
 
                             if(!allGuests.isEmpty()){
                                 for(Guest guests : allGuests){
-                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID() + "    "+guests.getRegServices().getServiceName());
+                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID());
                                 }
                                 back=true;
                             }

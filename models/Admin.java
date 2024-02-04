@@ -14,6 +14,11 @@ public class Admin extends Person {
         super(name, "Admin", password);
         this.id = ++adminCount;
     }
+
+    public Admin(int id, String name, int password){
+        super(name, "Admin", password);
+        this.id = id;
+    }
     
     // Setters
 
@@ -43,5 +48,9 @@ public class Admin extends Person {
     }
     admins.add(new Admin(name, pass));
     return 1; // added admin successfully
+    }
+
+    public static void addAdmin(int id,String name, int pass){
+        admins.add(new Admin (id, name, pass));
     }
 }

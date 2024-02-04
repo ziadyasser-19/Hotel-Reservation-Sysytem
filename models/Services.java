@@ -40,6 +40,10 @@ public class Services {
         this.description=desc;
     }
 
+    public static void setServicesCounter(int n){
+        servicecounter=n;
+    }
+
     // Getters
     public int getServiceID() { 
         return this.serviceID;

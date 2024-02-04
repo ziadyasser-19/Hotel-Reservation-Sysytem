@@ -11,9 +11,9 @@ public class GuestManagement {
     
     public static int addGuest(String name , long NationalId , String email){
         
-        if(NationalId!=14){
-            return 2; //invalid national id
-        }
+        // if(NationalId!=14){
+        //     return 2; //invalid national id
+        // }
         for(int i = 0 ; i<GuestArray.size();i++){
             if (GuestArray.get(i).getNationalID()==NationalId){
                 return -1; // guest already exist
