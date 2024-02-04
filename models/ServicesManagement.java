@@ -34,6 +34,11 @@ public class ServicesManagement {
         }
         
     }
+
+    // overload method
+    public static void addService(int id, String name, double price, String description){
+        services.add(new Services(id, name, price, description));
+    }
     
 
 
