@@ -16,6 +16,13 @@ public class Services {
         this.description = description;
     }
 
+    public Services( int id, String serviceName, double price, String description) {
+        this.serviceName = serviceName;
+        this.price = price;
+        this.description = description;
+        this.serviceID = id;
+    }
+
     // Setters
     public void setServiceID(int serviceID) { 
         this.serviceID = serviceID;

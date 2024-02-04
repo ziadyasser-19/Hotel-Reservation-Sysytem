@@ -105,7 +105,13 @@ public class Functions {
         while (true) {
             try{
                 s = input.next();
-                return s;
+
+                if(s.matches(".*-?\\d+(\\.\\d+)?.*")){
+                    System.out.println("Cannot contain an integer. Please enter a string: ");
+                }
+                else{
+                    return s;
+                }
             } catch(Exception e){
                 System.out.println("Invalid entry, please enter a string :");
                 input.nextLine();
@@ -182,5 +188,11 @@ public class Functions {
                 input.nextLine();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Enter a name: ");
+        String string = readString();
+        System.out.println("your name is "+ string);
     }
 }

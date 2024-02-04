@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class ServicesManagement {
     
     private static ArrayList<Services> services = new ArrayList<>();
+    private static ArrayList<Integer> deletedID =  new ArrayList<>();
+
 
     // Methods 
     
@@ -13,8 +15,24 @@ public class ServicesManagement {
                 return -1; // service already exist
             }
         }
-        services.add(new Services( name, price, description));
-        return 1; // added successfully
+
+        if (deletedID.isEmpty()){
+            services.add(new Services(name, price, description));
+            return 1; // new service added with new id
+        } else {
+            deletedID.sort((a, b) -> a.compareTo(b));
+            int id = deletedID.remove(0);
+
+            for (int i = 0; i < services.size(); i++){
+                if (services.get(i).getServiceName().equalsIgnoreCase(name)){
+                    return -1; // service name already used
+                }
+            }
+
+            services.add(new Services(id, name, price, description));
+            return 2; // added with previously used id
+        }
+        
     }
     
 
@@ -27,7 +45,9 @@ public class ServicesManagement {
         }
         for (int i = 0; i < services.size(); i++) {
             if (services.get(i).getServiceName().equalsIgnoreCase(serviceName)) {
+                deletedID.add(services.get(i).getServiceID());
                 services.remove(i);
+                
                 return 1; // Service deleted successfully
             }
         }
@@ -96,6 +116,7 @@ public class ServicesManagement {
 
     public static ArrayList<Services> getServicesList() {
     return services;
-}
+    }
+
 
 }
