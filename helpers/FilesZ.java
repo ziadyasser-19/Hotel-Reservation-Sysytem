@@ -131,7 +131,7 @@ public class FilesZ {
     //=================
 
     //read deleted id 
-
+/* 
     public static void DeletedReceptionsistIdsReader(){
         
         FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
@@ -141,14 +141,27 @@ public class FilesZ {
         String  allids[]=alldata.split("\n");
 
         for(String id : allids){
-            if(id.matches("\\b\\d+\\b")){
+            if(id.matches("\\d+\\s?")){
                 //String dataparts[] =id.split("\n"); 
-                ReceptionistManagement.deletedfilesemployee(Integer.parseInt(id));
-            
-        
+                ReceptionistManagement.getdeletedreceptionistsid().add(Integer.parseInt(id));
+                
     }
 }
+} */
+
+public static void DeletedReceptionsistIdsReader() {
+    FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
+    String alldata = file.ReadFile();
+
+    String[] allids = alldata.split("\\s+");  // Split using any whitespace characters
+
+    for (String id : allids) {
+        if (id.matches("\\d+")) {
+            ReceptionistManagement.getdeletedreceptionistsid().add(Integer.parseInt(id));
+        }
+    }
 }
+
 
 
     //=====================================================================

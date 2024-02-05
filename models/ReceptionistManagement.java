@@ -106,12 +106,6 @@ public class ReceptionistManagement {
         return -1; // Receptionist not found
     }
     
-    // for files to read it 
-    
-    public static void deletedfilesemployee(int id){
-        deletedID.add(id);
-    }
-    
     public static Receptionist search(int id){
         for(int i =0; i<receptionistArray.size(); i++){
             if(receptionistArray.get(i).getID()==id){

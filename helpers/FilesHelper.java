@@ -49,6 +49,18 @@ public class FilesHelper {
     }
 
 
+    public void emptyFile(){
+        try {
+            FileWriter file = new FileWriter(this.file);
+            file.write("");
+            file.close();
+        } 
+        catch (IOException ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+    }
+
+
 }
 
 
