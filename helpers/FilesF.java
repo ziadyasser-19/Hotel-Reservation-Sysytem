@@ -63,15 +63,78 @@ public class FilesF {
             }
         }
     }
+
+    // Read GuestID_ReservedRoomID File 
+    public static void readGuestIDRoomID(){
+        FilesHelper guestIdRoomIdFile = new FilesHelper(Pathes.guestIDRoomIDPath);
+
+        String allData = guestIdRoomIdFile.ReadFile();
+
+        if(!allData.isEmpty()){
+            String[] data = allData.split("\n");
+
+            for(String oneLine : data){
+                
+                if(oneLine.matches("\\b\\d+-\\d+-\\d+\\s?")){
+                    System.out.println(oneLine);
+                    String[] guestRoom = oneLine.split("-");
+                    RoomManagement.assignRoom(Integer.parseInt(guestRoom[1]), Long.parseLong(guestRoom[0]),Integer.parseInt(guestRoom[2]));
+                }
+            }
+        }
+    }
+
+    // Read GuestID_ServiceID
+    public static void readGuestIDServiceID(){
+        FilesHelper guestIDServiceIDFile = new FilesHelper(Pathes.guestIDServiceIDPath);
+
+        String allData = guestIDServiceIDFile.ReadFile();
+
+        if(!allData.isEmpty()){
+            String[] data = allData.split("\n");
+
+            for(String oneline: data){
+                
+                if(oneline.matches("\\d+-\\d+-\\d+\\s?")){
+                    System.out.println(oneline);
+
+                    String[] guestService = oneline.split("-");
+                    ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
+                }
+            }
+        }
+    }
+
+    // Read Services Deleted ID
+    public static void readServicesDeletedID(){
+        FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
+
+        String allID = servicesDeletedID.ReadFile();
+
+        if(!allID.isEmpty()){
+            String[] ids = allID.split("\n");
+
+            for (String id : ids){
+                if(id.matches("\\d+\\s?")){
+                    System.out.println(id);
+
+                    
+                }
+            }
+        }
+    }
     
 
     public static void main(String[] args) {
-        readServicesFile();
+        // readServicesFile();
         // System.out.println("services");
         // System.out.println("array size= " +ServicesManagement.getServicesList().size());
         // for(Services service : ServicesManagement.getServicesList()){
         //     System.out.println(service.getServiceID()+ "   " + service.getServiceName() + "   "+ service.getServiceDesc()+ "  " + service.getServicePrice());
         // }
-        readGuestsFile();
+        // readGuestsFile();
+        readGuestIDRoomID();
+        // readGuestIDServiceID();
+        // readServicesDeletedID();
     }
 }

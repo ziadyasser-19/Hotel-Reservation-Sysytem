@@ -10,6 +10,7 @@ public class Main {
         FilesF.readAdminFile();
         FilesF.readServicesFile();
         FilesF.readGuestsFile();
+        FilesF.readGuestIDRoomID();
         boolean running = true;
         
         outerLoop:while(running){
