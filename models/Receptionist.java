@@ -23,6 +23,9 @@ public class Receptionist extends Person {
     
     // Setters
 
+    public static void SetReceptionistCounter(int x) {
+        receptionistCounter = x;
+    }
 
     // Getters
     public int getID(){

@@ -10,7 +10,7 @@ public class GuestManagement {
     // Methods
     
     public static int addGuest(String name , long NationalId , String email){
-        
+
         if(NationalId!=14){
             return 2; //invalid national id
         }

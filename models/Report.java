@@ -10,6 +10,9 @@ public class Report {
     private Guest reportedguest;
     private Services reportedservice;
     private static ArrayList<Report> reports = new  ArrayList<Report>();  
+    /* private String guestname;
+    private long guestid;
+    private int serviceid; */
 
     public Report(Date date, Guest guest, Services service,double starrate) {
         this.id = ++ReportCounter;
@@ -19,10 +22,24 @@ public class Report {
         this.starrate=starrate;
 }
 
+    /* public Report(int id ,Date date , String guestname ,long guestid, int serviceid ,double starrate ){
+        this.id = id ;
+        this.reportdate=date;
+        this.guestname=guestname;
+        this.guestid=guestid;
+        this.serviceid=serviceid;
+        this.starrate=starrate;
+    } */
+
+
  //setter and getter
 
     public static ArrayList<Report> getreportlist(){
         return reports;
+    }
+
+    public static void SetReportCounter(int x){
+        ReportCounter=x;
     }
 
     public double getstarrate(){
@@ -62,6 +79,18 @@ public class Report {
         reports.add(new Report(currentdate,guest,service,starrate));
         return "The report of "+guest.getName()+ " has been added successfully " + "with rate "+starrate ;
     }
+
+    //OVERLOAD REPORTFILE
+    public static String generatereport(Long id , int serviceid,double starrate){
+        Date currentdate = new Date(); // to set up the current date of the generated report then added it to constructor
+        Guest guest = GuestManagement.SearchGuest(id);
+        Services service = ServicesManagement.searchService(serviceid);
+        
+        reports.add(new Report(currentdate,guest,service,starrate));
+        
+        return "The report of "+guest.getName()+ " has been added successfully " + "with rate "+starrate ;
+        
+    } 
 
     public double servicerate(){
         double x = 0;

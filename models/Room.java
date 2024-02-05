@@ -65,4 +65,8 @@ public class Room {
     public int getReservedDays(){
         return this.reservedDays;
     }
+
+    public static void setroomcounter(int x){
+        roomCount=x;
+    }
 }
