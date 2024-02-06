@@ -50,7 +50,8 @@ public class FilesF {
 
             for(String oneline : guest){
 
-                if(oneline.matches("\\d+-\\w+-[A-z0-9\\.]+@[A-z0-9]+\\.[A-z]+\\s?")){
+                if(oneline.matches("\\d{14}-\\w+-[A-z0-9\\.]+@[A-z0-9]+\\.[A-z]+\\s?")){
+                    System.out.println(oneline);
                     String[] guestData = oneline.split("-");
                     GuestManagement.addGuest(guestData[1], Long.parseLong(guestData[0]), guestData[2]);
                 }
@@ -103,7 +104,7 @@ public class FilesF {
 
             for(String oneLine : data){
                 
-                if(oneLine.matches("\\b\\d+-\\d+-\\d+\\s?")){
+                if(oneLine.matches("\\b\\d{14}-\\d+-\\d+\\s?")){
                     
                     String[] guestRoom = oneLine.split("-");
                     RoomManagement.assignRoom(Integer.parseInt(guestRoom[1]), Long.parseLong(guestRoom[0]),Integer.parseInt(guestRoom[2]));
@@ -140,7 +141,7 @@ public class FilesF {
 
             for(String oneline: data){
                 
-                if(oneline.matches("\\d+-\\d+\\s?")){
+                if(oneline.matches("\\d{14}-\\d+\\s?")){
 
                     String[] guestService = oneline.split("-");
                     ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
@@ -202,7 +203,7 @@ public class FilesF {
         // for(Services service : ServicesManagement.getServicesList()){
         //     System.out.println(service.getServiceID()+ "   " + service.getServiceName() + "   "+ service.getServiceDesc()+ "  " + service.getServicePrice());
         // }
-        // readGuestsFile();
+        readGuestsFile();
         // readGuestIDRoomID();
         // readGuestIDServiceID();
         // readServicesDeletedID();
@@ -211,29 +212,29 @@ public class FilesF {
         // ServicesManagement.addService("Servicefff", "farah", 9999);
         // writeServicesFile();
 
-        GuestManagement.addGuest("farah", 992, "farah@gmail.com");
-        GuestManagement.addGuest("farahhhh", 993222232, "farah@gmail.com");
-        writeGuestsFile();
+        // GuestManagement.addGuest("farah", 992, "farah@gmail.com");
+        // GuestManagement.addGuest("farahhhh", 993222232, "farah@gmail.com");
+        // writeGuestsFile();
 
-        RoomManagement.addRoom(2, "single", true, 2020);
-        RoomManagement.addRoom(3, "double", true, 2400);
+        // RoomManagement.addRoom(2, "single", true, 2020);
+        // RoomManagement.addRoom(3, "double", true, 2400);
 
-        RoomManagement.assignRoom(2, 992, 4);
-        RoomManagement.assignRoom(3, 993222232, 7);
-        writeGuestIDRoomID();
+        // RoomManagement.assignRoom(2, 992, 4);
+        // RoomManagement.assignRoom(3, 993222232, 7);
+        // writeGuestIDRoomID();
         
-        ServicesManagement.addService("servicew", "d", 2000);
-        ServicesManagement.addService("serrrr", "r", 100);
+        // ServicesManagement.addService("servicew", "d", 2000);
+        // ServicesManagement.addService("serrrr", "r", 100);
 
         // ServicesManagement.assignService(1, 992);
         // ServicesManagement.assignService(2, 993222232);
         // writeGuestIDServiceID();
 
-        ServicesManagement.deleteService("servicew");
-        ServicesManagement.deleteService("serrrr");
+        // ServicesManagement.deleteService("servicew");
+        // ServicesManagement.deleteService("serrrr");
 
         
-        writeServicesDeletedID();
+        // writeServicesDeletedID();
 
 
     }
