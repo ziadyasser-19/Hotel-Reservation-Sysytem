@@ -2,21 +2,25 @@ package roles;
 
 import java.util.ArrayList;
 
+import helpers.Files;
 import helpers.Functions;
 import helpers.adminrolemenu;
-import models.GuestManagement;
-import models.Receptionist;
-import models.ReceptionistManagement;
-import models.RoomManagement;
-import models.ServicesManagement;
-import models.Guest;
-import models.Room;
-import models.Services;
+import models.*;
 
 
 public class AdminRole {
 public static void main(String[] args) {
         
+    Files.ReceptionistFileReader();
+    Files.ReportReader();
+    Files.RoomFileReader();
+    Files.readGuestIDRoomID();
+    Files.readGuestIDServiceID();
+    Files.readGuestsFile();
+    Files.readAdminFile();
+    Files.readServicesDeletedID();
+    Files.readServicesFile();
+    Files.DeletedReceptionsistIdsReader();
     
     
     outerLoop: while (true) {
@@ -50,6 +54,15 @@ public static void main(String[] args) {
                         else if(y==1)
                             continue outerLoop;
                         else
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                             System.out.println("Logged out !");
                             break outerLoop;
                     }
@@ -63,6 +76,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -90,6 +112,15 @@ public static void main(String[] args) {
                         else if(y==1)
                             continue outerLoop;
                         else
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                             System.out.println("\nLogged Out !");
                             break outerLoop;
                     }
@@ -100,6 +131,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -133,6 +173,15 @@ public static void main(String[] args) {
                                     else if(h==1)
                                         continue outerLoop;
                                     else
+                                    Files.DeletedIDsWriter();
+                                    Files.ReceptionistFileWriter();
+                                    Files.ReportFileWriter();
+                                    Files.RoomFileWriter();
+                                    Files.writeGuestIDRoomID();
+                                    Files.readGuestIDServiceID();
+                                    Files.writeGuestsFile();
+                                    Files.writeServicesDeletedID();
+                                    Files.writeServicesFile();
                                         System.out.println("Logged out");
                                         break outerLoop;
                                 }
@@ -147,6 +196,15 @@ public static void main(String[] args) {
                         else if(h==1)
                             continue outerLoop;
                         else
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                             System.out.println("\nLogged out !");
                             break outerLoop;
                     }
@@ -172,6 +230,15 @@ public static void main(String[] args) {
                                 else if(h==1)
                                     continue outerLoop;
                                 else
+                                    Files.DeletedIDsWriter();
+                                    Files.ReceptionistFileWriter();
+                                    Files.ReportFileWriter();
+                                    Files.RoomFileWriter();
+                                    Files.writeGuestIDRoomID();
+                                    Files.readGuestIDServiceID();
+                                    Files.writeGuestsFile();
+                                    Files.writeServicesDeletedID();
+                                    Files.writeServicesFile();
                                     System.out.println("Logged out ! \n");
                                     break outerLoop;
                             }
@@ -183,6 +250,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out ! \n");
                     break outerLoop;
                 }
@@ -197,6 +273,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out ! \n");
                     break outerLoop;
                 }
@@ -223,6 +308,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out ! \n");
                     break outerLoop;
                 }
@@ -257,6 +351,15 @@ public static void main(String[] args) {
                     else if(h==1)
                         continue outerLoop;
                     else
+                        Files.DeletedIDsWriter();
+                        Files.ReceptionistFileWriter();
+                        Files.ReportFileWriter();
+                        Files.RoomFileWriter();
+                        Files.writeGuestIDRoomID();
+                        Files.readGuestIDServiceID();
+                        Files.writeGuestsFile();
+                        Files.writeServicesDeletedID();
+                        Files.writeServicesFile();
                         System.out.println("Logged out !");
                         break outerLoop;
                 }
@@ -272,6 +375,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -302,6 +414,15 @@ public static void main(String[] args) {
                 else if(h==1)
                     continue outerLoop;
                 else
+                    Files.DeletedIDsWriter();
+                    Files.ReceptionistFileWriter();
+                    Files.ReportFileWriter();
+                    Files.RoomFileWriter();
+                    Files.writeGuestIDRoomID();
+                    Files.readGuestIDServiceID();
+                    Files.writeGuestsFile();
+                    Files.writeServicesDeletedID();
+                    Files.writeServicesFile();
                     System.out.println("Logged out !");
                     break outerLoop;
             }
@@ -319,6 +440,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -345,6 +475,15 @@ public static void main(String[] args) {
                     else if(h==1)
                         continue outerLoop;
                     else
+                        Files.DeletedIDsWriter();
+                        Files.ReceptionistFileWriter();
+                        Files.ReportFileWriter();
+                        Files.RoomFileWriter();
+                        Files.writeGuestIDRoomID();
+                        Files.readGuestIDServiceID();
+                        Files.writeGuestsFile();
+                        Files.writeServicesDeletedID();
+                        Files.writeServicesFile();
                         System.out.println("\nLogged out !");
                         break outerLoop;
                 }
@@ -360,6 +499,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -373,6 +521,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -411,6 +568,15 @@ public static void main(String[] args) {
                     else if(h==1)
                         continue outerLoop;
                     else
+                        Files.DeletedIDsWriter();
+                        Files.ReceptionistFileWriter();
+                        Files.ReportFileWriter();
+                        Files.RoomFileWriter();
+                        Files.writeGuestIDRoomID();
+                        Files.readGuestIDServiceID();
+                        Files.writeGuestsFile();
+                        Files.writeServicesDeletedID();
+                        Files.writeServicesFile();
                         System.out.println("\nLogged out !");
                         break outerLoop;
                 }
@@ -424,6 +590,15 @@ public static void main(String[] args) {
                 if (y == 1) {
                     continue outerLoop;
                 }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
                     System.out.println("logged out");
                     break outerLoop;
                 }
@@ -453,6 +628,15 @@ public static void main(String[] args) {
                 else if(h==1)
                     continue outerLoop;
                 else
+                    Files.DeletedIDsWriter();
+                    Files.ReceptionistFileWriter();
+                    Files.ReportFileWriter();
+                    Files.RoomFileWriter();
+                    Files.writeGuestIDRoomID();
+                    Files.readGuestIDServiceID();
+                    Files.writeGuestsFile();
+                    Files.writeServicesDeletedID();
+                    Files.writeServicesFile();
                     System.out.println("Logged out !");
                     break outerLoop;
             }
@@ -470,6 +654,15 @@ public static void main(String[] args) {
     if (y == 1) {
         continue outerLoop;
     }else{
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
         System.out.println("logged out");
         break outerLoop;
     }
@@ -499,6 +692,15 @@ public static void main(String[] args) {
                 else if(h==1)
                     continue outerLoop;
                 else
+                    Files.DeletedIDsWriter();
+                    Files.ReceptionistFileWriter();
+                    Files.ReportFileWriter();
+                    Files.RoomFileWriter();
+                    Files.writeGuestIDRoomID();
+                    Files.readGuestIDServiceID();
+                    Files.writeGuestsFile();
+                    Files.writeServicesDeletedID();
+                    Files.writeServicesFile();
                     System.out.println("\nLogged out !");
                     break outerLoop;
             }
@@ -514,6 +716,15 @@ public static void main(String[] args) {
     if (y == 1) {
         continue outerLoop;
     }else{
+        Files.DeletedIDsWriter();
+        Files.ReceptionistFileWriter();
+        Files.ReportFileWriter();
+        Files.RoomFileWriter();
+        Files.writeGuestIDRoomID();
+        Files.readGuestIDServiceID();
+        Files.writeGuestsFile();
+        Files.writeServicesDeletedID();
+        Files.writeServicesFile();
         System.out.println("logged out");
         break outerLoop;
     }
@@ -532,13 +743,31 @@ public static void main(String[] args) {
     if (y == 1) {
         continue outerLoop;
     }else{
-        System.out.println("logged out");
-        break outerLoop;
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
+                            System.out.println("logged out");
+                            break outerLoop;
     }
 } else if (x==5){ // option el back 
     continue outerLoop;
 }
 }else if(t==4){ // Logout option 
+                            Files.DeletedIDsWriter();
+                            Files.ReceptionistFileWriter();
+                            Files.ReportFileWriter();
+                            Files.RoomFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.readGuestIDServiceID();
+                            Files.writeGuestsFile();
+                            Files.writeServicesDeletedID();
+                            Files.writeServicesFile();
     System.out.println("logged out succefully !");
     break outerLoop;
 }
