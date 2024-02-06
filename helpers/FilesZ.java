@@ -15,10 +15,17 @@ public class FilesZ {
 
     // Write Rooms 
 
-    public static void RoomFileWriter(Room room){
+    public static void RoomFileWriter(){
+
         FilesHelper file = new FilesHelper(Pathes.RoomPath);
-        String content = room.getRoomID() +"-"+room.getRoomType()+"-"+room.getIsAvaialble()+"-"+room.getPrice();
+
+        file.emptyFile();
+
+        for(int i = 0 ; i<RoomManagement.getRoomList().size();i++){
+        String content = RoomManagement.getRoomList().get(i).getRoomID() +"-"+RoomManagement.getRoomList().get(i).getRoomType()+"-"+RoomManagement.getRoomList().get(i).getIsAvaialble()+"-"+RoomManagement.getRoomList().get(i).getPrice();
         file.writeToFile(content);
+        }
+
     }
 
 //===========
@@ -52,11 +59,15 @@ public class FilesZ {
 
     // write receptionists
 
-    public static void ReceptionistFileWriter(Receptionist receptionist){
+    public static void ReceptionistFileWriter(){
         FilesHelper file = new FilesHelper(Pathes.ReceptionistPath);
-        String content = receptionist.getID() +"-" + receptionist.getName() +"-" + receptionist.getPass();
+
+        file.emptyFile();
+        for(int i = 0 ; i<ReceptionistManagement.getAllReceptionists().size();i++){
+        String content = ReceptionistManagement.getAllReceptionists().get(i).getID() +"-" + ReceptionistManagement.getAllReceptionists().get(i).getName() +"-" + ReceptionistManagement.getAllReceptionists().get(i).getPass();
         file.writeToFile(content);
     }
+}
 
     //=================
 
@@ -89,10 +100,12 @@ public class FilesZ {
 
     //write reports
 
-    public static void  ReportFileWriter(Report report){
+    public static void  ReportFileWriter(){
         FilesHelper file = new FilesHelper(Pathes.Reportspathes);
-        String content = report.getreportedGuest().getNationalID()+"-"+report.getreportedservice().getServiceID()+"-"+report.getstarrate();
+        for(int i = 0 ; i<Report.getreportlist().size();i++){
+        String content = Report.getreportlist().get(i).getreportedGuest().getNationalID()+"-"+Report.getreportlist().get(i).getreportedservice().getServiceID()+"-"+Report.getreportlist().get(i).getstarrate();
         file.writeToFile(content);
+        }
     }
 
     //======================
@@ -122,12 +135,13 @@ public class FilesZ {
 
     // write 
 
-    public static void  DeletedIDsWriter(int id) {
+    public static void  DeletedIDsWriter() {
         FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
-        String content = String.valueOf(id);
+        for(int i = 0 ; i <ReceptionistManagement.getdeletedreceptionistsid().size();i++){
+        String content = String.valueOf(ReceptionistManagement.getdeletedreceptionistsid().get(i));
         file.writeToFile(content);
     }
-
+    }
     //=================
 
     //read deleted id 
