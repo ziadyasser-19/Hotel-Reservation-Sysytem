@@ -51,6 +51,7 @@ public class ServicesManagement {
 
 
     public static int deleteService(String serviceName) {
+        try{
         for(int j=0;j<GuestManagement.getGuestArray().size();j++){
             if(serviceName.equalsIgnoreCase(GuestManagement.getGuestArray().get(j).getRegServices().getServiceName())){
                 return 2; //the service assigned to guest cant be deleted 
@@ -63,6 +64,9 @@ public class ServicesManagement {
                 
                 return 1; // Service deleted successfully
             }
+        }}
+        catch(Exception e){
+            return -1;
         }
         return -1; // Service not found
     }
@@ -102,15 +106,18 @@ public class ServicesManagement {
 
         Guest guest =  GuestManagement.SearchGuest(NationalId);
         Services services = searchService(serviceid);
-        
-        if(guest.getRegServices()!=null)
+        try{
+            if(guest.getRegServices()!=null)
             return -2; //this user has already registered in service before
         if(guest != null && services != null){
             guest.addService(services);
             return 1 ; // assigned succefully 
+            }
         }
-        else 
+        catch(Exception e){
             return -1 ; // the guest or service  not found 
+        }
+        return -1;
     }
     
     public static int unassignService(long NationalId,Services serviceid){
@@ -128,7 +135,11 @@ public class ServicesManagement {
 //===================================================================
 
     public static ArrayList<Services> getServicesList() {
-    return services;
+        return services;
+    }
+
+    public static ArrayList<Integer> getServicesDeletedID() {
+        return deletedID;
     }
 
 

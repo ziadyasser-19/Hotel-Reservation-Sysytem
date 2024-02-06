@@ -26,6 +26,19 @@ public class FilesF {
         }
     }
 
+    // Write Services File 
+    public static void writeServicesFile(){
+        FilesHelper serviceFile =  new FilesHelper(Pathes.ServicesPath);
+
+        serviceFile.emptyFile();
+
+        for(Services service : ServicesManagement.getServicesList()){
+            serviceFile.writeToFile(service.getServiceID()+ "-" + service.getServiceName()+ "-" + service.getServiceDesc() + "-" + service.getServicePrice());
+        }
+    }
+
+    //===================================================================================
+
     // Read Guests File 
     public static void readGuestsFile(){
         FilesHelper guestsFile = new FilesHelper(Pathes.GuestsPath);
@@ -44,6 +57,19 @@ public class FilesF {
             }
         }
     }
+
+    // Write Guests File
+    public static void writeGuestsFile(){
+        FilesHelper guestsFile = new FilesHelper(Pathes.GuestsPath);
+
+        guestsFile.emptyFile();
+
+        for(Guest guest : GuestManagement.getGuestArray()){
+            guestsFile.writeToFile(guest.getNationalID() + "-" + guest.getName() + "-" + guest.getemail());
+        }
+    }
+
+    //=======================================================================================================
 
     // Read Admin file 
     public static void readAdminFile(){
@@ -64,6 +90,8 @@ public class FilesF {
         }
     }
 
+    // ========================================================================================
+
     // Read GuestID_ReservedRoomID File 
     public static void readGuestIDRoomID(){
         FilesHelper guestIdRoomIdFile = new FilesHelper(Pathes.guestIDRoomIDPath);
@@ -71,18 +99,35 @@ public class FilesF {
         String allData = guestIdRoomIdFile.ReadFile();
 
         if(!allData.isEmpty()){
-            String[] data = allData.split("\n");
+            String[] data = allData.split("\\s+");
 
             for(String oneLine : data){
                 
                 if(oneLine.matches("\\b\\d+-\\d+-\\d+\\s?")){
-                    System.out.println(oneLine);
+                    
                     String[] guestRoom = oneLine.split("-");
                     RoomManagement.assignRoom(Integer.parseInt(guestRoom[1]), Long.parseLong(guestRoom[0]),Integer.parseInt(guestRoom[2]));
                 }
             }
         }
     }
+
+    // Write GuestID_ReservedRoomID File 
+    public static void writeGuestIDRoomID(){
+        FilesHelper guestIDRoomIDFile = new FilesHelper(Pathes.guestIDRoomIDPath);
+
+        guestIDRoomIDFile.emptyFile();
+
+        for(Guest guest : GuestManagement.getGuestArray()){
+            if(guest.getRegRoom() != null){
+                guestIDRoomIDFile.writeToFile(guest.getNationalID() + "-" + guest.getRegRoom().getRoomID() + "-" + guest.getRegRoom().getReservedDays());
+            }
+            
+        }
+    }
+
+    // ========================================================================================
+
 
     // Read GuestID_ServiceID
     public static void readGuestIDServiceID(){
@@ -91,12 +136,11 @@ public class FilesF {
         String allData = guestIDServiceIDFile.ReadFile();
 
         if(!allData.isEmpty()){
-            String[] data = allData.split("\n");
+            String[] data = allData.split("\\s+");
 
             for(String oneline: data){
                 
-                if(oneline.matches("\\d+-\\d+-\\d+\\s?")){
-                    System.out.println(oneline);
+                if(oneline.matches("\\d+-\\d+\\s?")){
 
                     String[] guestService = oneline.split("-");
                     ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
@@ -105,6 +149,21 @@ public class FilesF {
         }
     }
 
+    // Write GuestID_ServiceID
+    public static void writeGuestIDServiceID(){
+        FilesHelper guestIDServiceIDFile = new FilesHelper(Pathes.guestIDServiceIDPath);
+
+        guestIDServiceIDFile.emptyFile();
+
+        for(Guest guest : GuestManagement.getGuestArray()){
+            if(guest.getRegServices() != null){
+                guestIDServiceIDFile.writeToFile(guest.getNationalID() + "-" + guest.getRegServices().getServiceID());
+            }
+        }
+    }
+
+    // ==================================================================================================
+
     // Read Services Deleted ID
     public static void readServicesDeletedID(){
         FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
@@ -112,15 +171,26 @@ public class FilesF {
         String allID = servicesDeletedID.ReadFile();
 
         if(!allID.isEmpty()){
-            String[] ids = allID.split("\n");
+            String[] ids = allID.split("\\s+");
 
             for (String id : ids){
                 if(id.matches("\\d+\\s?")){
-                    System.out.println(id);
-
+                    
+                    ServicesManagement.getServicesDeletedID().add(Integer.parseInt(id));
                     
                 }
             }
+        }
+    }
+
+    // Write Services Deleted ID
+    public static void writeServicesDeletedID(){
+        FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
+
+        servicesDeletedID.emptyFile();
+
+        for(int id : ServicesManagement.getServicesDeletedID()){
+            servicesDeletedID.writeToFile(String.valueOf(id));
         }
     }
     
@@ -133,8 +203,38 @@ public class FilesF {
         //     System.out.println(service.getServiceID()+ "   " + service.getServiceName() + "   "+ service.getServiceDesc()+ "  " + service.getServicePrice());
         // }
         // readGuestsFile();
-        readGuestIDRoomID();
+        // readGuestIDRoomID();
         // readGuestIDServiceID();
         // readServicesDeletedID();
+
+        // ServicesManagement.addService("servicef", "frommain", 2000);
+        // ServicesManagement.addService("Servicefff", "farah", 9999);
+        // writeServicesFile();
+
+        GuestManagement.addGuest("farah", 992, "farah@gmail.com");
+        GuestManagement.addGuest("farahhhh", 993222232, "farah@gmail.com");
+        writeGuestsFile();
+
+        RoomManagement.addRoom(2, "single", true, 2020);
+        RoomManagement.addRoom(3, "double", true, 2400);
+
+        RoomManagement.assignRoom(2, 992, 4);
+        RoomManagement.assignRoom(3, 993222232, 7);
+        writeGuestIDRoomID();
+        
+        ServicesManagement.addService("servicew", "d", 2000);
+        ServicesManagement.addService("serrrr", "r", 100);
+
+        // ServicesManagement.assignService(1, 992);
+        // ServicesManagement.assignService(2, 993222232);
+        // writeGuestIDServiceID();
+
+        ServicesManagement.deleteService("servicew");
+        ServicesManagement.deleteService("serrrr");
+
+        
+        writeServicesDeletedID();
+
+
     }
 }
