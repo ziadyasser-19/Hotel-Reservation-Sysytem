@@ -7,10 +7,7 @@ import roles.*;
 public class Main {
     public static void main(String[] args){
 
-        FilesF.readAdminFile();
-        FilesF.readServicesFile();
-        FilesF.readGuestsFile();
-        FilesF.readGuestIDRoomID();
+        
         boolean running = true;
         
         outerLoop:while(running){
