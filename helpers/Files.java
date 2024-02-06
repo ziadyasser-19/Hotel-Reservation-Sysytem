@@ -130,6 +130,7 @@ public class Files {
 
     public static void  DeletedIDsWriter() {
         FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
+        file.emptyFile();
         for(int i = 0 ; i <ReceptionistManagement.getdeletedreceptionistsid().size();i++){
         String content = String.valueOf(ReceptionistManagement.getdeletedreceptionistsid().get(i));
         file.writeToFile(content);
