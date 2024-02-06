@@ -7,7 +7,7 @@ public class ReceptionistManagement {
     private static ArrayList<Integer> deletedID =  new ArrayList<>();
 
     // Methods
-/*     public static int addEmployee(String name, int pass){
+    /*     public static int addEmployee(String name, int pass){
         for(int i = 0; i<receptionistArray.size(); i++){
             if(receptionistArray.get(i).getName()==name){
                 return -1; // password used already

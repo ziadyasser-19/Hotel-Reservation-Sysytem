@@ -78,9 +78,8 @@ public class Files {
             if (data.matches( "\\b\\d+-[a-zA-Z]+-\\d+\\b")){
                 
                 String receptionist[]=data.split("-");
-                
-                ReceptionistManagement.addEmployee(receptionist[1], Integer.parseInt(receptionist[2]));
-                
+                //ReceptionistManagement.addEmployee(receptionist[1], Integer.parseInt(receptionist[2]));
+                ReceptionistManagement.getAllReceptionists().add(new Receptionist(Integer.parseInt(receptionist[0]), receptionist[1], Integer.parseInt(receptionist[2])));
                 Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0])); //=> set llcounter 3shan lw hdef b3dh
             } 
         }

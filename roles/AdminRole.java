@@ -10,8 +10,8 @@ import models.*;
 
 public class AdminRole {
 public static void main(String[] args) {
-        
-    Files.ReceptionistFileReader();
+
+    
     Files.ReportReader();
     Files.RoomFileReader();
     Files.readGuestIDRoomID();
