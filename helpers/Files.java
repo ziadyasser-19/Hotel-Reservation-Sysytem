@@ -199,7 +199,6 @@ public class Files {
             for(String oneline : guest){
 
                 if(oneline.matches("\\d{14}-\\w+-[A-z0-9\\.]+@[A-z0-9]+\\.[A-z]+\\s?")){
-                    System.out.println(oneline);
                     String[] guestData = oneline.split("-");
                     GuestManagement.addGuest(guestData[1], Long.parseLong(guestData[0]), guestData[2]);
                 }
