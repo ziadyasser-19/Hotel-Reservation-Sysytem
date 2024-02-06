@@ -190,6 +190,27 @@ public class Functions {
         }
     }
 
+    // read email
+    public static String readEmail(){
+        String email = "";
+
+        while(true){
+            email = input.next().trim();
+
+            try {
+                if(email.matches("[A-z0-9\\.]+@[A-z0-9]+\\.[A-z]+\\s?")){
+                    return email;
+                }
+                else{
+                    System.out.println("Enter a valid email: ");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid entry. Please try again: ");
+                input.nextLine();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Enter a name: ");
         String string = readString();

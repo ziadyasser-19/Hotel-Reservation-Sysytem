@@ -28,7 +28,7 @@ public class ReceptionistRole {
                     String name = Functions.readString();
 
                     System.out.print("Enter guest email: ");
-                    String email = Functions.readString();
+                    String email = Functions.readEmail();
 
                     int add = GuestManagement.addGuest(name, guestID, email);
                     if(add == -1){
@@ -212,7 +212,7 @@ public class ReceptionistRole {
 
                             if(!allGuests.isEmpty()){
                                 for(Guest guests : allGuests){
-                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID());
+                                    System.out.println(guests.getId() + "   " + guests.getName() + "    " + guests.getNationalID() + "  " + guests.getemail());
                                 }
                                 back=true;
                             }
