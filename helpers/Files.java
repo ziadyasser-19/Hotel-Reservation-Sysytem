@@ -35,7 +35,7 @@ public class Files {
 
         for(String room:rooms){
             
-            if(room.matches("\\d+-\\w+-(true|false)-\\d+\\b")){
+            if(room.matches("\\d+-\\w+-(true|false)-\\d+.\\d+\\b")){
                 
                 String data[] = room.split("-");
                 
@@ -160,12 +160,11 @@ public class Files {
         String services = serviceFile.ReadFile();
 
         if(!services.isEmpty()){
-            String[] service = services.split("\n");
+            String[] service = services.split("\\s+");
 
             for(String oneLine : service){
             
-                if(oneLine.matches("\\d+-\\w+-\\w+-\\d+\\s?")){
-
+                if(oneLine.matches("\\d+-\\w+-\\w+-\\d+.\\d+\\s?")){
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
                     Services.setServicesCounter(Integer.parseInt(oneService[0]));
@@ -340,5 +339,10 @@ public class Files {
         for(int id : ServicesManagement.getServicesDeletedID()){
             servicesDeletedID.writeToFile(String.valueOf(id));
         }
+    }
+
+    public static void main(String[] args) {
+        // readServicesFile();
+        RoomFileReader();
     }
 }
