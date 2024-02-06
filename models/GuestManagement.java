@@ -9,19 +9,24 @@ public class GuestManagement {
 
     // Methods
     
-    public static int addGuest(String name , long NationalId , String email){
 
-        if(NationalId!=14){
-            return 2; //invalid national id
-        }
-        for(int i = 0 ; i<GuestArray.size();i++){
-            if (GuestArray.get(i).getNationalID()==NationalId){
-                return -1; // guest already exist
+
+public static int addGuest(String name, long NationalId, String email) {
+    
+    if (String.valueOf(NationalId).length() != 14) {
+        return 2; // Invalid national ID length
+    }
+    for (Guest guest : GuestArray) {
+        if (guest.getNationalID() == NationalId) {
+            return -1; // Guest already exists
         }
     }
-        GuestArray.add(new Guest(name, NationalId, email));
-        return 1; //added succefully 
+
+    
+    GuestArray.add(new Guest(name, NationalId, email));
+    return 1; // Added successfully 
 }
+
 
     
     public static int updateGuest(int id, String email) {
