@@ -7,7 +7,8 @@ import roles.*;
 public class Main {
     public static void main(String[] args){
 
-        
+        Files.readAdminFile();
+        Files.ReceptionistFileReader();
         boolean running = true;
         
         outerLoop:while(running){
@@ -109,12 +110,14 @@ public class Main {
                             }
                             else { // added successfully
                                 System.out.println("\nSigned up successfully!\n");
+                                Files.ReceptionistFileWriter();
                                 int returnTry = HomeMenu.backOrExit();
 
                                 if(returnTry==1){
                                     continue outerLoop;
                                 }
                                 else{
+                                    Files.ReceptionistFileWriter();
                                     break outerLoop;
                                 }
                             }
@@ -128,6 +131,7 @@ public class Main {
             }
             // Exit the program
             else{
+                Files.ReceptionistFileWriter();
                 running = false;
             }
         }

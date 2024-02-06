@@ -227,7 +227,7 @@ public class Files {
         String alladmins = adminFile.ReadFile();
 
         if(!alladmins.isEmpty()){
-            String[] admin = alladmins.split("\n");
+            String[] admin = alladmins.split("\\s+");
 
             for(String oneline : admin){
 

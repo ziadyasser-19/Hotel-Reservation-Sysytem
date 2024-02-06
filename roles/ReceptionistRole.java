@@ -8,6 +8,12 @@ public class ReceptionistRole {
     
     public static void receptionistRole(){
 
+        Files.readGuestsFile();
+        Files.RoomFileReader();
+        Files.readServicesFile();
+        Files.ReportReader();
+        Files.readGuestIDRoomID();
+        Files.readGuestIDServiceID();
         boolean loggedIn = true;
         
         outerloop:while (loggedIn) {
@@ -288,6 +294,12 @@ public class ReceptionistRole {
 
                         // [0]- Log out
                         case 0:
+                            Files.writeGuestsFile();
+                            Files.RoomFileWriter();
+                            Files.writeServicesFile();
+                            Files.ReportFileWriter();
+                            Files.writeGuestIDRoomID();
+                            Files.writeGuestIDServiceID();
                             break outerloop;
                 }
         
