@@ -177,6 +177,7 @@ public class Files {
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
                     Services.setServicesCounter();
+                    
                 }
             }
         }
