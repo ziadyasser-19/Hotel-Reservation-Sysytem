@@ -68,10 +68,12 @@ public class Files {
 
     public static void ReceptionistFileReader(){
         FilesHelper AllReceptionists = new FilesHelper(Pathes.ReceptionistPath);
-
         String  allData = AllReceptionists.ReadFile();
-
         String Receptionistss[]=allData.split("\n");
+
+        FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
+        String alldata = file.ReadFile();
+        String[] allids = alldata.split("\\s+");  // Split using any whitespace characters
 
         for(String data : Receptionistss){ //=> 0 id 1 name 2 password 
 
@@ -80,7 +82,14 @@ public class Files {
                 String receptionist[]=data.split("-");
                 //ReceptionistManagement.addEmployee(receptionist[1], Integer.parseInt(receptionist[2]));
                 ReceptionistManagement.getAllReceptionists().add(new Receptionist(Integer.parseInt(receptionist[0]), receptionist[1], Integer.parseInt(receptionist[2])));
-                Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0])); //=> set llcounter 3shan lw hdef b3dh
+                //Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0])); //=> set llcounter 3shan lw hdef b3dh
+                for (String id : allids) {
+                    if(Integer.parseInt(receptionist[0])>Integer.parseInt(id)){
+                        Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0]));
+                    }else{
+                        Receptionist.SetReceptionistCounter(Integer.parseInt(id));
+                    }
+                }
             } 
         }
     }

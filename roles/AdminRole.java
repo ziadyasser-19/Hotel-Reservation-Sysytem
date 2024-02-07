@@ -162,8 +162,9 @@ public static void main(String[] args) {
                                     y = Functions.readInt();
                                     if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                         f =false ;
-                                        ReceptionistManagement.updateEmployeePass(x, y);
                                         System.out.println("\nthe password updated succefully :)");
+                                        ReceptionistManagement.updateEmployeePass(x, y);
+                                        
                                     }else{
                                     System.out.println("\nthis is the current password choose option 0 to change it or return to the main menu =>");
                                     System.out.println("=======================================\n");
@@ -219,8 +220,9 @@ public static void main(String[] args) {
                                 y = Functions.readInt();
                                 if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                     f =false ;
-                                    ReceptionistManagement.updateEmployeePass(x, y);
                                     System.out.println("\nthe password updated succefully :)");
+                                    ReceptionistManagement.updateEmployeePass(x, y);
+                                    
                                 }else{
                                 System.out.println("\nthis is the current password choose option try again to change it or return to the main menu  =>");
                                 System.out.println("=======================================\n");
@@ -263,11 +265,16 @@ public static void main(String[] args) {
                     break outerLoop;
                 }
             }else if(m==4){
-                System.out.println("all employees are : ");
                 ArrayList<Receptionist>receptionist= ReceptionistManagement.getAllReceptionists(); 
+                if(receptionist.isEmpty()){
+                    System.out.println("\nThere's no employee yet ! ");
+                }else{
+                System.out.println("all employees are : ");
+                
                 for(Receptionist employee : receptionist ){
                     System.out.println( "\n" + "ID:" +employee.getID() + "  Name: " +employee.getName() + "   password: " + employee.getPass());
                 }
+            }
                 System.out.println("\n =====================================");
                 int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
@@ -328,7 +335,7 @@ public static void main(String[] args) {
     if(m==1){
         System.out.println("enter the room number : ");
         int Roomnum = Functions.readPositive();
-        System.out.println("enter the type of the room ");
+        System.out.println("enter the type of the room : ");
         String type = Functions.readString();
         System.out.println("enter the price of the room : ");
         double price = Functions.ReadDouble();
@@ -513,9 +520,12 @@ public static void main(String[] args) {
                 }
     }else if(m==4){
         ArrayList<Room>rooms=RoomManagement.getRoomList();
+        if (rooms.isEmpty()){
+            System.out.println("\nThere is no rooms in the system yet !\n");
+        }else{
         for(Room room : rooms){
             System.out.println("\n" + "room number : " + room.getRoomID() + "    roomtype : " + room.getRoomType() + "   room price : "+room.getPrice() +"$"+ "   room availability : " +room.getIsAvaialble());
-        }
+        }}
         System.out.println("\n============================================");
         int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
@@ -732,12 +742,16 @@ public static void main(String[] args) {
 
 }   else if (x==4){ // show all services 
     
-    System.out.println("All Services in the system : \n"); 
     ArrayList<Services> services = ServicesManagement.getServicesList(); // b3ml loop gdeda feha el lista bt3ty w blf 3leha 
+
+    if(services.isEmpty()){
+        System.out.println("\nThere's no services in the system yet !");
+    }else{
+    System.out.println("All Services in the system : \n"); 
     
     for(Services service :services){
         System.out.println("\n"+ "ID : "+service.getServiceID()+"    Name: " + service.getServiceName() + "    Description : " + service.getServiceDesc() + "    Price : " + service.getServicePrice() + "$");
-    }
+    }}
     System.out.println("\n =========================================");
     int y = adminrolemenu.anotherservicemenu();
     if (y == 1) {
