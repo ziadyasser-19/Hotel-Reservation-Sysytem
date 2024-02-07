@@ -167,7 +167,7 @@ public class Files {
                 if(oneLine.matches("\\d+-\\w+-\\w+-\\d+.\\d+\\s?")){
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
-                    Services.setServicesCounter(Integer.parseInt(oneService[0]));
+                    Services.setServicesCounter();
                 }
             }
         }
