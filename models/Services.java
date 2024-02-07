@@ -40,8 +40,8 @@ public class Services {
         this.description=desc;
     }
 
-    public static void setServicesCounter(){
-        servicecounter= ServicesManagement.getServicesList().size();
+    public static void setServicesCounter(int x){
+        servicecounter= x;
     }
 
     // Getters

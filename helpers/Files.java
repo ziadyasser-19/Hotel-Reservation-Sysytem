@@ -67,27 +67,29 @@ public class Files {
     // read receptionist
 
     public static void ReceptionistFileReader(){
+        //====================== READ ALL RECEPTIONISTS ============================
         FilesHelper AllReceptionists = new FilesHelper(Pathes.ReceptionistPath);
         String  allData = AllReceptionists.ReadFile();
         String Receptionistss[]=allData.split("\n");
 
+        //====================== READ ALL DELETED ID ===============================
         FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
         String alldata = file.ReadFile();
         String[] allids = alldata.split("\\s+");  // Split using any whitespace characters
+
 
         for(String data : Receptionistss){ //=> 0 id 1 name 2 password 
 
             if (data.matches( "\\b\\d+-[a-zA-Z]+-\\d+\\b")){
                 
                 String receptionist[]=data.split("-");
-                //ReceptionistManagement.addEmployee(receptionist[1], Integer.parseInt(receptionist[2]));
                 ReceptionistManagement.getAllReceptionists().add(new Receptionist(Integer.parseInt(receptionist[0]), receptionist[1], Integer.parseInt(receptionist[2])));
-                //Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0])); //=> set llcounter 3shan lw hdef b3dh
                 
+
                 for (String id : allids) {
-                    
+                        // B3ML check 3la array bta3 el deleted id lw msh fady 3shan mytl3lysh errors 
                         if (!id.isEmpty()) { // Check if the string is not empty
-                            if (Integer.parseInt(receptionist[0]) > Integer.parseInt(id)) {
+                            if (Integer.parseInt(receptionist[0]) > Integer.parseInt(id)) { // bshof any id akbr fl deleted wl receptionists w a3ml set llcounter 3 asash
                                 Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0]));
                             } else {
                                 Receptionist.SetReceptionistCounter(Integer.parseInt(id));
@@ -95,8 +97,6 @@ public class Files {
                         }else{
                             Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0]));
                         }
-                    
-                    
                 }
             } 
                 
@@ -174,9 +174,15 @@ public class Files {
 
     // Read Services File 
     public static void readServicesFile(){
+        // read all services 
         FilesHelper serviceFile = new FilesHelper(Pathes.ServicesPath);
-
         String services = serviceFile.ReadFile();
+        
+        
+        // Read all Deleted id 
+        FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
+        String allID = servicesDeletedID.ReadFile();
+        String[] ids = allID.split("\\s+");
 
         if(!services.isEmpty()){
             String[] service = services.split("\\s+");
@@ -186,12 +192,24 @@ public class Files {
                 if(oneLine.matches("\\d+-\\w+-\\w+-\\d+.\\d+\\s?")){
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
-                    Services.setServicesCounter();
                     
+                    
+                    for (String id : ids){
+                        if(id.matches("\\d+\\s?")){
+                            if(!id.isEmpty()){
+                                if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
+                                    Services.setServicesCounter(Integer.parseInt(oneService[0]));
+                            }else{
+                                Services.setServicesCounter(Integer.parseInt(id));
+                            }
+                        }else{
+                            Services.setServicesCounter(Integer.parseInt(oneService[0]));
+                        }
+                    }
                 }
             }
         }
-    }
+    }}
 
     // Write Services File 
     public static void writeServicesFile(){

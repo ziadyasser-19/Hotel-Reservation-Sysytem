@@ -172,11 +172,22 @@ public class ReceptionistRole {
                     // [5] - View Nearest Checkout
                     case 5:
                         try{
-                            Room nearestRoom = Receptionist.viewNearestCheckout();
-
-                            System.out.println("\nNearest room will checked out is room number  :    " + nearestRoom.getRoomID() + "    with in  " +nearestRoom.getReservedDays() + "  Days !");
-                            back=true;
-                        }
+                            ArrayList <Room> nearestRoom = Receptionist.viewNearstCheckout();
+                            int i = 0;
+                            if(nearestRoom.get(i).getReservedDays()==0){
+                            System.out.println("===========================================");
+                                System.out.println("There is empty rooms doesnt reserved : \n");
+                                for( i = 0 ; i<nearestRoom.size() ;i++){
+                                System.out.println("Room number :" + nearestRoom.get(i).getRoomID() + "  RoomType : " + nearestRoom.get(i).getRoomType() + "  Room Price : " + nearestRoom.get(i).getPrice() + " $");
+                            }
+                                back = true;
+                            }else{
+                                i = 0 ;
+                                System.out.println("The Nearst check out is : ");
+                                System.out.println("Room number :" + nearestRoom.get(i).getRoomID() + "   With in : " + nearestRoom.get(i).getReservedDays()+ "  RoomType : " + nearestRoom.get(i).getRoomType() + "  Room Price : " + nearestRoom.get(i).getPrice() + " $");
+                                back = true;
+                            }
+                        }                    
                         catch(Exception e){
                             System.out.println("There is no rooms in the system");
                             back=true;

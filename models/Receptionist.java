@@ -48,7 +48,7 @@ public static ArrayList<Room> filterRooms() {
 
 //
     
-    public static Room viewNearestCheckout( ){
+    /* public static Room viewNearestCheckout( ){
         ArrayList<Room> room = RoomManagement.getRoomList();
         int max = 1500;
         int index = 0; // to know the index of the lowest reserved day
@@ -59,6 +59,24 @@ public static ArrayList<Room> filterRooms() {
             }
         }
         return room.get(index);
+    } */
+
+    public static ArrayList<Room> viewNearstCheckout(){
+        ArrayList <Room> NearestRooms = new ArrayList<>();
+        ArrayList <Room>  allRooms = RoomManagement.getRoomList();
+        int max = 2500;
+        for(int i = 0 ; i<allRooms.size();i++){
+            if(allRooms.get(i).getReservedDays()<max){
+                max = allRooms.get(i).getReservedDays();
+            }
+        }
+        for(int i =0 ; i<allRooms.size();i++){
+            if(allRooms.get(i).getReservedDays() == max){
+                NearestRooms.add(allRooms.get(i));
+            }
+        }
+
+        return  NearestRooms;
     }
 
 
