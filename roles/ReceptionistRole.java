@@ -44,6 +44,8 @@ public class ReceptionistRole {
                     }
                     else{
                         System.out.println("\nThe guest has been added successfully!\n"); // added successfully
+                        Files.writeGuestsFile();
+
                     }
                     
                     int nestedChoice = ReceptionistMenu.ReceptionistAddGuest();
@@ -51,6 +53,7 @@ public class ReceptionistRole {
                         continue;
                         
                     }else{ // back to main menu
+                        Files.writeGuestsFile();
                         back=true;
                         break;
                     }
@@ -84,8 +87,10 @@ public class ReceptionistRole {
                             if(n == 1){      //try to assign room again
                                 continue;
                             }
-                            else {        // back to menu 
-                                back=true;
+                            else {
+                                Files.RoomFileWriter();
+                                Files.writeGuestIDRoomID();        
+                                back=true;          // back to menu
                             }
                     }
                     else {
@@ -94,13 +99,17 @@ public class ReceptionistRole {
                             if(n == 1){ //try to assign room again
                                 continue;
                             }
-                            else { // back to menu 
+                            else { 
+                                Files.RoomFileWriter();
+                                Files.writeGuestIDRoomID();
+                                // back to menu 
                                 back=true;
                             }
                     }
-                    
+                    Files.RoomFileWriter();
+                    Files.writeGuestIDRoomID();
                     back=true;
-                break;
+                    break;
 
 
                     // [3] - Unassign Room from guest
@@ -129,10 +138,14 @@ public class ReceptionistRole {
                             if(n == 1){ //try to assign room again
                                 continue;
                             }
-                            else { // back to menu 
-                                back=true;
+                            else {
+                                Files.RoomFileWriter();
+                                Files.writeGuestIDRoomID();
+                                back=true;   // back to menu
                             }
                         }
+                        Files.RoomFileWriter();
+                        Files.writeGuestIDRoomID();
                         back=true;
                     break;
 
@@ -186,13 +199,17 @@ public class ReceptionistRole {
 
                             if(assignService==-2){
                                 System.out.println("This guest already assigned a service!");
+
+                                Files.writeGuestIDServiceID();
                                 back=true;
                             }
                             else if(assignService == 1){
                                 System.out.println("Service assigned to guest successfully");
+                                Files.writeGuestIDServiceID();
                                 back=true;
                             }else{
                                 System.out.println("the service id or the guest national id wasnt found");
+                                Files.writeGuestIDServiceID();
                                 back=true;
                             }
                         }
@@ -203,7 +220,9 @@ public class ReceptionistRole {
                             if(n == 1){      //try to assign room again
                                 continue;
                             }
-                            else {        // back to menu 
+                            else {   
+                                Files.writeGuestIDServiceID();
+                                 // back to menu 
                                 back=true;
                             }
 
@@ -277,6 +296,7 @@ public class ReceptionistRole {
 
                                 String report = Report.generatereport(guest2, service2, rate);
                                 System.out.println(report);
+                                Files.ReportFileWriter();
                                 back=true;
                             } 
                             catch (Exception ex) {
@@ -285,12 +305,49 @@ public class ReceptionistRole {
                                 if(n == 1){      //try to assign room again
                                     continue;
                                 }
-                                else {        // back to menu 
-                                    back=true;
+                                else {
+                                    Files.ReportFileWriter();        
+                                    back=true;  // back to menu 
                                 }
+                                Files.ReportFileWriter();
                                 back=true;
                             }
                         break;
+
+                        // Delete Guest 
+                        case 10:
+                            System.out.println("\n**** You are now deleting a guest ****\n");
+
+                            System.out.print("Please enter the National ID of the guest you want to delete: ");
+                            long deletedguestId = Functions.ReadLong();
+
+                            int delete = GuestManagement.deleteGuest(deletedguestId);
+
+                            if(delete==1){
+                                System.out.println("\nThe guest has been successfully deleted and unassigned the room reserved.");
+                                Files.writeGuestsFile();
+                                Files.RoomFileWriter();
+                            }
+                            else if(delete==0){
+                                System.out.println("\nThe guest has been successfully deleted");
+                                Files.writeGuestsFile();
+                            }
+                            else{
+                                System.out.println("Guest not found! Try again");
+                                int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                                if(n == 1){ //try to delete guest again
+                                    continue;
+                                }
+                                else { 
+                                    Files.writeGuestsFile();
+                                    Files.RoomFileWriter();
+                                    back=true; // back to menu 
+                                }
+                            }
+                            Files.writeGuestsFile();
+                            Files.RoomFileWriter();
+                            back=true;
+                            break;
 
                         // [0]- Log out
                         case 0:
