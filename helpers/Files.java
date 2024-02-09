@@ -229,6 +229,10 @@ public class Files {
 
         String allguests = guestsFile.ReadFile();
 
+        FilesHelper guestIdRoomIdFile = new FilesHelper(Pathes.guestIDRoomIDPath);
+
+        String allData = guestIdRoomIdFile.ReadFile();
+
         if(!allguests.isEmpty()){
             String[] guest = allguests.split("\n");
 
@@ -237,6 +241,22 @@ public class Files {
                 if(oneline.matches("\\d{14}-\\w+-[A-z0-9\\.]+@[A-z0-9]+\\.[A-z]+\\s?")){
                     String[] guestData = oneline.split("-");
                     GuestManagement.addGuest(guestData[1], Long.parseLong(guestData[0]), guestData[2]);
+                }
+            }
+            if(!allData.isEmpty()){
+                String[] data = allData.split("\\s+");
+    
+                for(String oneLine : data){
+                    if(oneLine.matches("\\b\\d{14}-\\d+-\\d+\\s?")){
+                        String[] guestRoom = oneLine.split("-");
+                        try {
+                            GuestManagement.SearchGuest(Long.parseLong(guestRoom[0])).addRoom(RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])));
+                            RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])).setReservedDays(Integer.parseInt(guestRoom[2]));  
+                        } catch (Exception e) {
+                            
+                        }
+                        
+                    }
                 }
             }
         }
