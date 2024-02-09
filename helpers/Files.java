@@ -71,7 +71,7 @@ public class Files {
         //====================== READ ALL RECEPTIONISTS ============================
         FilesHelper AllReceptionists = new FilesHelper(Pathes.ReceptionistPath);
         String  allData = AllReceptionists.ReadFile();
-        String Receptionistss[]=allData.split("\n");
+        String Receptionistss[]=allData.split("\\s+");
 
         //====================== READ ALL DELETED ID ===============================
         FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
@@ -290,8 +290,13 @@ public class Files {
             for(String oneLine : data){
                 if(oneLine.matches("\\b\\d{14}-\\d+-\\d+\\s?")){
                     String[] guestRoom = oneLine.split("-");
-                    GuestManagement.SearchGuest(Long.parseLong(guestRoom[0])).addRoom(RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])));
-                    RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])).setReservedDays(Integer.parseInt(guestRoom[2]));
+                    try {
+                        GuestManagement.SearchGuest(Long.parseLong(guestRoom[0])).addRoom(RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])));
+                        RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])).setReservedDays(Integer.parseInt(guestRoom[2]));  
+                    } catch (Exception e) {
+                        
+                    }
+                    
                 }
             }
         }
