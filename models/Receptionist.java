@@ -75,7 +75,6 @@ public static ArrayList<Room> filterRooms() {
                 NearestRooms.add(allRooms.get(i));
             }
         }
-
         return  NearestRooms;
     }
 

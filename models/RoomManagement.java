@@ -102,6 +102,7 @@ public static int unassignRoom(int roomid,long NationalId){
         else if (guest.getRegRoom()!=null){
             guest.deleteRoom();
             room.setIsAvailable(true); //make the room available again
+            room.setReservedDays(0);
             return 1;  //room unassigned succefully
         }
         else
