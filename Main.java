@@ -9,6 +9,7 @@ public class Main {
 
         Files.readAdminFile();
         Files.ReceptionistFileReader();
+        
         boolean running = true;
         
         outerLoop:while(running){

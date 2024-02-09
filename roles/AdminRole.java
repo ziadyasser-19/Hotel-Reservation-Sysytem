@@ -299,7 +299,7 @@ public static void main(String[] args) {
                 
                 for(Guest  guest:Guest){
                     if(guest.getRegRoom()==null && guest.getRegServices()==null){
-                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : Not regesterd Yet ! "+ "  and service : not regeisterd in any service");
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + "    reserve room number : Not regesterd Yet !      "+ "  and service : not regeisterd in any service");
                         
                     }
                     else if(guest.getRegRoom()==null){
