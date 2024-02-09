@@ -10,10 +10,11 @@ public class Files {
 
     public static void RoomFileWriter(){
 
-        FilesHelper file = new FilesHelper(Pathes.RoomPath);
+        FilesHelper file = new FilesHelper(Pathes.RoomPath); //read all Rooms 
 
         file.emptyFile();
-
+        
+        
         for(int i = 0 ; i<RoomManagement.getRoomList().size();i++){
         String content = RoomManagement.getRoomList().get(i).getRoomID() +"-"+RoomManagement.getRoomList().get(i).getRoomType()+"-"+RoomManagement.getRoomList().get(i).getIsAvaialble()+"-"+RoomManagement.getRoomList().get(i).getPrice();
         file.writeToFile(content);
@@ -28,11 +29,11 @@ public class Files {
     public static void RoomFileReader(){
         
         FilesHelper RoomFiles =new FilesHelper(Pathes.RoomPath);
-
         String allRooms = RoomFiles.ReadFile();
-
         String[] rooms = allRooms.split("\n");
 
+        FilesHelper Allreserved = new FilesHelper(Pathes.guestIDRoomIDPath);
+        
         for(String room:rooms){
             
             if(room.matches("\\d+-\\w+-(true|false)-\\d+.\\d+\\b")){
@@ -287,11 +288,10 @@ public class Files {
             String[] data = allData.split("\\s+");
 
             for(String oneLine : data){
-                
                 if(oneLine.matches("\\b\\d{14}-\\d+-\\d+\\s?")){
-                    
                     String[] guestRoom = oneLine.split("-");
-                    RoomManagement.assignRoom(Integer.parseInt(guestRoom[1]), Long.parseLong(guestRoom[0]),Integer.parseInt(guestRoom[2]));
+                    GuestManagement.SearchGuest(Long.parseLong(guestRoom[0])).addRoom(RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])));
+                    RoomManagement.SearchRoom(Integer.parseInt(guestRoom[1])).setReservedDays(Integer.parseInt(guestRoom[2]));
                 }
             }
         }

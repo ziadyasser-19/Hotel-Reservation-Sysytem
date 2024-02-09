@@ -49,6 +49,7 @@ public int deleteRoom(){
 
 
 
+
 public int addService(Services service){      //add service to guest zy el set kda
     if(this.regServices!=null)
         return -1; // the guest already registerd in room
