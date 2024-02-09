@@ -22,6 +22,7 @@ public class Files {
 
     }
 
+
     //===========
 
     //read from rooms 
@@ -32,14 +33,11 @@ public class Files {
         String allRooms = RoomFiles.ReadFile();
         String[] rooms = allRooms.split("\n");
 
-        FilesHelper Allreserved = new FilesHelper(Pathes.guestIDRoomIDPath);
-        
         for(String room:rooms){
             
             if(room.matches("\\d+-\\w+-(true|false)-\\d+.\\d+\\b")){
                 
                 String data[] = room.split("-");
-                
                 RoomManagement.addRoom(Integer.parseInt(data[0]),data[1],Boolean.parseBoolean(data[2]),Double.parseDouble(data[3]));
                 
         }
