@@ -79,14 +79,25 @@ public static ArrayList<Room> filterRooms() {
     }
 
 
-    public static double billDetails(long NationalId){
+    public static int billDetails(long NationalId){
         Guest guest = GuestManagement.SearchGuest(NationalId); // get the guest you want
-        
-        if (guest == null )
-        return -1 ; // guest not found
-        else
-            return guest.getRegRoom().getPrice() + guest.getRegServices().getServicePrice();
+    
+
+        if(guest.getRegRoom() == null){
+                if(guest.getRegServices() == null){
+                    return -2; // guest has no room and service reserved
+                }
+                else{
+                    return 1; // guest has assigned to service only
+                }
+            }
+        else{
+                if(guest.getRegServices() == null){
+                    return 2; // guest has assigned to room only
+                }
+                else{
+                    return 3; // guest assigned to room and service
+                }
+            }
     }
-
-
 }

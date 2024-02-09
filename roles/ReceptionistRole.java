@@ -267,7 +267,7 @@ public class ReceptionistRole {
                             Guest guestt = GuestManagement.SearchGuest(idguest);
 
                             if(guestt==null){
-                                System.out.println("Guest not found!");
+                                System.out.println("\nGuest not found!");
                                 int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                                 if(n == 1){      //try to assign room again
                                     continue;
@@ -278,13 +278,33 @@ public class ReceptionistRole {
                             }
                             else{
                                 try{
-                                    double bill = Receptionist.billDetails(idguest);
-                                    
-                                    System.out.println("\nTotal Bill Cost for the guest= " + bill + "    Room cost : " +guestt.getRegRoom().getPrice() +" $   " + "  Service cost : " +guestt.getRegServices().getServicePrice() +" $" );
-                                    back=true;
+                                    int bill = Receptionist.billDetails(idguest);
+
+                                    if(bill == -2){
+                                        System.out.println("\nGuest hasn't assigned to room and service yet!");
+                                        back=true;
+                                    }
+                                    else if(bill == 1) {
+                                        System.out.println("\nRoom Cost = No room assigned!");
+                                        System.out.println("Service Cost = " + guestt.getRegServices().getServicePrice() + "$");
+                                        System.out.println("Total Cost = " + guestt.getRegServices().getServicePrice() + "$");
+                                        back=true;
+                                    }
+                                    else if(bill == 2){
+                                        System.out.println("\nRoom Cost = " + guestt.getRegRoom().getPrice() + "$");
+                                        System.out.println("Service Cost = No Service assigned!");
+                                        System.out.println("Total Cost = " + guestt.getRegRoom().getPrice()  + "$");
+                                        back=true;
+                                    }
+                                    else if(bill == 3) {
+                                        System.out.println("\nRoom Cost = " + guestt.getRegRoom().getPrice() + "$");
+                                        System.out.println("Service Cost = " + guestt.getRegServices().getServicePrice() + "$");
+                                        System.out.println("Total Cost = " + (guestt.getRegRoom().getPrice() + guestt.getRegServices().getServicePrice())  + "$");
+                                        back=true;
+                                    }
                                 }
                                 catch(Exception e){
-                                    System.out.println("Guest has not assigned to room or service yet!");
+                                    System.out.println("Something went wrong!");
                                     back=true;
                                 }
                             }
@@ -300,29 +320,41 @@ public class ReceptionistRole {
                             
                             System.out.println("Enter rating from 1 to 5: ");
                             double rate = Functions.readDouble(5);
-                            
-                            try{
-                                Guest guest2 = GuestManagement.SearchGuest(idofguest);
-                                Services service2 = ServicesManagement.searchService(serviceid);
 
-                                String report = Report.generatereport(guest2, service2, rate);
-                                System.out.println(report);
-                                Files.ReportFileWriter();
-                                back=true;
-                            } 
-                            catch (Exception ex) {
-                                System.out.println("\nEither guest or service is not available");
+                            Guest guest2 = GuestManagement.SearchGuest(idofguest);
+
+                            if(guest2 != null){
+                                Services service2 = ServicesManagement.searchService(serviceid);
+                                if(service2 != null){
+                                    String report = Report.generatereport(guest2, service2, rate);
+                                    System.out.println(report);
+                                    back=true;
+                                }
+                                else{
+                                    System.out.println("\nService Not Found!");
+                                    int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
+                                    if(n == 1){      //try to assign room again
+                                        continue;
+                                    }
+                                    else {        
+                                        back=true;  // back to menu 
+                                    }
+                                    back=true;
+                                    }
+                            }
+                            else{
+                                System.out.println("\nGuest Not Found!");
                                 int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                                 if(n == 1){      //try to assign room again
                                     continue;
                                 }
-                                else {
-                                    Files.ReportFileWriter();        
+                                else {        
                                     back=true;  // back to menu 
                                 }
-                                Files.ReportFileWriter();
                                 back=true;
                             }
+                        Files.ReportFileWriter();
+                        back=true;
                         break;
 
                         // Delete Guest 
@@ -364,8 +396,8 @@ public class ReceptionistRole {
                         case 0:
                             Files.writeGuestsFile();
                             Files.RoomFileWriter();
-                            Files.writeServicesFile();
                             Files.ReportFileWriter();
+                            Files.writeServicesFile();
                             Files.writeGuestIDRoomID();
                             Files.writeGuestIDServiceID();
                             break outerloop;

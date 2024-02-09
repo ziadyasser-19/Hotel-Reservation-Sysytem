@@ -112,6 +112,7 @@ public class Files {
 
     public static void  ReportFileWriter(){
         FilesHelper file = new FilesHelper(Pathes.Reportspathes);
+        file.emptyFile();
         for(int i = 0 ; i<Report.getreportlist().size();i++){
         String content = Report.getreportlist().get(i).getreportedGuest().getNationalID()+"-"+Report.getreportlist().get(i).getreportedservice().getServiceID()+"-"+Report.getreportlist().get(i).getstarrate();
         file.writeToFile(content);
