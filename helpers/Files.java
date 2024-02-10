@@ -98,7 +98,7 @@ public class Files {
                         }
                 }
             } 
-                
+            
         }
     }
 
@@ -174,12 +174,12 @@ public class Files {
 
     // Read Services File 
     public static void readServicesFile(){
-        // read all services 
+        //=========================== read all services ==================/
         FilesHelper serviceFile = new FilesHelper(Pathes.ServicesPath);
         String services = serviceFile.ReadFile();
         
         
-        // Read all Deleted id 
+        // ===================Read all Deleted id ========================//
         FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
         String allID = servicesDeletedID.ReadFile();
         String[] ids = allID.split("\\s+");
@@ -190,22 +190,22 @@ public class Files {
             for(String oneLine : service){
             
                 if(oneLine.matches("\\d+-\\w+-\\w+-\\d+.\\d+\\s?")){
+                    
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
                     
-                    
                     for (String id : ids){
-                        if(id.matches("\\d+\\s?")){
-                            if(!id.isEmpty()){
+                        if(!id.isEmpty()){
+                            if(id.matches("\\d+\\s?")){
+                            
                                 if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
                                     Services.setServicesCounter(Integer.parseInt(oneService[0]));
                             }else{
                                 Services.setServicesCounter(Integer.parseInt(id));
                             }
-                        }else{
+                    } }else{
                             Services.setServicesCounter(Integer.parseInt(oneService[0]));
                         }
-                    }
                 }
             }
         }
