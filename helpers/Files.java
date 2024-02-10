@@ -131,12 +131,12 @@ public class Files {
         String  reports[]=alldata.split("\n");
 
         for(String report:reports){
-            if(report.matches("\\b\\d+-\\d+-\\d+(?:-\\d+(\\.\\d+)?)?\\b")){ //=> 0 id - 1 national id - 2 service id - 3 rate
+            if(report.matches("\\d{14}-\\d-\\d+\\.\\d+")){ //=> 0 id - 1 national id - 2 service id - 3 rate
                 String  dataparts[]=report.split("-");
                 
-                Report.generatereport(Long.parseLong(dataparts[1]), Integer.parseInt(dataparts[2]), Double.parseDouble(dataparts[3]));
+                Report.generatereport(Long.parseLong(dataparts[0]), Integer.parseInt(dataparts[1]), Double.parseDouble(dataparts[2]));
 
-                Report.SetReportCounter(Integer.parseInt(dataparts[0]));
+                
             }
         }
     }
