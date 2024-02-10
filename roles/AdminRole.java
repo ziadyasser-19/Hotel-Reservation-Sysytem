@@ -346,10 +346,8 @@ public static void main(String[] args) {
                 Roomnum = Functions.readPositive();
                 if(RoomManagement.addRoom(Roomnum, type,true,price)!=-1){
                     z = false;
-                    
                     System.out.println("\nRoom added Succefully :) ");
                     RoomManagement.addRoom(Roomnum, type, true,price);
-                    
                     
                 }else{
                     System.out.println("\nRoom number already Exist choose option =>");
@@ -374,12 +372,10 @@ public static void main(String[] args) {
                 }
             }
         }else if(RoomManagement.addRoom(Roomnum, type, true,price)!=-1){
-            
             System.out.println("\nRoom added Succefully :) ");
             RoomManagement.addRoom(Roomnum, type, true,price);
-            
-            
         }
+        System.out.println("\nRoom added Succefully :) ");
         System.out.println("================================\n");
             int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {

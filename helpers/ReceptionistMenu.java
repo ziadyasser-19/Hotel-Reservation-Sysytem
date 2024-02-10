@@ -16,9 +16,10 @@ public class ReceptionistMenu {
         System.out.println("[8]- Print detailed bill for the guest");
         System.out.println("[9]- Generate report about service ");
         System.out.println("[10]- Delete Guest");
+        System.out.println("[11] See Services Rates !");
         System.out.println("[0]- Log out");
         System.out.println("\nChoose one option to continue: ");
-        int choice = Functions.readPositiveOrZero(10);
+        int choice = Functions.readPositiveOrZero(11);
         return choice;
     }
 

@@ -391,7 +391,16 @@ public class ReceptionistRole {
                             Files.RoomFileWriter();
                             back=true;
                             break;
-
+                            //[11] Services Rates
+                        case 11 : 
+                                System.out.println("The Rates Of The Services : ");
+                                ArrayList<Services> servicelist = ServicesManagement.getServicesList();
+                                for(int i =0 ;i<servicelist.size() ;i++){
+                                    System.out.println("service id :  "+  servicelist.get(i).getServiceID() + "  Name : " + servicelist.get(i).getServiceName() + "    Service Rate :  " +Report.servicerate(servicelist.get(i).getServiceID()));
+                                }
+                                
+                                back = true;
+                                break;
                         // [0]- Log out
                         case 0:
                             Files.writeGuestsFile();

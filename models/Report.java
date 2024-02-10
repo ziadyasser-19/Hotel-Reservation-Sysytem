@@ -83,21 +83,26 @@ public class Report {
     //OVERLOAD REPORTFILE
     public static String generatereport(Long id , int serviceid,double starrate){
         Date currentdate = new Date(); // to set up the current date of the generated report then added it to constructor
+        try{
         Guest guest = GuestManagement.SearchGuest(id);
         Services service = ServicesManagement.searchService(serviceid);
         
         reports.add(new Report(currentdate,guest,service,starrate));
         
-        return "The report of "+guest.getName()+ " has been added successfully " + "with rate "+starrate ;
-        
+        return "The report of "+guest.getName()+ " has been added successfully " + "with rate "+starrate ;}
+        catch(Exception e){
+            return "Report Deleted Or Guest has been deleted !";
+        }
     } 
 
-    public static double servicerate(){
+    public static double servicerate(int id){
         double x = 0;
         double result;
         if (reports.size()!=0){  // condition 3shan lw el mfesh report mynf3sh a2sm 3 zero
         for(int i = 0 ; i<reports.size();i++){
+            if(reports.get(i).getreportedservice().getServiceID()==id){
             x+=reports.get(i).starrate;
+            }
         }
         result = x /  reports.size();
         return result;
