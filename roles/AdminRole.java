@@ -143,7 +143,7 @@ public static void main(String[] args) {
                     System.out.println("logged out");
                     break outerLoop;
                 }
-            } else if(m==3){
+            } else if(m==3){ // update employee
                 System.out.println("enter employee id : ");
                 int x = Functions.readInt();
                 if (ReceptionistManagement.search(x)== null){ // lw d5l id 8lt 
@@ -307,7 +307,7 @@ public static void main(String[] args) {
                     }else if(guest.getRegServices()==null){
                         System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number :  "+guest.getRegRoom().getRoomID() +"  and service : not regiesterd in any services ");
                     }else{
-                    System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : " + guest.getRegRoom().getRoomID() + "  and service " + guest.getRegServices().getServiceName());
+                    System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : " + guest.getRegRoom().getRoomID() + "  and service :" + guest.getRegServices().getServiceName());
                 }
             }
             System.out.println("\n =====================================");
@@ -346,9 +346,11 @@ public static void main(String[] args) {
                 Roomnum = Functions.readPositive();
                 if(RoomManagement.addRoom(Roomnum, type,true,price)!=-1){
                     z = false;
-                    RoomManagement.addRoom(Roomnum, type, true,price);
                     
                     System.out.println("\nRoom added Succefully :) ");
+                    RoomManagement.addRoom(Roomnum, type, true,price);
+                    
+                    
                 }else{
                     System.out.println("\nRoom number already Exist choose option =>");
                     System.out.println("=======================================\n");
@@ -373,9 +375,10 @@ public static void main(String[] args) {
             }
         }else if(RoomManagement.addRoom(Roomnum, type, true,price)!=-1){
             
+            System.out.println("\nRoom added Succefully :) ");
             RoomManagement.addRoom(Roomnum, type, true,price);
             
-            System.out.println("\nRoom added Succefully :) ");
+            
         }
         System.out.println("================================\n");
             int y = adminrolemenu.anotherservicemenu();

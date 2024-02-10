@@ -92,7 +92,7 @@ public class Report {
         
     } 
 
-    public double servicerate(){
+    public static double servicerate(){
         double x = 0;
         double result;
         if (reports.size()!=0){  // condition 3shan lw el mfesh report mynf3sh a2sm 3 zero
