@@ -195,15 +195,15 @@ public class Files {
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
                     
                     for (String id : ids){
-                        if(!id.isEmpty()){
-                            if(id.matches("\\d+\\s?")){
-                            
-                                if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
+                        
+                    if(!id.isEmpty()){
+                        if(id.matches("\\d+\\s?")){
+                            if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
                                     Services.setServicesCounter(Integer.parseInt(oneService[0]));
                             }else{
                                 Services.setServicesCounter(Integer.parseInt(id));
-                            }
-                    } }else{
+                            }}
+                    }else{
                             Services.setServicesCounter(Integer.parseInt(oneService[0]));
                         }
                 }

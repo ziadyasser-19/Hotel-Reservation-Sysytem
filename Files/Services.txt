@@ -1,2 +1,3 @@
-1-gym-sssss-1020.0
-2-soa-ahaja-120.0
+1-gym-zzzz-125.0
+2-soa-zzzz-124.0
+3-son-son-400.0

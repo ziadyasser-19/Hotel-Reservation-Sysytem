@@ -51,9 +51,10 @@ public class ServicesManagement {
 
 
     public static int deleteService(String serviceName) {
-        try{
         for(int j=0;j<GuestManagement.getGuestArray().size();j++){
-            if(serviceName.equalsIgnoreCase(GuestManagement.getGuestArray().get(j).getRegServices().getServiceName())){
+            if(GuestManagement.getGuestArray().get(j).getRegServices()==null){
+                continue;
+            }else if(serviceName.equalsIgnoreCase(GuestManagement.getGuestArray().get(j).getRegServices().getServiceName())){
                 return 2; //the service assigned to guest cant be deleted 
             }
         }
@@ -61,12 +62,8 @@ public class ServicesManagement {
             if (services.get(i).getServiceName().equalsIgnoreCase(serviceName)) {
                 deletedID.add(services.get(i).getServiceID());
                 services.remove(i);
-                
                 return 1; // Service deleted successfully
             }
-        }}
-        catch(Exception e){
-            return -1;
         }
         return -1; // Service not found
     }
@@ -97,7 +94,7 @@ public class ServicesManagement {
                 return services.get(i);
             }
         }
-        return null;
+        return null; // lw ml2tsh el service elbdor 3leha 
     }
 
 //=============================== Assign Service ==================================
