@@ -31,7 +31,7 @@ public class Files {
         
         FilesHelper RoomFiles =new FilesHelper(Pathes.RoomPath);
         String allRooms = RoomFiles.ReadFile();
-        String[] rooms = allRooms.split("\n");
+        String[] rooms = allRooms.split("\\s+");
 
         for(String room:rooms){
             
