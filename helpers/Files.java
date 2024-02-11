@@ -172,8 +172,8 @@ public class Files {
     
     //=====================================================================
 
-    // Read Services File 
-    public static void readServicesFile(){
+// Read Services File 
+public static void readServicesFile(){
         //=========================== read all services ==================/
         FilesHelper serviceFile = new FilesHelper(Pathes.ServicesPath);
         String services = serviceFile.ReadFile();
@@ -193,8 +193,9 @@ public class Files {
                     
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
+                    Services.setServicesCounter(Integer.parseInt(oneService[0]));
                     
-                    for (String id : ids){
+                    /* for (String id : ids){
                         
                     if(!id.isEmpty()){
                         if(id.matches("\\d+\\s?")){
@@ -206,11 +207,20 @@ public class Files {
                     }else{
                             Services.setServicesCounter(Integer.parseInt(oneService[0]));
                         }
-                }
+                } */
+                int maxId = 0;
+for (String id : ids) {
+    if (!id.isEmpty() && id.matches("\\d+")) {
+        int currentId = Integer.parseInt(id);
+        maxId = Math.max(maxId, currentId);
+    }
+}
+Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
+
             }
         }
-    }}
-
+    }
+}
     // Write Services File 
     public static void writeServicesFile(){
         FilesHelper serviceFile =  new FilesHelper(Pathes.ServicesPath);

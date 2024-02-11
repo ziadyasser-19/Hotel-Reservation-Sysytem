@@ -1,3 +1,6 @@
 1-gym-zzzz-125.0
-2-soa-zzzz-124.0
-3-son-son-400.0
+2-son-son-1230.0
+4-cfar-cfar-100.0
+3-farah-cfar-2003.0
+5-lemo-lmd-123.0
+6-lolo-lolo-400.0
