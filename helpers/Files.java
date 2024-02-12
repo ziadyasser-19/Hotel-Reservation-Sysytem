@@ -196,45 +196,72 @@ public static void readServicesFile(){
         // ===================Read all Deleted id ========================//
         FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
         String allID = servicesDeletedID.ReadFile();
-        String[] ids = allID.split("\\s+");
-
-        if(!services.isEmpty()){
-            String[] service = services.split("\\s+");
-
-            for(String oneLine : service){
+        
+        
+        
+        if(!services.isEmpty() && !allID.isEmpty()){  // 1st condition 
             
+            String[] service = services.split("\\s+"); // h2sm elservices el3adya
+        
+            String[] ids = allID.split("\\s+"); //h2sm eldeleted id 
+
+            int maxServices = 0;
+            int maxDeleted = 0 ;
+
+            for(String oneLine : service){ 
                 if(oneLine.matches("\\d+-\\w+-\\w+-\\d+.\\d+\\s?")){
-                    
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
                     
-                    
-                    for (String id : ids){
-                        
-                    if(!id.isEmpty()){
-                        if(id.matches("\\d+\\s?")){
-                            if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
-                                    Services.setServicesCounter(Integer.parseInt(oneService[0]));
-                            }else{
-                                Services.setServicesCounter(Integer.parseInt(id));
-                            }}
-                    }else{
-                            Services.setServicesCounter(Integer.parseInt(oneService[0]));
-                        }
-                } 
-                
+                    if(Integer.parseInt(oneService[0])>maxServices){
+                        maxServices = Integer.parseInt(oneService[0]); 
+                    }
             }
         }
-    }else{
-        int max = 0 ;
-        for (String id : ids) {
-            if (!id.isEmpty() && id.matches("\\d+\\s?")) {
-                if  (Integer.parseInt(id) > max) {
-                    max = Integer.parseInt(id);
+            for(String id:ids){
+                if(id.matches("\\d+\\s?")){
+                    if(Integer.parseInt(id) > maxDeleted){
+                        maxDeleted = Integer.parseInt(id);
+                    }
                 }
-                Services.setServicesCounter(max);
             }
+
+            if(maxDeleted>maxServices){
+                Services.setServicesCounter(maxDeleted);
+            }else{
+                Services.setServicesCounter(maxServices);
+            }
+
+    }   else if(!services.isEmpty() && allID.isEmpty()){ // 2nd condition 
+        
+        String[] service = services.split("\\s+"); // h2sm elservices el3adya
+        int maxServices = 0;
+
+        for(String oneLine : service){ 
+            if(oneLine.matches("\\d+-\\w+-\\w+-\\d+.\\d+\\s?")){
+                String[] oneService = oneLine.split("-");
+                ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
+                
+                if(Integer.parseInt(oneService[0])>maxServices){
+                    maxServices = Integer.parseInt(oneService[0]); 
+                }
         }
+    }
+
+            Services.setServicesCounter(maxServices);
+
+    }else{       //3Rd Condition 
+        
+        String[] ids = allID.split("\\s+"); //h2sm eldeleted id 
+        int maxDeleted = 0 ;
+        for (String id : ids) {
+            if ( id.matches("\\d+\\s?")) {
+                if  (Integer.parseInt(id) > maxDeleted) {
+                    maxDeleted = Integer.parseInt(id);
+                }
+            }
+        } 
+        Services.setServicesCounter(maxDeleted);
     }
 }
 
