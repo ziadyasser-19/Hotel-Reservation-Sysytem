@@ -79,29 +79,72 @@ public class Files {
         String[] allids = alldata.split("\\s+");  // Split using any whitespace characters
 
 
-        for(String data : Receptionistss){ //=> 0 id 1 name 2 password 
+
+        if(!allData.isEmpty() && !alldata.isEmpty()){
+        
+        int maxReception = 0 ;
+        int maxdeleted = 0 ;
+
+            for(String data : Receptionistss){ //=> 0 id 1 name 2 password 
 
             if (data.matches( "\\b\\d+-[a-zA-Z]+-\\d+\\b")){
+                    String receptionist[]=data.split("-");
+                    ReceptionistManagement.getAllReceptionists().add(new Receptionist(Integer.parseInt(receptionist[0]), receptionist[1], Integer.parseInt(receptionist[2])));
                 
-                String receptionist[]=data.split("-");
-                ReceptionistManagement.getAllReceptionists().add(new Receptionist(Integer.parseInt(receptionist[0]), receptionist[1], Integer.parseInt(receptionist[2])));
-                
-
-                for (String id : allids) {
-                        // B3ML check 3la array bta3 el deleted id lw msh fady 3shan mytl3lysh errors 
-                        if (!id.isEmpty()) { // Check if the string is not empty
-                            if (Integer.parseInt(receptionist[0]) > Integer.parseInt(id)) { // bshof any id akbr fl deleted wl receptionists w a3ml set llcounter 3 asash
-                                Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0]));
-                            } else {
-                                Receptionist.SetReceptionistCounter(Integer.parseInt(id));
-                            }
-                        }else{
-                            Receptionist.SetReceptionistCounter(Integer.parseInt(receptionist[0]));
-                        }
+                if(Integer.parseInt(receptionist[0])>maxReception) { //loop to see the greatest number in receptionists id 
+                    maxReception =Integer.parseInt(receptionist[0]);
                 }
-            } 
-            
+            }
         }
+
+        for(String delete : allids){   // loop to see the greatest number in the deleted id 
+            if(delete.matches("\\d+")){
+                if(Integer.parseInt(delete)>maxdeleted){
+                    maxdeleted= Integer.parseInt(delete);
+                }
+            }
+        }
+
+        if(maxReception>maxdeleted){
+            Receptionist.SetReceptionistCounter(maxReception);
+        }else{
+            Receptionist.SetReceptionistCounter(maxdeleted);
+        }
+
+
+    }else if(!allData.isEmpty() && alldata.isEmpty()){ // 2nd condition if the deleted is empty 
+
+            int maxReception = 0 ;
+            
+            for(String data : Receptionistss){ //=> 0 id 1 name 2 password 
+
+                if (data.matches( "\\b\\d+-[a-zA-Z]+-\\d+\\b")){
+                        String receptionist[]=data.split("-");
+                        ReceptionistManagement.getAllReceptionists().add(new Receptionist(Integer.parseInt(receptionist[0]), receptionist[1], Integer.parseInt(receptionist[2])));
+                    
+                    if(Integer.parseInt(receptionist[0])>maxReception) { //loop to see the greatest number in receptionists id 
+                        maxReception =Integer.parseInt(receptionist[0]);
+                    }
+                }
+            }
+
+            Receptionist.SetReceptionistCounter(maxReception);
+
+    }else{  //3rd condition lw eldeleted mlyan w el receptionists fady 
+
+        int maxdeleted = 0 ;
+
+        for(String delete : allids){   // loop to see the greatest number in the deleted id 
+            if(delete.matches("\\d+")){
+                if(Integer.parseInt(delete)>maxdeleted){
+                    maxdeleted= Integer.parseInt(delete);
+                }
+            }
+        }
+
+        Receptionist.SetReceptionistCounter(maxdeleted);
+    }
+
     }
 
 
