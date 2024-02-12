@@ -130,6 +130,20 @@ public class ReceptionistRole {
                         else if(unassign == -1){
                             System.out.println("This guest does not have a room assigned");
                         }
+                        else if(unassign == -2){
+                            System.out.println("This isn't the room assigned by this guest");
+
+                            int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
+
+                            if(n == 1){ //try to assign room again
+                                continue;
+                            }
+                            else {
+                                Files.RoomFileWriter();
+                                Files.writeGuestIDRoomID();
+                                back=true;   // back to menu
+                            }
+                        }
                         else {
                             System.out.println("Something went wrong! Please try again.");
 
