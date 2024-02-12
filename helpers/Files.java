@@ -299,13 +299,14 @@ Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
             // For All Registered Services with guest 
             if(!allDataservice.isEmpty()){
                 String[] data = allDataservice.split("\\s+");
-    
                 for(String oneline: data){
-                    
                     if(oneline.matches("\\d{14}-\\d+\\s?")){
-    
                         String[] guestService = oneline.split("-");
-                        ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
+                        try {
+                        GuestManagement.SearchGuest(Long.parseLong(guestService[0])).addService(ServicesManagement.searchService(Integer.parseInt(guestService[1])));
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
                     }
                 }
             }
@@ -401,7 +402,13 @@ Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
                 if(oneline.matches("\\d{14}-\\d+\\s?")){
 
                     String[] guestService = oneline.split("-");
-                    ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
+                    //ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
+                    try {
+                        GuestManagement.SearchGuest(Long.parseLong(guestService[0])).addService(ServicesManagement.searchService(Integer.parseInt(guestService[1])));
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    
                 }
             }
         }

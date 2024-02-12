@@ -11,16 +11,16 @@ import models.*;
 public class AdminRole {
 public static void main(String[] args) {
 
-    
-    Files.ReportReader();
-    Files.RoomFileReader();
-    Files.readGuestIDRoomID();
-    Files.readGuestIDServiceID();
     Files.readGuestsFile();
-    Files.readAdminFile();
-    Files.readServicesDeletedID();
     Files.readServicesFile();
+    Files.RoomFileReader();
+    Files.ReportReader();
+    Files.readServicesDeletedID();
+    Files.readGuestIDServiceID();
     Files.DeletedReceptionsistIdsReader();
+    Files.readAdminFile();
+    Files.readGuestIDRoomID();
+    
     
     
     outerLoop: while (true) {
