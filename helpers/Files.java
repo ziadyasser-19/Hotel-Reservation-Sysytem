@@ -216,7 +216,7 @@ public static void readServicesFile(){
                             if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
                                     Services.setServicesCounter(Integer.parseInt(oneService[0]));
                             }else{
-                                Services.setServicesCounter(Integer.parseInt(id)+1);
+                                Services.setServicesCounter(Integer.parseInt(id));
                             }}
                     }else{
                             Services.setServicesCounter(Integer.parseInt(oneService[0]));
