@@ -94,19 +94,20 @@ public static int assignRoom(int roomid , long NationalId,int reservedDays){
 public static int unassignRoom(int roomid,long NationalId){
 
     try {
-    Guest guest =  GuestManagement.SearchGuest(NationalId);
-    Room room = SearchRoom(roomid);
-        if (guest.getRegRoom()==null)
-            return -1 ; // the guest dont have a regroom
+        Guest guest =  GuestManagement.SearchGuest(NationalId);
+        Room room = SearchRoom(roomid);
 
-        else if (guest.getRegRoom()!=null){
+        if (guest.getRegRoom()==null){
+            return -1 ; // the guest dont have a regroom
+        }
+        else if (guest.getRegRoom() == room){
             guest.deleteRoom();
             room.setIsAvailable(true); //make the room available again
             room.setReservedDays(0);
-            return 1;  //room unassigned succefully
+            return 1;  //room unassigned successfully
         }
         else
-            return 0; // room or guest not found 
+            return -2; // this isn't the room assigned by this guest
         }
         catch (NullPointerException e){
             return 0; // room or guest not found 
