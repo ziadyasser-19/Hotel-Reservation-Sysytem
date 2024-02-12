@@ -236,14 +236,23 @@ Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
 
     // Read Guests File 
     public static void readGuestsFile(){
+        //========================= Read All Guests //================================
         FilesHelper guestsFile = new FilesHelper(Pathes.GuestsPath);
 
         String allguests = guestsFile.ReadFile();
 
+        //==================Read All Rooms Assigned To Guests //========================
         FilesHelper guestIdRoomIdFile = new FilesHelper(Pathes.guestIDRoomIDPath);
 
         String allData = guestIdRoomIdFile.ReadFile();
 
+        //================ Read All Registered Services //====================== 
+        FilesHelper guestIDServiceIDFile = new FilesHelper(Pathes.guestIDServiceIDPath);
+
+        String allDataservice = guestIDServiceIDFile.ReadFile();
+
+
+        // for all guests 
         if(!allguests.isEmpty()){
             String[] guest = allguests.split("\n");
 
@@ -254,9 +263,11 @@ Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
                     GuestManagement.addGuest(guestData[1], Long.parseLong(guestData[0]), guestData[2]);
                 }
             }
+
+            // For All registered Room with guests 
+
             if(!allData.isEmpty()){
                 String[] data = allData.split("\\s+");
-    
                 for(String oneLine : data){
                     if(oneLine.matches("\\b\\d{14}-\\d+-\\d+\\s?")){
                         String[] guestRoom = oneLine.split("-");
@@ -267,6 +278,20 @@ Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
                             
                         }
                         
+                    }
+                }
+            }
+
+            // For All Registered Services with guest 
+            if(!allDataservice.isEmpty()){
+                String[] data = allDataservice.split("\\s+");
+    
+                for(String oneline: data){
+                    
+                    if(oneline.matches("\\d{14}-\\d+\\s?")){
+    
+                        String[] guestService = oneline.split("-");
+                        ServicesManagement.assignService(Integer.parseInt(guestService[1]), Long.parseLong(guestService[0]));
                     }
                 }
             }
