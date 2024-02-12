@@ -207,34 +207,39 @@ public static void readServicesFile(){
                     
                     String[] oneService = oneLine.split("-");
                     ServicesManagement.addService(Integer.parseInt(oneService[0]), oneService[1], Double.parseDouble(oneService[3]), oneService[2]);
-                    Services.setServicesCounter(Integer.parseInt(oneService[0]));
                     
-                    /* for (String id : ids){
+                    
+                    for (String id : ids){
                         
                     if(!id.isEmpty()){
                         if(id.matches("\\d+\\s?")){
                             if(Integer.parseInt(oneService[0])>Integer.parseInt(id)){
                                     Services.setServicesCounter(Integer.parseInt(oneService[0]));
                             }else{
-                                Services.setServicesCounter(Integer.parseInt(id));
+                                Services.setServicesCounter(Integer.parseInt(id)+1);
                             }}
                     }else{
                             Services.setServicesCounter(Integer.parseInt(oneService[0]));
                         }
-                } */
-                int maxId = 0;
-for (String id : ids) {
-    if (!id.isEmpty() && id.matches("\\d+")) {
-        int currentId = Integer.parseInt(id);
-        maxId = Math.max(maxId, currentId);
-    }
-}
-Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
-
+                } 
+                
+            }
+        }
+    }else{
+        int max = 0 ;
+        for (String id : ids) {
+            if (!id.isEmpty() && id.matches("\\d+\\s?")) {
+                if  (Integer.parseInt(id) > max) {
+                    max = Integer.parseInt(id);
+                }
+                Services.setServicesCounter(max);
             }
         }
     }
 }
+
+//================================
+
     // Write Services File 
     public static void writeServicesFile(){
         FilesHelper serviceFile =  new FilesHelper(Pathes.ServicesPath);
