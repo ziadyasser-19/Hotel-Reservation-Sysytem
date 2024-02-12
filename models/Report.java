@@ -76,8 +76,12 @@ public class Report {
 
     public static String generatereport(Guest guest,Services service,double starrate){
         Date currentdate = new Date(); // to set up the current date of the generated report then added it to constructor
+        if(guest.getRegServices().getServiceName()==service.getServiceName()){
         reports.add(new Report(currentdate,guest,service,starrate));
         return "The report of "+guest.getName()+ " has been added successfully " + "with rate "+starrate ;
+        }else{
+                return "The Guest Hasn't regestered in this  Service ! ";
+        }
     }
 
     //OVERLOAD REPORTFILE
