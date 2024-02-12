@@ -1,4 +1,6 @@
 package helpers;
+import java.util.ArrayList;
+
 import models.*;
 public class Files {
 
@@ -148,11 +150,23 @@ public class Files {
 
     public static void  DeletedIDsWriter() {
         FilesHelper file = new FilesHelper(Pathes.deletedReceptionistsIDpath);
+        ArrayList<Integer> uniqueID = new ArrayList<>();
+
+        for(int id : ReceptionistManagement.getdeletedreceptionistsid()){
+            if(uniqueID.contains(id)){
+                continue;
+            }
+            else{
+                uniqueID.add(id);
+            }
+        }
+        ReceptionistManagement.getdeletedreceptionistsid().clear();
+
         file.emptyFile();
-        for(int i = 0 ; i <ReceptionistManagement.getdeletedreceptionistsid().size();i++){
-        String content = String.valueOf(ReceptionistManagement.getdeletedreceptionistsid().get(i));
-        file.writeToFile(content);
-    }
+
+        for(int id : uniqueID){
+            file.writeToFile(String.valueOf(id));
+        }
     }
 
     // Read
@@ -405,10 +419,21 @@ Services.setServicesCounter(Math.max(Integer.parseInt(oneService[0]), maxId));
     // Write Services Deleted ID
     public static void writeServicesDeletedID(){
         FilesHelper servicesDeletedID = new FilesHelper(Pathes.deletedServiceIDpath);
+        ArrayList<Integer> uniqueId = new ArrayList<>();
+
+        for(int id : ServicesManagement.getServicesDeletedID()){
+            if(uniqueId.contains(id)){
+                continue;
+            }
+            else{
+                uniqueId.add(id);
+            }
+        }
+        ServicesManagement.getServicesDeletedID().clear();
 
         servicesDeletedID.emptyFile();
 
-        for(int id : ServicesManagement.getServicesDeletedID()){
+        for(int id : uniqueId){
             servicesDeletedID.writeToFile(String.valueOf(id));
         }
     }
