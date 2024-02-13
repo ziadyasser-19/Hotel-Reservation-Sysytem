@@ -210,10 +210,4 @@ public class Functions {
             }
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println("Enter a name: ");
-        String string = readString();
-        System.out.println("your name is "+ string);
-    }
 }

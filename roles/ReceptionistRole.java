@@ -78,11 +78,11 @@ public class ReceptionistRole {
                         System.out.println("\nThe room has been successfully assigned.");
                     } 
                     else if (assign == 2) {
-                        System.out.println("The guest has already assigned a room before.");
+                        System.out.println("\nThe guest has already assigned a room before.");
                     }
                     else if (assign == -1){
                             
-                            System.out.println("The room is already reserved by another guest.");
+                            System.out.println("\nThe room is already reserved by another guest.");
                             int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                             if(n == 1){      //try to assign room again
                                 continue;
@@ -94,7 +94,7 @@ public class ReceptionistRole {
                             }
                     }
                     else {
-                            System.out.println(" Something went wrong, try again.");
+                            System.out.println("\nSomething went wrong, try again.");
                             int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                             if(n == 1){ //try to assign room again
                                 continue;
@@ -125,13 +125,13 @@ public class ReceptionistRole {
                         int unassign = RoomManagement.unassignRoom(roomno, guestid);
 
                         if(unassign == 1){
-                            System.out.println("The Room unassigned successfully");
+                            System.out.println("\nThe Room unassigned successfully");
                         }
                         else if(unassign == -1){
-                            System.out.println("This guest does not have a room assigned");
+                            System.out.println("\nThis guest does not have a room assigned");
                         }
                         else if(unassign == -2){
-                            System.out.println("This isn't the room assigned by this guest");
+                            System.out.println("\nThis isn't the room assigned by this guest");
 
                             int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
 
@@ -145,7 +145,7 @@ public class ReceptionistRole {
                             }
                         }
                         else {
-                            System.out.println("Something went wrong! Please try again.");
+                            System.out.println("\nSomething went wrong! Please try again.");
 
                             int n = ReceptionistMenu.ReceptionistTryAgain(); //try again menu
 
@@ -190,20 +190,22 @@ public class ReceptionistRole {
                             int i = 0;
                             if(nearestRoom.get(i).getReservedDays()==0){
                             System.out.println("===========================================");
-                                System.out.println("There is empty rooms doesnt reserved : \n");
+                                System.out.println("\nThere are empty rooms that aren't reserved : \n");
                                 for( i = 0 ; i<nearestRoom.size() ;i++){
-                                System.out.println("Room number :" + nearestRoom.get(i).getRoomID() + "  RoomType : " + nearestRoom.get(i).getRoomType() + "  Room Price : " + nearestRoom.get(i).getPrice() + " $");
+                                System.out.println("\nRoom number :" + nearestRoom.get(i).getRoomID() + "  RoomType : " + nearestRoom.get(i).getRoomType() + "  Room Price : " + nearestRoom.get(i).getPrice() + " $");
                             }
                                 back = true;
                             }else{
                                 i = 0 ;
-                                System.out.println("The Nearst check out is : ");
-                                System.out.println("Room number :" + nearestRoom.get(i).getRoomID() + "   With in : " + nearestRoom.get(i).getReservedDays()+ "  RoomType : " + nearestRoom.get(i).getRoomType() + "  Room Price : " + nearestRoom.get(i).getPrice() + " $");
+                                System.out.println("\nThe Nearest check out is : ");
+                                for(Room r : nearestRoom){
+                                    System.out.println("\nRoom number :" + r.getRoomID() + "   Within : " + r.getReservedDays()+ "  RoomType : " + r.getRoomType() + "  Room Price : " + r.getPrice() + " $");
+                                }
                                 back = true;
                             }
                         }                    
                         catch(Exception e){
-                            System.out.println("There is no rooms in the system");
+                            System.out.println("\nThere is no rooms in the system");
                             back=true;
                         }
                     break;
@@ -223,24 +225,24 @@ public class ReceptionistRole {
                             int assignService = ServicesManagement.assignService(service, guest);
 
                             if(assignService==-2){
-                                System.out.println("This guest already assigned a service!");
+                                System.out.println("\nThis guest already assigned a service!");
 
                                 Files.writeGuestIDServiceID();
                                 back=true;
                             }
                             else if(assignService == 1){
-                                System.out.println("Service assigned to guest successfully");
+                                System.out.println("\nService assigned to guest successfully");
                                 Files.writeGuestIDServiceID();
                                 back=true;
                             }else{
-                                System.out.println("the service id or the guest national id wasnt found");
+                                System.out.println("\nThe service id or the guest national id wasn't found");
                                 Files.writeGuestIDServiceID();
                                 back=true;
                             }
                         }
                         catch(Exception e){
                         
-                            System.out.println("Error! Failed to assign service.");
+                            System.out.println("\nError! Failed to assign service.");
                             int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                             if(n == 1){      //try to assign room again
                                 continue;
@@ -318,7 +320,7 @@ public class ReceptionistRole {
                                     }
                                 }
                                 catch(Exception e){
-                                    System.out.println("Something went wrong!");
+                                    System.out.println("\nSomething went wrong!");
                                     back=true;
                                 }
                             }
@@ -390,7 +392,7 @@ public class ReceptionistRole {
                                 Files.writeGuestsFile();
                             }
                             else{
-                                System.out.println("Guest not found! Try again");
+                                System.out.println("\nGuest not found! Try again");
                                 int n = ReceptionistMenu.ReceptionistTryAgain();  // Try again menu
                                 if(n == 1){ //try to delete guest again
                                     continue;
@@ -407,10 +409,10 @@ public class ReceptionistRole {
                             break;
                             //[11] Services Rates
                         case 11 : 
-                                System.out.println("The Rates Of The Services : ");
+                                System.out.println("\nThe Rates Of The Services : ");
                                 ArrayList<Services> servicelist = ServicesManagement.getServicesList();
                                 for(int i =0 ;i<servicelist.size() ;i++){
-                                    System.out.println("service id :  "+  servicelist.get(i).getServiceID() + "  Name : " + servicelist.get(i).getServiceName() + "    Service Rate :  " +Report.servicerate(servicelist.get(i).getServiceID()));
+                                    System.out.println("\nservice id :  "+  servicelist.get(i).getServiceID() + "  Name : " + servicelist.get(i).getServiceName() + "    Service Rate :  " +Report.servicerate(servicelist.get(i).getServiceID()));
                                 }
                                 
                                 back = true;
@@ -428,41 +430,6 @@ public class ReceptionistRole {
         
             }   
         }
-    }
-
-
-
-    public static void main (String args[]){
-        // RoomManagement.addRoom(4, "single", false, 44);
-        RoomManagement.addRoom(5, "single", true, 44);
-        GuestManagement.addGuest("farah", 2004, "farahhh");
-
-
-        ServicesManagement.addService("gym", "", 250);
-        ServicesManagement.addService("spa", "", 300);
-
-
-        Admin.addAdmin("faroha", 22);
-
-
-        ServicesManagement.assignService(2,2004);
-        
-        // AdminRole.main(args);
-        
-
-
-        receptionistRole();
-
-        // RoomManagement.assignRoom(5, 2, 5);
-
-        // ReceptionistManagement.addEmployee("farah", 2004);
-        // ReceptionistManagement.addEmployee("farah", 203);
-        // ReceptionistManagement.addEmployee("ziad", 22);
-
-        // for(Receptionist receptionist : ReceptionistManagement.getAllReceptionists()){
-        //     System.out.println(receptionist.getID() + " " + receptionist.getName() + " " + receptionist.getPass());
-        // }
-
     }
 
 }

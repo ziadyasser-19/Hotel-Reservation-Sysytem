@@ -544,9 +544,4 @@ public static void readServicesFile(){
             servicesDeletedID.writeToFile(String.valueOf(id));
         }
     }
-
-    public static void main(String[] args) {
-        // readServicesFile();
-        RoomFileReader();
-    }
 }

@@ -44,7 +44,7 @@ public static void main(String[] args) {
                         if (ReceptionistManagement.addEmployee(name, password) != -1) {
                             z = false;
                             ReceptionistManagement.addEmployee(name, password);
-                            System.out.println("\nReceptionist added succefully :) ");
+                            System.out.println("\nReceptionist added successfully :) ");
                         }else{
                         System.out.println("\nthis user name already exist choose option : ");
                         System.out.println("=======================================\n");
@@ -69,7 +69,7 @@ public static void main(String[] args) {
                 }
                 }else{
                     ReceptionistManagement.addEmployee(name, password);
-                    System.out.println("\nReceptionist added succefully : ) ");
+                    System.out.println("\nReceptionist added successfully : ) ");
                 }
                 System.out.println("==============================\n");
                 int y = adminrolemenu.anotherservicemenu();
@@ -102,7 +102,7 @@ public static void main(String[] args) {
                     id=Functions.readInt();
                     if (ReceptionistManagement.deleteEmployee(id)!=-1) {
                         z = false;
-                        System.out.println("\nemployee deleted succefully :) ");
+                        System.out.println("\nemployee deleted successfully :) ");
                     }else{
                         System.out.println("\nthis id doesnt exist choose another option =>");
                         System.out.println("=======================================\n");
@@ -162,7 +162,7 @@ public static void main(String[] args) {
                                     y = Functions.readInt();
                                     if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                         f =false ;
-                                        System.out.println("\nthe password updated succefully :)");
+                                        System.out.println("\nthe password updated successfully :)");
                                         ReceptionistManagement.updateEmployeePass(x, y);
                                         
                                     }else{
@@ -220,7 +220,7 @@ public static void main(String[] args) {
                                 y = Functions.readInt();
                                 if(ReceptionistManagement.updateEmployeePass(x, y)!=-2){
                                     f =false ;
-                                    System.out.println("\nthe password updated succefully :)");
+                                    System.out.println("\nthe password updated successfully :)");
                                     ReceptionistManagement.updateEmployeePass(x, y);
                                     
                                 }else{
@@ -299,13 +299,13 @@ public static void main(String[] args) {
                 
                 for(Guest  guest:Guest){
                     if(guest.getRegRoom()==null && guest.getRegServices()==null){
-                        System.out.println("\n"+"national id : " + guest.getNationalID() + "    reserve room number : Not regesterd Yet !      "+ "  and service : not regeisterd in any service");
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + "    reserve room number : Not registered Yet !      "+ "  and service : not registered in any service");
                         
                     }
                     else if(guest.getRegRoom()==null){
-                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : Not regesterd Yet ! "+ "  and service " + guest.getRegServices().getServiceName());
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : Not registered Yet ! "+ "  and service " + guest.getRegServices().getServiceName());
                     }else if(guest.getRegServices()==null){
-                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number :  "+guest.getRegRoom().getRoomID() +"  and service : not regiesterd in any services ");
+                        System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number :  "+guest.getRegRoom().getRoomID() +"  and service : not registered in any services ");
                     }else{
                     System.out.println("\n"+"national id : " + guest.getNationalID() + " reserve room number : " + guest.getRegRoom().getRoomID() + "  and service :" + guest.getRegServices().getServiceName());
                 }
@@ -346,7 +346,7 @@ public static void main(String[] args) {
                 Roomnum = Functions.readPositive();
                 if(RoomManagement.addRoom(Roomnum, type,true,price)!=-1){
                     z = false;
-                    System.out.println("\nRoom added Succefully :) ");
+                    System.out.println("\nRoom added Successfully :) ");
                     RoomManagement.addRoom(Roomnum, type, true,price);
                     
                 }else{
@@ -372,10 +372,10 @@ public static void main(String[] args) {
                 }
             }
         }else if(RoomManagement.addRoom(Roomnum, type, true,price)!=-1){
-            System.out.println("\nRoom added Succefully :) ");
+            System.out.println("\nRoom added Successfully :) ");
             RoomManagement.addRoom(Roomnum, type, true,price);
         }
-        System.out.println("\nRoom added Succefully :) ");
+        System.out.println("\nRoom added Successfully :) ");
         System.out.println("================================\n");
             int y = adminrolemenu.anotherservicemenu();
                 if (y == 1) {
@@ -409,7 +409,7 @@ public static void main(String[] args) {
                     System.out.println("the room assigned to guest cant be deleted right now ! ");
                     }else{
                     RoomManagement.deleteRoom(roomnum);
-                    System.out.println("\nthe room deleted succefully :) ");
+                    System.out.println("\nthe room deleted successfully :) ");
                 }
             }else{
                 System.out.println("\ninValid Room-number to search choose option =>");
@@ -438,7 +438,7 @@ public static void main(String[] args) {
                 System.out.println("\nthe room assigned to guest cant be deleted right now ! ");
             }else{
                 RoomManagement.deleteRoom(roomnum);
-                System.out.println("\nthe room deleted succefully :) ");
+                System.out.println("\nthe room deleted successfully :) ");
             }
         }
         System.out.println("===================================\n");
@@ -523,7 +523,7 @@ public static void main(String[] args) {
             System.out.println("\nThere is no rooms in the system yet !\n");
         }else{
         for(Room room : rooms){
-            System.out.println("\n" + "room number : " + room.getRoomID() + "    roomtype : " + room.getRoomType() + "   room price : "+room.getPrice() +"$"+ "   room availability : " +room.getIsAvaialble());
+            System.out.println("\n" + "room number : " + room.getRoomID() + "    room type : " + room.getRoomType() + "   room price : "+room.getPrice() +"$"+ "   room availability : " +room.getIsAvaialble());
         }}
         System.out.println("\n============================================");
         int y = adminrolemenu.anotherservicemenu();
@@ -567,7 +567,7 @@ public static void main(String[] args) {
                 if(ServicesManagement.addService(servicename, description, price)!=-1){ // lw zbt el esm 
                     f=false;
                     ServicesManagement.addService(servicename, description, price);
-                    System.out.println("\nService added succefully :) ");
+                    System.out.println("\nService added successfully :) ");
                 }else{
                     System.out.println("\nName already exist choose option =>");
                     System.out.println("=======================================\n");
@@ -592,7 +592,7 @@ public static void main(String[] args) {
             }
         }else{ // lw d5l esm tmam 
             ServicesManagement.addService(servicename, description, price);
-            System.out.println("\nService added succefully :) ");
+            System.out.println("\nService added successfully :) ");
         }
         System.out.println("=============================\n");
             int y = adminrolemenu.anotherservicemenu();
@@ -618,7 +618,7 @@ public static void main(String[] args) {
     if(ServicesManagement.searchServices(servicename)==null){ // bst5dm fn el search lw ml2tsh el elsm dh 
         boolean z = true;
         innerloop : while(z){
-            System.out.println("the service doesnt exist enter another service name : ");
+            System.out.println("the service doesn't exist enter another service name : ");
             servicename = Functions.readString();
             if (ServicesManagement.searchServices(servicename)!=null) {
                 z=false;
@@ -626,7 +626,7 @@ public static void main(String[] args) {
                     System.out.println("Service assigned to guests cant be deleted !");
                 }else{
                 ServicesManagement.deleteService(servicename);
-                System.out.println("\nService deleted succefully :) ");
+                System.out.println("\nService deleted successfully :) ");
                 }
             }else{
                 System.out.println("\nInvalid name to search choose option =>");
@@ -655,7 +655,7 @@ public static void main(String[] args) {
                     System.out.println("Service assigned to guests cant be deleted ! ");
                 }else{
                 ServicesManagement.deleteService(servicename);
-                System.out.println("\nService deleted succefully :) ");
+                System.out.println("\nService deleted successfully :) ");
                 }
     }
     System.out.println("==================================\n");
@@ -691,7 +691,7 @@ public static void main(String[] args) {
                 System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
                 double serviceprice = Functions.ReadDouble();
                 ServicesManagement.updateService(name, serviceprice);
-                System.out.println("\nService Updated Succefully ! ");
+                System.out.println("\nService Updated Successfully ! ");
             }else{
                 System.out.println("\ninvalid name choose option =>");
                 System.out.println("=======================================\n");
@@ -718,7 +718,7 @@ public static void main(String[] args) {
         System.out.println("enter the new price for "+ServicesManagement.searchServices(name).getServiceName()+" Service :");
                 double serviceprice = Functions.ReadDouble();
                 ServicesManagement.updateService(name, serviceprice);
-                System.out.println("\nService updated succefully !");
+                System.out.println("\nService updated successfully !");
     }
     System.out.println("===================================\n");
     int y = adminrolemenu.anotherservicemenu();
@@ -781,7 +781,7 @@ public static void main(String[] args) {
                             Files.writeGuestsFile();
                             Files.writeServicesDeletedID();
                             Files.writeServicesFile();
-    System.out.println("logged out succefully !");
+    System.out.println("logged out successfully !");
     break outerLoop;
 }
 }

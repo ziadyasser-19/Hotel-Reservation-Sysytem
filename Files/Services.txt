@@ -1,0 +1,8 @@
+1-one-ser-1000.0
+3-service-s-2.0
+2-fff-f-3.0
+4-dd-d-2.0
+7-farah-f-22.0
+5-two-w-300.0
+6-dddd-d-2000.0
+8-eee-e-250.0

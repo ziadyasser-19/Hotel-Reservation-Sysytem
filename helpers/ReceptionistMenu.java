@@ -40,8 +40,4 @@ public class ReceptionistMenu {
         int choice = Functions.readPositiveOrZero(1);
         return choice;
     }
-
-    public static void main(String[] args) {
-        ReceptionistMainMenu();
-    }
 }
